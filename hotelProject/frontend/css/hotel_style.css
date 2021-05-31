@@ -444,3 +444,112 @@ textarea {
 /*------------------------------------------------------------------
   hotel
 -------------------------------------------------------------------*/
+ .form-control {
+    border-radius: 0;
+  }
+
+  .head_room {
+    padding-top: 10px;
+  }
+
+  .hotel {
+    margin-right: 200px;
+  }
+
+
+  .hotel .box {
+    width: 65%;
+    height: 950px;
+    margin-left: 400px;
+    margin-top: 100px;
+    padding-left: 50px;
+    margin-right: 300px;
+    background-color: white;
+  }
+
+  .hotel .img_hotel {
+    float: left;
+  }
+
+  #img1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    filter: opacity(80%);
+  }
+
+  .hotel .text_hotel {
+    float: left;
+    margin-left: 30px;
+    width: 700px;
+  }
+
+  .gg-thermostat {
+    margin-bottom: 10px;
+    margin-top: 50px;
+
+  }
+
+  .gg-data {
+    margin-bottom: 10px;
+    margin-top: 50px;
+    margin-left: 30px;
+  }
+
+  #eat {
+    margin-bottom: 10px;
+    margin-top: 50px;
+    margin-left: 27px;
+  }
+
+  .hotel .text_hotel a {
+    font-size: 25px;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+
+  }
+
+
+  .hotel .text_hotel1 {
+    margin-top: 27px;
+    margin-bottom: 80px;
+    width: 700px;
+    height: 160px;
+
+  }
+
+  .hotel .text_hotel2 {
+    padding-top: 27px;
+    margin-bottom: 85px;
+    width: 700px;
+    height: 200px;
+
+  }
+
+  .hotel .text_hotel3 {
+    width: 700px;
+    height: 170px;
+    padding-top: 19px;
+  }
+
+  .hotel .sell h1 {
+    margin-right: 130px;
+    float: right;
+    background-color: darkkhaki;
+
+  }
+
+  .hotel .booknow button {
+    margin-top: 35px;
+    float: right;
+    padding: 10px;
+    height: 55px;
+    width: 150px;
+    background: rgb(53, 52, 52);
+    color: white;
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 17px;
+  }

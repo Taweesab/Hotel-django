@@ -31,11 +31,11 @@
   <link rel="stylesheet" href="{% static 'css/hotel_style.css' %}"> 
 </head>
 
-<body id="home" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body {% block body %}{% endblock body %}>
 
   <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">BY</a>
+      <a class="navbar-brand" href="/">BY</a>
       <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
         aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
           <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
           <li class="nav-item"><a class="nav-link" href="/hotel_room">HOTEL ROOM</a></li>
           <li class="nav-item"><a class="nav-link" href="/dinning_room">DINNING ROOM</a></li>
-          <li class="nav-item"><a class="nav-link" href="/promotion">PROMOTIONS</a></li>
+          <li class="nav-item"><a class="nav-link" href="/promotions">PROMOTIONS</a></li>
           <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
         </ul>
         <ul class="navbar-nav ms-auto">

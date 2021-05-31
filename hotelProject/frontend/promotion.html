@@ -484,13 +484,15 @@
         <div class="row text-center ">
 
             <div class="col-sm-4">
-                <div class="promotion">
-                    <h5><strong>LUNCH</strong></h5>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    <h6>P00012</h6>
-                    <a class="btn" href="#">Reservation</a>
-                    <h5></h5>
-                </div>
+                {% for x in range(10) %}   
+                    <div class="promotion">
+                        <h5><strong>LUNCH</strong></h5>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <h6>P00012</h6>
+                        <a class="btn" href="#">Reservation</a>
+                        <h5></h5>
+                    </div>
+                {% endfor %}
             </div>
 
         </div>

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#can i test kaa
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

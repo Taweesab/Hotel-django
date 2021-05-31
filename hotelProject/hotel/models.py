@@ -13,6 +13,7 @@ class staff(models.Model):
     password = models.CharField(max_length=100, null=False)
 
 class customer(models.Model):
+    customer_id = models.CharField(max_length=11, null=False)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
     email = models.EmailField(null=False)
@@ -21,7 +22,7 @@ class customer(models.Model):
     tel = models.CharField(max_length=10, null=False)
 
 class customer_booking(models.Model):
-    id = models.ForeignKey(customer, on_delete=models.RESTRICT, null=False)
+    customer_id = models.ForeignKey(customer, on_delete=models.RESTRICT, null=False)
     booking_no = models.CharField(max_length=11, null=True)
     resb_no = models.CharField(max_length=11, null=True)
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
@@ -39,7 +40,7 @@ class room_booking(models.Model):
     staff_id = models.ForeignKey(staff, on_delete=models.CASCADE, null=False)
     date_check_in = models.DateTimeField(null = False)
     date_check_out = models.DateTimeField(null=False)
-    promotion_code = models.ForeignKey(promotion_type, on_delete=models.CASCADE, null=True)
+    promotion_code = models.ForeignKey(promotion_type, on_delete=models.SET_NULL(), null=True)
     number_guest = models.IntegerField(null=False)
     total_charge = models.FloatField(null=False)
     payment_method = models.CharField(max_length=32)
@@ -63,13 +64,13 @@ class service(models.Model):
 class room_detail(models.Model):
     booking_no = models.ForeignKey(room_booking, on_delete=models.RESTRICT, null=False)
     room_no = models.ForeignKey(room_available, on_delete=models.CASCADE, null=False)
-    service_code = models.ForeignKey(service, on_delete = models.CASCADE, null=False)
+    service_code = models.ForeignKey(service, on_delete = models.CASCADE, null=True)
     service_count = models.IntegerField(null=False)
     
 class resbooking(models.Model):
     resb_no = models.ForeignKey(customer_booking, on_delete=models.RESTRICT, null=False)
     staff_id = models.ForeignKey(staff, on_delete=models.CASCADE, null=False)
-    promotion_code = models.ForeignKey(promotion_type, on_delete=models.CASCADE, null=True)
+    promotion_code = models.ForeignKey(promotion_type, on_delete=models.SET_NULL(), null=True)
     number_guest = models.IntegerField(null=False)
     total_charge = models.FloatField(null=False)
     payment_method = models.CharField(max_length=32)

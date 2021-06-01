@@ -44,7 +44,7 @@ def add(request):
     return render(request,'book_hotel.html')
 
 def back1(request):
-    return render(request,'room.html')
+    return render(request,'room copy.html')
 
 def back2(request):
     return render(request,'book_hotel.html')
@@ -53,7 +53,7 @@ def back3(request):
     return render(request,'book_hotel2.html')
 
 def inforoom(request):
-    return render(request,'room.html')
+    return render(request,'room copy.html')
 
 def login(request):
     return render(request,'login.html')
@@ -85,4 +85,5 @@ def bookrest(request):
     else:
         messages.info(request,'Please Log in')
         return login(request)
+
 

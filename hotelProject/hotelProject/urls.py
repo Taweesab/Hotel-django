@@ -40,7 +40,7 @@ urlpatterns = [
     path('back1/',views.back1, name='back1'),
     path('back2/',views.back2, name='back2'),
     path('back3/',views.back3, name='back3'),
-    path('inforoom/',views.inforoom, name='inforoom'),
+    path('inforoom/',views.inforoom, name='inforoom')
   
 
 ]

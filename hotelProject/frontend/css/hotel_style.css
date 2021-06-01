@@ -477,6 +477,14 @@ textarea {
     filter: opacity(80%);
   }
 
+  .hotel .text_hotel button a {
+    font-size: 20px;
+    color: white;
+    
+  }
+
+  
+  
   .hotel .text_hotel {
     float: left;
     margin-left: 30px;

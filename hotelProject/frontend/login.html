@@ -75,18 +75,18 @@
 		</div>
 	</section>
      
-   
-  {% block script %}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {% if messages %}
-    <script>
-      Swal.fire({
-        icon: 'error',
-        title: 'Something went wrong!',
-        text: 'Plese try again',
-        footer: '<a href="/signup">Pleses sign up, if you dont have an account</a>'
-      })
-    </script> 
-    {% endif %}
-  {% endblock script %} 
+   {% if messages %}
+		{% block script %}
+			<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+			
+			<script>
+			Swal.fire({
+				icon: 'error',
+				title: 'Something went wrong!',
+				text: 'Plese try again',
+				footer: '<a href="/signup">Pleses sign up, if you dont have an account</a>'
+			})
+			</script> 
+		{% endblock script %} 
+   {% endif %}
 {% endblock %}

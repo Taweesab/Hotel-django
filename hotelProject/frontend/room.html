@@ -75,11 +75,13 @@
       </div>
       <div class="text_hotel">
         <div class="text_hotel1">
-          <a href="info_room1.html">Junior Suite</a> <br></br>
+          <a >Junior Suite</a> <br></br>
           <li>Size :260 sq ft </li>
           <li>Beds: 2 Double(s)</li>
           <div class="booknow">
-            <button onclick="window.location.href='./info_room1.html'">More info</button>
+            <button>
+              <a href="{%url 'moreinfo1' %}">more info</a>
+          </button>
           </div>
           <table border="0">
             <tr>
@@ -101,11 +103,13 @@
 
         </div>
         <div class="text_hotel2">
-          <a href="info_room2.html">Standard Room</a> <br></br>
+          <a >Standard Room</a> <br></br>
           <li>Size: 230 sq ft</li>
           <li>Beds: 1 Double(s)</li>
           <div class="booknow">
-            <button onclick="window.location.href='./info_room2.html'">More info</button>
+            <button>
+              <a href="{%url 'moreinfo2' %}">more info</a>
+            </button>
           </div>
           <table border="0">
             <tr>
@@ -123,11 +127,13 @@
           </table>
         </div>
         <div class="text_hotel3">
-          <a href="info_room3.html">Superior Room</a> <br></br>
+          <a >Superior Room</a> <br></br>
           <li>Size: 280 sq ft</li>
           <li>Beds: 1 King(s)</li>
           <div class="booknow">
-            <button onclick="window.location.href='./info_room3.html'">More info</button>
+            <button>
+                <a href="{%url 'moreinfo3' %}">more info</a>
+            </button>
 
           </div>
           <table border="0">
@@ -239,7 +245,7 @@
   body {
     font: 400 15px/1.8 Lato, sans-serif;
     color: #777;
-    {% comment %} background-color: whitesmoke; {% endcomment %}
+    background-color: whitesmoke;
   }
 
   h3,
@@ -341,7 +347,7 @@
     text-decoration: none;
   }
 
-  {% comment %} .form-control {
+  .form-control {
     border-radius: 0;
   }
 
@@ -409,9 +415,14 @@
 
   }
 
+  .hotel .text_hotel button a {
+    font-size: 20px;
+    color: white;
+    
+  }
 
   .hotel .text_hotel1 {
-    margin-top: 27px;
+    margin-top: 20px;
     margin-bottom: 80px;
     width: 700px;
     height: 160px;
@@ -439,20 +450,20 @@
 
   }
 
-  .hotel .booknow button {
+   .booknow button  {
     margin-top: 35px;
     float: right;
     padding: 10px;
     height: 55px;
     width: 150px;
-    background: rgb(53, 52, 52);
-    color: white;
+    background: rgb(95, 92, 92);
     border: 2px solid transparent;
-    text-transform: uppercase;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 17px;
-  } {% endcomment %}
+    font-size: 10px;
+  } 
+
+
 
   .textarea {
     background-color: #2F4F4F;

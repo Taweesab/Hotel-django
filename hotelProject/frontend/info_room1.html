@@ -60,7 +60,7 @@
       <div class="head_room">
         <table id="tab" border="0">
           <tr>
-            <td><a href="room.html"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
+            <td><a href="{%url 'inforoom' %}"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
             <td>
               <h1>| &nbsp;</h1>
             </td>
@@ -69,7 +69,9 @@
             </td>
           </tr>
           <div class="book">
-            <button onclick="window.location.href='./book_hotel.html'">Book now</button>
+            <button>
+              <a href="{%url 'booknow' %}">BOOK NOW</a>
+            </button>
           </div>
         </table>
         <hr>
@@ -397,7 +399,12 @@
 
   }
 
-  button {
+  .book a{
+    color: #fff;
+    text-decoration:none;
+  }
+
+  button  {
     padding-top: 0px;
     height: 55px;
     width: 150px;

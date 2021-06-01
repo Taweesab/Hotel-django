@@ -58,7 +58,7 @@
       <div class="head_room">
         <table id="tab" border="0">
           <tr>
-            <td><a href="room.html"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
+            <td><a href="{%url 'back1' %}"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
             <td>
               <h1>| &nbsp;</h1>
             </td>
@@ -136,7 +136,9 @@
           </form>
 
           <div class="next">
-            <button onclick="window.location.href='./book_hotel2.html'">Next</button>
+            <button>
+              <a href="{%url 'next' %}">Next</a>
+            </button>
           </div>
 
         </div>
@@ -512,6 +514,11 @@
     margin-top: 30px;
     float: right;
     margin-right: 250px;
+  }
+
+  .next a{
+    color: #fff;
+    text-decoration: none;
   }
 
   button {

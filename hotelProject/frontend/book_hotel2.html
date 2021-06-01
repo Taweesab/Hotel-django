@@ -60,7 +60,7 @@
       <div class="head_room">
         <table id="tab" border="0">
           <tr>
-            <td><a href="book_hotel.html"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
+            <td><a href="{%url 'back2' %}"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
             <td>
               <h1>| &nbsp;</h1>
             </td>
@@ -96,11 +96,16 @@
         </div>
 
         <div class="add">
-          <button onclick="window.location.href='./book_hotel.html'">Add Another</button>
+          <button>
+            <a href="{%url 'add' %}">Add Another</a>
+          </button>
         </div>
         <div class="next">
-          <button onclick="window.location.href='./book_hotel3.html'">Next</button>
+          <button>
+            <a href="{%url 'next2' %}">Next</a>
+          </button>
         </div>
+
       </div>
   </section>
 
@@ -480,10 +485,20 @@
     font-size: 20px;
   }
 
+  .add a{
+    color: #fff;
+    text-decoration: none;
+  }
+
   .add {
     margin-top: 80px;
     float: left;
     margin-left: 200px;
+  }
+
+  .next a{
+    color: #fff;
+    text-decoration: none;
   }
 
   .next {

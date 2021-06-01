@@ -23,6 +23,23 @@ urlpatterns = [
     path('hotel_room/',views.room, name='room'),
     path('dinning_room/',views.dinning, name='rest'),
     path('promotions/',views.promotion, name='promotion'),
-    path('contact/',views.contact, name='contact')
+    path('contact/',views.contact, name='contact'),
+    path('moreinfo1',views.moreinfo1, name='moreinfo1'),
+    path('moreinfo2',views.moreinfo2, name='moreinfo2'),
+    path('moreinfo3',views.moreinfo3, name='moreinfo3'),
+    path('booknow',views.booknow, name='booknow'),
+    path('next',views.next, name='next'),
+    path('next2',views.next2, name='next2'),
+    path('add',views.add, name='add'),
+    path('back1',views.back1, name='back1'),
+    path('back2',views.back2, name='back2'),
+    path('back3',views.back3, name='back3'),
+    path('inforoom',views.inforoom, name='inforoom')
+
+    
+
+
+
+    
 ]
 

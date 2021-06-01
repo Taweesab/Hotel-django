@@ -21,6 +21,9 @@ class customer(models.Model):
     address = models.CharField(max_length=200, null=False)
     tel = models.CharField(max_length=10, null=False)
 
+    def fullName(self):
+        return self.fName + " " + self.lName
+
 class customer_booking(models.Model):
     customer_id = models.ForeignKey(customer, on_delete=models.RESTRICT, null=False)
     booking_no = models.CharField(max_length=11, null=True)

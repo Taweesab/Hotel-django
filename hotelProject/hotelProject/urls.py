@@ -33,13 +33,12 @@ urlpatterns = [
     path('moreinfo1/',views.moreinfo1, name='moreinfo1'),
     path('moreinfo2/',views.moreinfo2, name='moreinfo2'),
     path('moreinfo3/',views.moreinfo3, name='moreinfo3'),
-    path('booknow/',views.booknow, name='booknow'),
+    # path('booknow/',views.booknow, name='booknow'),
     path('next/',views.next, name='next'),
     path('next2/',views.next2, name='next2'),
-    path('add/',views.add, name='add'),
+    # path('add/',views.add, name='add'),
     path('back3/',views.back3, name='back3'),
     path('profile/',views.profile,name='profile'),
-    path('res1/',views.res1,name='res1'),
     path('res2/',views.res2,name='res2'),
     path('res3/',views.res3,name='res3')
 

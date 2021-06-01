@@ -31,8 +31,8 @@ def moreinfo2(request):
 def moreinfo3(request):
     return render(request,'info_room3.html')
 
-def booknow(request):
-    return render(request,'book_hotel.html')
+# def booknow(request):
+#     return render(request,'book_hotel.html')
 
 def next(request):
     return render(request,'book_hotel2.html')
@@ -40,8 +40,8 @@ def next(request):
 def next2(request):
     return render(request,'book_hotel3.html')
 
-def add(request):
-    return render(request,'book_hotel.html')
+# def add(request):
+#     return render(request,'book_hotel.html')
 
 def back3(request):
     return render(request,'book_hotel2.html')
@@ -70,6 +70,9 @@ def bookroom(request):
         messages.info(request,'Please Log in')
         return login(request)
 
+def profile(request):
+    return render(request,'profile.html')
+
 def bookrest(request):
     if request.user.is_authenticated:
         return render(request,'book_res.html')
@@ -77,11 +80,8 @@ def bookrest(request):
         messages.info(request,'Please Log in')
         return login(request)
 
-def profile(request):
-    return render(request,'profile.html')
-
-def res1(request):
-    return render(request,'book_res.html')
+# def res1(request):
+#     return render(request,'book_res.html')
 
 def res2(request):
     return render(request,'book_res2.html')

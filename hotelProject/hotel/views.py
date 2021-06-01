@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-
+from .models import promotion_type 
 
 # Create your views here.
 def home(request):
@@ -17,7 +17,9 @@ def room(request):
     return render(request,'room.html')
 
 def promotion(request):
-    return render(request,'promotion.html')
+    allpromotion = promotion_type.objects.all()
+    context = {'allpromotion' : allpromotion}
+    return render(request,'promotion.html',context)
 
 def contact(request):
     return render(request,'contact.html')

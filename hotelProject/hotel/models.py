@@ -35,6 +35,9 @@ class promotion_type(models.Model):
     expire_date = models.DateField(null= False)
     discount = models.FloatField(null=False)
 
+    def __str__(self) :
+        return self.promotion_name
+
 class room_booking(models.Model):
     booking_no = models.ForeignKey(customer_booking, on_delete=models.RESTRICT, null=False)
     staff_id = models.ForeignKey(staff, on_delete=models.CASCADE, null=False)

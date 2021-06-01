@@ -22,7 +22,6 @@ def promotion(request):
 def contact(request):
     return render(request,'contact.html')
 
-<<<<<<< HEAD
 def moreinfo1(request):
     return render(request,'info_room1.html')
 
@@ -56,13 +55,6 @@ def back3(request):
 def inforoom(request):
     return render(request,'room.html')
 
-
-
-
-
-
-
-=======
 def login(request):
     return render(request,'login.html')
 
@@ -93,4 +85,4 @@ def bookrest(request):
     else:
         messages.info(request,'Please Log in')
         return login(request)
->>>>>>> df842de1bfb4d6248b1b7785907436e34df9a76a
+

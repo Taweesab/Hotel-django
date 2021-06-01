@@ -86,4 +86,5 @@ def bookrest(request):
         messages.info(request,'Please Log in')
         return login(request)
 
-
+def profile(request):
+    return render(request,'profile.html')

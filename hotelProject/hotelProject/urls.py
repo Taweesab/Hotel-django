@@ -25,7 +25,7 @@ urlpatterns = [
     path('dinning_room/',views.dinning, name='rest'),
     path('promotions/',views.promotion, name='promotion'),
     path('contact/',views.contact, name='contact'),
-      path('login/',views.login,name='login'),
+    path('login/',views.login,name='login'),
     path('loginaccept/',views.logincheck,name='login'),
     path('book_room/',views.bookroom,name='bookroom'),
     path('book_table/',views.bookrest,name='bookrest'),
@@ -40,7 +40,5 @@ urlpatterns = [
     path('back1/',views.back1, name='back1'),
     path('back2/',views.back2, name='back2'),
     path('back3/',views.back3, name='back3'),
-    path('inforoom/',views.inforoom, name='inforoom')
-  
-
+    path('profile/',views.profile,name='profile')
 ]

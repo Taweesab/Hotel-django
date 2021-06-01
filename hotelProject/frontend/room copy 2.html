@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Boiled-Youtioa Hotel & Restaurant</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href='https://css.gg/thermostat.css' rel='stylesheet'>
+  <link href='https://css.gg/data.css' rel='stylesheet'>
+  <link href='https://css.gg/maze.css' rel='stylesheet'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777;
+      background-color: whitesmoke; 
+    }
+  
+    h3,
+    h4 {
+      margin: 10px 0 30px 0;
+      letter-spacing: 10px;
+      font-size: 20px;
+      color: #111;
+    }
+  
+    .container {
+      padding: 80px 120px;
+    }
+  
+  
+    .bg-1 {
+      background: #2d2d30;
+      color: #bdbdbd;
+    }
+  
+    .bg-1 h3 {
+      color: #fff;
+    }
+  
+    .bg-1 p {
+      font-style: italic;
+    }
+  
+    .btn {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #f1f1f1;
+      border-radius: 0;
+      transition: .2s;
+    }
+  
+    .btn:hover,
+    .btn:focus {
+      border: 1px solid #333;
+      background-color: #fff;
+      color: #000;
+    }
+  
+    .nav-tabs li a {
+      color: #777;
+    }
+  
+    .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+    }
+  
+    .navbar li a,
+    .navbar .navbar-brand {
+      color: #d5d5d5 !important;
+    }
+  
+    .navbar-nav li a:hover {
+      color: #fff !important;
+      background-color: #363636 !important;
+    }
+  
+    .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292b !important;
+    }
+  
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+    }
+  
+    .dropdown-menu li a {
+      color: #000 !important;
+    }
+  
+    .dropdown-menu li a:hover {
+      background-color: rgb(236, 119, 119) !important;
+    }
+  
+    footer {
+      background-color: #2d2d30;
+      color: #f5f5f5;
+      padding: 20px;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+  
+    footer a {
+      color: #f5f5f5;
+    }
+  
+    footer a:hover {
+      color: #777;
+      text-decoration: none;
+    }
+  
+    .form-control {
+      border-radius: 0;
+    }
+  
+    .head_room {
+      padding-top: 10px;
+    }
+  
+    .hotel {
+    }
+  
+  
+    .hotel .box {
+      width: 65%;
+      height: auto;
+      /* margin-left: 400px; */
+      margin-top: 100px;
+      padding-left: 50px;
+      /* margin-right: 300px; */
+      align-content: center;
+      background-color: white;
+    }
+  
+    .hotel .img_hotel {
+      float: left;
+  
+    }
+  
+    #img1 {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      filter: opacity(80%);
+    }
+  
+    .hotel .text_hotel {
+      float: left;
+      margin-left: 30px;
+      width: 700px;
+    }
+  
+    .gg-thermostat {
+      margin-bottom: 10px;
+      margin-top: 50px;
+  
+    }
+  
+    .gg-data {
+      margin-bottom: 10px;
+      margin-top: 50px;
+      margin-left: 30px;
+    }
+  
+  
+    #eat {
+      margin-bottom: 10px;
+      margin-top: 50px;
+      margin-left: 27px;
+    }
+  
+    .hotel .text_hotel a {
+      font-size: 25px;
+      color: black;
+      text-decoration: none;
+      display: inline-block;
+  
+    }
+  
+  
+    .hotel .text_hotel1 {
+      margin-top: 27px;
+      margin-bottom: 80px;
+      width: 700px;
+      height: 160px;
+  
+    }
+  
+    .hotel .text_hotel2 {
+      padding-top: 27px;
+      margin-bottom: 85px;
+      width: 700px;
+      height: 200px;
+  
+    }
+  
+    .hotel .text_hotel3 {
+      width: 700px;
+      height: 170px;
+      padding-top: 19px;
+    }
+  
+    .hotel .sell h1 {
+      margin-right: 130px;
+      float: right;
+      background-color: darkkhaki;
+  
+    }
+  
+    .hotel .booknow button {
+      margin-top: 35px;
+      float: right;
+      padding: 10px;
+      height: 55px;
+      width: 150px;
+      background: rgb(53, 52, 52);
+      color: white;
+      border: 2px solid transparent;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 17px;
+    } 
+  
+    .textarea {
+      background-color: #2F4F4F;
+    }
+  </style>
+</head>
+
+<body>
+  <div >
+
+  </div>
+  <!-- <section id="our_room" class="hotel">
+    <div class="box d-flex justify-content-center">
+      <div class="head_room">
+        <h1>Our rooms</h1>
+        <hr>
+      </div>
+      <div class="img_hotel">
+        <img id="img1"
+          src="https://static.wixstatic.com/media/fde015_6c05c2f649564c37a7b5acfd3a848e5b.jpg/v1/fill/w_240,h_170,q_85,usm_0.66_1.00_0.01/fde015_6c05c2f649564c37a7b5acfd3a848e5b.jpg"
+          align="top">
+        <hr>
+        <img id="img1"
+          src="https://static.wixstatic.com/media/fde015_597c7d9710e44a9d91514e0ac84fb653.jpg/v1/fill/w_240,h_170,q_85,usm_0.66_1.00_0.01/fde015_597c7d9710e44a9d91514e0ac84fb653.jpg">
+        <hr>
+        <img id="img1"
+          src="https://static.wixstatic.com/media/fde015_6159dcce72024a789a3df21e95e8d495.jpg/v1/fill/w_240,h_170,q_85,usm_0.66_1.00_0.01/fde015_6159dcce72024a789a3df21e95e8d495.jpg">
+      </div>
+      <div class="text_hotel">
+        <div class="text_hotel1">
+          <a href="info_room1.html">Junior Suite</a> <br></br>
+          <li>Size :260 sq ft </li>
+          <li>Beds: 2 Double(s)</li>
+          <div class="booknow">
+            <button onclick="window.location.href='./info_room1.html'">More info</button>
+          </div>
+          <table border="0">
+            <tr>
+              <td><i class="gg-thermostat" title="A/C"></i></td>
+              <td><i class="gg-data" title="Wifi"></i></td>
+              <td><img id="eat" src="https://image.flaticon.com/icons/png/512/838/838449.png" title="Safe" width="25px"
+                  height="25px"></td>
+              <td><img id="eat" src="https://img.icons8.com/pastel-glyph/2x/dining-room.png" title="Kitchen"
+                  width="25px" height="25px"></td>
+              <td><img id="eat" src="https://img.icons8.com/ios/452/towel.png" title="Towel" width="25px" height="25px">
+              </td>
+              <td><img id="eat" src="https://i.pinimg.com/originals/01/fe/a7/01fea7d3e47679b68389e892a376aa2c.png"
+                  title="Telephone" width="25px" height="25px"></td>
+              <td><img id="eat" src="https://image.flaticon.com/icons/png/512/49/49672.png" title="TV" width="25px"
+                  height="25px"></td>
+
+            </tr>
+          </table>
+
+        </div>
+        <div class="text_hotel2">
+          <a href="info_room2.html">Standard Room</a> <br></br>
+          <li>Size: 230 sq ft</li>
+          <li>Beds: 1 Double(s)</li>
+          <div class="booknow">
+            <button onclick="window.location.href='./info_room2.html'">More info</button>
+          </div>
+          <table border="0">
+            <tr>
+              <td><i class="gg-thermostat" title="A/C"></i></td>
+              <td><i class="gg-data" title="Wifi"></i></td>
+              <td><img id="eat" src="https://image.flaticon.com/icons/png/512/838/838449.png" title="Safe" width="25px"
+                  height="25px"></td>
+              <td><img id="eat" src="https://img.icons8.com/ios/452/towel.png" title="Towel" width="25px" height="25px">
+              </td>
+              <td><img id="eat" src="https://i.pinimg.com/originals/01/fe/a7/01fea7d3e47679b68389e892a376aa2c.png"
+                  title="Telephone" width="25px" height="25px"></td>
+              <td><img id="eat" src="https://image.flaticon.com/icons/png/512/49/49672.png" title="TV" width="25px"
+                  height="25px"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="text_hotel3">
+          <a href="info_room3.html">Superior Room</a> <br></br>
+          <li>Size: 280 sq ft</li>
+          <li>Beds: 1 King(s)</li>
+          <div class="booknow">
+            <button onclick="window.location.href='./info_room3.html'">More info</button>
+
+          </div>
+          <table border="0">
+            <tr>
+              <td><i class="gg-thermostat" title="A/C"></i></td>
+              <td><i class="gg-data" title="Wifi"></i></td>
+              <td><img id="eat" src="https://image.flaticon.com/icons/png/512/838/838449.png" title="Safe" width="25px"
+                  height="25px"></td>
+              <td><img id="eat" src="https://img.icons8.com/pastel-glyph/2x/dining-room.png" title="Kitchen"
+                  width="25px" height="25px"></td>
+              <td><img id="eat" src="https://img.icons8.com/ios/452/towel.png" title="Towel" width="25px" height="25px">
+              </td>
+              <td><img id="eat" src="https://i.pinimg.com/originals/01/fe/a7/01fea7d3e47679b68389e892a376aa2c.png"
+                  title="Telephone" width="25px" height="25px"></td>
+              <td><img id="eat" src="https://image.flaticon.com/icons/png/512/49/49672.png" title="TV" width="25px"
+                  height="25px"></td>
+              <td><img id="eat" src="http://cdn.onlinewebfonts.com/svg/img_480319.png" title="Mini bar" width="25px"
+                  height="25px"></td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="text-center">
+    <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+      <span class="material-icons" style="font-size: 30px;">expand_less</span>
+    </a><br>
+    <p>Boiled-Youtioa Hotel & Restaurant</p>
+  </footer> -->
+
+</body>
+
+</html>
+

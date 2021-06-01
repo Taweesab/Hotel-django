@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from hotel import views
+from django.contrib.auth import views as auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('dinning_room/',views.dinning, name='rest'),
     path('promotions/',views.promotion, name='promotion'),
     path('contact/',views.contact, name='contact'),
+<<<<<<< HEAD
     path('moreinfo1',views.moreinfo1, name='moreinfo1'),
     path('moreinfo2',views.moreinfo2, name='moreinfo2'),
     path('moreinfo3',views.moreinfo3, name='moreinfo3'),
@@ -41,5 +43,11 @@ urlpatterns = [
 
 
     
+=======
+    path('login/',views.login,name='login'),
+    path('loginaccept/',views.logincheck,name='login'),
+    path('book_room/',views.bookroom,name='bookroom'),
+    path('book_table/',views.bookrest,name='bookrest'),
+    path('logout/',auth.LogoutView.as_view(template_name= 'index.html'),name='logout')
+>>>>>>> df842de1bfb4d6248b1b7785907436e34df9a76a
 ]
-

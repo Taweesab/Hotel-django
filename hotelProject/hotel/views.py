@@ -14,7 +14,7 @@ def dinning(request):
     return render(request,'rest.html')
 
 def room(request):
-    return render(request,'room copy.html')
+    return render(request,'room.html')
 
 def promotion(request):
     return render(request,'promotion.html')
@@ -43,17 +43,8 @@ def next2(request):
 def add(request):
     return render(request,'book_hotel.html')
 
-def back1(request):
-    return render(request,'room copy.html')
-
-def back2(request):
-    return render(request,'book_hotel.html')
-
 def back3(request):
     return render(request,'book_hotel2.html')
-
-def inforoom(request):
-    return render(request,'room copy.html')
 
 def login(request):
     return render(request,'login.html')
@@ -88,3 +79,12 @@ def bookrest(request):
 
 def profile(request):
     return render(request,'profile.html')
+
+def res1(request):
+    return render(request,'book_res.html')
+
+def res2(request):
+    return render(request,'book_res2.html')
+
+def res3(request):
+    return render(request,'book_res3.html')

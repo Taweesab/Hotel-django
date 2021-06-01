@@ -37,8 +37,10 @@ urlpatterns = [
     path('next/',views.next, name='next'),
     path('next2/',views.next2, name='next2'),
     path('add/',views.add, name='add'),
-    path('back1/',views.back1, name='back1'),
-    path('back2/',views.back2, name='back2'),
     path('back3/',views.back3, name='back3'),
-    path('profile/',views.profile,name='profile')
+    path('profile/',views.profile,name='profile'),
+    path('res1/',views.res1,name='res1'),
+    path('res2/',views.res2,name='res2'),
+    path('res3/',views.res3,name='res3')
+
 ]

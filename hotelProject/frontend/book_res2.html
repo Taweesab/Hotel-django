@@ -60,7 +60,7 @@
       <div class="head_room">
         <table id="tab" border="0">
           <tr>
-            <td><a href="book_res.html"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
+            <td><a href="{%url 'res1' %}"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
             <td>
               <h1>| &nbsp;</h1>
             </td>
@@ -94,7 +94,9 @@
         </div>
 
         <div class="next">
-          <button onclick="window.location.href='./book_res3.html'">Next</button>
+          <button>
+            <a href="{%url 'res3' %}">Next</a>
+          </button>
         </div>
       </div>
   </section>
@@ -485,6 +487,11 @@
     margin-top: 80px;
     float: right;
     margin-right: 250px;
+  }
+
+  .next a{
+    color: white;
+    text-decoration: none;
   }
 
   button {

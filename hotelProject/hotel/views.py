@@ -49,7 +49,7 @@ def back3(request):
 def login(request):
     return render(request,'login.html')
 
-def logincheck(request):
+def loginaccept(request):
     username = request.POST['username']
     password = request.POST['password']
 
@@ -61,7 +61,7 @@ def logincheck(request):
         return redirect('/')
     else :
         messages.info(request,'Not found infomation')
-        return redirect('login.html')
+        return redirect('/login')
 
 def bookroom(request):
     if request.user.is_authenticated:

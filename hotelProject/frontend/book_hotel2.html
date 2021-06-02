@@ -82,17 +82,19 @@
           </Table>
         </div>
         <div class="summary">
+          {% for book in result %}
           <div class="boxsum">
-            <h1>Date : </h1>
-            <h1>No. of nights : </h1>
-            <h1>Room type : </h1>
-            <h1>Guests : </h1>
-            <h1>Services : </h1>
+            <h1>Date Chech-in : {{book.date_check_in}} </h1>
+            <h1>Date Chech-out : {{book.date_check_out}} </h1>
+            <!-- <h1>Room type : {{book.roomtype}}</h1>
+            <h1>Guests : {{book.number_guest}} </h1>
+            <h1>Services : {{book1.service_name}} </h1> -->
             <hr>
-            <h1>Discount : </h1>
+            <h1>Discount :  </h1>
             <h1>Total : </h1>
             <hr>
           </div>
+          {%endfor%}
         </div>
 
         <div class="add">
@@ -102,7 +104,7 @@
         </div>
         <div class="next">
           <button>
-            <a href="{%url 'next2' %}">Next</a>
+            <a href="{%url 'payment' %}">Next</a>
           </button>
         </div>
 

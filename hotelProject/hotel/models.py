@@ -52,10 +52,19 @@ class room_booking(models.Model):
     payment_method = models.CharField(max_length=32)
     #wait for payment page
 
+    #try query data
+    def __str__(self) :
+        return self.date_check_in
+
 class room_type(models.Model):
-    roomtype = models.CharField(max_length=10, null=False)
+    roomtype = models.CharField(max_length=30, null=False)
     capacity = models.IntegerField(null = False)
     price = models.FloatField(null=False)
+
+    #try query data   
+    def __str__(self) :
+        return self.roomtype
+
 
 class room_available(models.Model):
     room_no = models.CharField(max_length=4,null=False)
@@ -63,9 +72,14 @@ class room_available(models.Model):
     status = models.BooleanField(null=False)
 
 class service(models.Model):
-    service_code = models.CharField(max_length=5, null=False)
-    service_name = models.CharField(max_length=10, null = False)
+    service_code = models.CharField(max_length=10, null=False)
+    service_name = models.CharField(max_length=20, null = False)
     charge = models.FloatField(null = True)
+
+    #try query data    
+    def __str__(self) :
+        return self.service_name
+    
 
 class room_detail(models.Model):
     booking_no = models.ForeignKey(room_booking, on_delete=models.RESTRICT, null=False)

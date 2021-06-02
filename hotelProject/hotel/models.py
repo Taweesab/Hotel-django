@@ -53,7 +53,7 @@ class room_booking(models.Model):
     #wait for payment page
 
 class room_type(models.Model):
-    roomtype = models.CharField(max_length=10, null=False)
+    roomtype = models.CharField(max_length=30, null=False)
     capacity = models.IntegerField(null = False)
     price = models.FloatField(null=False)
 
@@ -63,8 +63,8 @@ class room_available(models.Model):
     status = models.BooleanField(null=False)
 
 class service(models.Model):
-    service_code = models.CharField(max_length=5, null=False)
-    service_name = models.CharField(max_length=10, null = False)
+    service_code = models.CharField(max_length=10, null=False)
+    service_name = models.CharField(max_length=20, null = False)
     charge = models.FloatField(null = True)
 
 class room_detail(models.Model):

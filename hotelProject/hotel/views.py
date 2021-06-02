@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from .models import promotion_type 
+from .models import promotion_type, service 
+from .models import room_booking
+
 
 # Create your views here.
 def home(request):
@@ -36,17 +38,19 @@ def moreinfo3(request):
 # def booknow(request):
 #     return render(request,'book_hotel.html')
 
-def next(request):
-    return render(request,'book_hotel2.html')
+def odersummary(request):
+    result = room_booking.objects.all()
+    context = {'result' : result}
+    return render(request,'book_hotel2.html',context)
 
-def next2(request):
+def payment(request):
     return render(request,'book_hotel3.html')
 
 # def add(request):
 #     return render(request,'book_hotel.html')
 
-def back3(request):
-    return render(request,'book_hotel2.html')
+# def back3(request):
+#     return render(request,'book_hotel2.html')
 
 def login(request):
     return render(request,'login.html')
@@ -63,7 +67,7 @@ def loginaccept(request):
         return redirect('/')
     else :
         messages.info(request,'Not found infomation')
-        return redirect('/login')
+        return redirect('login.html')
 
 def bookroom(request):
     if request.user.is_authenticated:
@@ -90,3 +94,5 @@ def res2(request):
 
 def res3(request):
     return render(request,'book_res3.html')
+
+

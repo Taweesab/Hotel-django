@@ -80,11 +80,11 @@
           </Table>
         </div>
         <div class="info">
-          <form id="date" action="" method="get">
+          <form id="date" action="" method="POST">
             Check-In &emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Check-Out <br><br>
-            <input type="date" name="checkin">
-            <input type="date" name="checkout"> <br><br>
+            <input type="date"  name="checkin">
+            <input type="date"  name="checkout"> <br><br>
           </form>
 
           <form id="room" action="" method="get">
@@ -137,7 +137,7 @@
 
           <div class="next">
             <button>
-              <a href="{%url 'next' %}">Next</a>
+              <a href="{%url 'odersummary' %}">Next</a>
             </button>
           </div>
 
@@ -538,3 +538,4 @@
   }
 
 </style>
+

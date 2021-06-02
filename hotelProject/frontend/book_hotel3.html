@@ -62,7 +62,7 @@
       <div class="head_room">
         <table id="tab" border="0">
           <tr>
-            <td><a href="{%url 'back3' %}"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
+            <td><a href="{%url 'odersummary' %}"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
             <td>
               <h1>| &nbsp;</h1>
             </td>
@@ -92,8 +92,12 @@
 
           <h2>Credit Card</h2>
           <hr>
+          <h2>Payment method</h2>
+          <select id="payment" name="payment">
+            <option>Master Card</option>
+            <option>Visa</option>
+          </select>
           <h2>Card Number</h2>
-
           <input type="text" id="cardno" placeholder="card number"><br>
           <h2>Card Name</h2>
           <input type="text" id="cardname" placeholder="card name"><br>
@@ -557,7 +561,7 @@
 
   .book .box {
     width: 50%;
-    height: 950px;
+    height: 1050px;
     margin-left: 470px;
     margin-top: 100px;
     background-color: white;
@@ -691,7 +695,7 @@
     font-size: 17px;
   }
 
-  #country {
+  #country,#payment {
     margin-top: 10px;
     width: 150px;
     height: 40px;

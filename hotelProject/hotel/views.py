@@ -64,10 +64,10 @@ def loginaccept(request):
     
     if user is not None :
         auth.login(request,user)
-        return redirect('/')
+        return redirect('home')
     else :
         messages.info(request,'Not found infomation')
-        return redirect('login.html')
+        return redirect('login')
 
 def bookroom(request):
     if request.user.is_authenticated:

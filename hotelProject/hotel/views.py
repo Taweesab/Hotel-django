@@ -89,6 +89,9 @@ def register(request):
     context = {'form':form}
     return render(request,'register.html',context)
 
+def register_staff(request):
+    return render(request,'register_staff.html')
+
 def bookroom(request):
     if request.user.is_authenticated:
         if request.method == "POST" :

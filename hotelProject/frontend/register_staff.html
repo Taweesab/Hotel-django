@@ -4,69 +4,37 @@
 {% block title %}Register{% endblock title %}
 {% block body %}class = "bg-1"{% endblock body %}
 {% block content %}
-    {% comment %} {% if messages %}
-        <p>Hello</p>  
-    {% else %}
-        <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{form.errors}}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    {% endif %} {% endcomment %}
     <div class="wrapper">
-        <div class="wrapper-inner">
-            <div class="image-holder">
-                <img src="{% static 'images/Untitled-1.png' %}" alt="">
-            </div>
-            <form action="" method = "POST">
-                {% csrf_token %}
-                <h2>Registration Form</h2>
-                <div class="form-wrapper">
-                    {{form.first_name.label}}{{form.first_name}}
-                    {% comment %} <input type="text" placeholder="First Name" class="form-control">
-                    <input type="text" placeholder="Last Name" class="form-control"> {% endcomment %}
+        <div class="inner">
+            <form action="" method = "POST" class="wrapper-inner-form">
+                <h2>New Account?</h2>
+                <div class="form-holder">
+                    <input type="text" class="form-control" placeholder="First name">
+                </div>
+                <div class="form-holder">
+                    <input type="text" class="form-control" placeholder="Last name">
+                </div>
+                <div class="form-holder">
+                    <input type="text" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-holder">
+                    <input type="text" class="form-control" placeholder="Mail">
+                </div>
+                <div class="form-holder">
+                    <input type="date" class="form-control" placeholder="DOB">
+                </div>
+                <div class="form-holder">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-holder">
+                    <input type="password" class="form-control" placeholder="Confirm Password">
                 </div>
                 <div class="form-wrapper">
-                    {{form.last_name.label}}{{form.last_name}}
-                    {% comment %} <input type="text" placeholder="First Name" class="form-control">
-                    <input type="text" placeholder="Last Name" class="form-control"> {% endcomment %}
+                    <button type="submit" value = "sign up" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top:5%">Register</button>
                 </div>
-                <div class="form-wrapper">
-                    {% comment %} <input type="text" placeholder="Email Address" class="form-control"> {% endcomment %}
-                    {{form.email.label}}{{form.email}}
-                </div>
-                <div class="form-wrapper">
-                    {{form.password1.label}}{{form.password1}}
-                    {% comment %} <input type="password" placeholder="Password" class="form-control"> {% endcomment %}
-                </div>
-                <div class="form-wrapper">
-                    {% comment %} <input type="password" placeholder="Confirm Password" class="form-control"> {% endcomment %}
-                    {{form.password2.label}}{{form.password2}}
-                </div>
-                <div class="form-wrapper">
-                    <button type="submit" value = "sign up" class="form-control login-btn btn-primary rounded submit px-3">Register</button>
-                </div>
-                {% comment %} <p class="text-center" style="margin-top: 3%;">Have an member? <a data-toggle="tab" href="/login" style="text-decoration: none;color=grey;">Log In</a></p> {% endcomment %}
             </form>
         </div>
     </div>
-    {% block script %}
-        <script>
-            var form_fields = document.getElementsByTagName('input')
-            form_fields[1].placeholder='First Name..';
-            form_fields[2].placeholder='Last Name..';
-            form_fields[3].placeholder='E-mail...';
-            form_fields[4].placeholder='Enter Password...';
-            form_fields[5].placeholder='Re-enter Password...'; 
-            
-            for (var field in form_fields){	
-                form_fields[field].className += ' form-control'
-            }
-        </script>
-    {% endblock script %} 
-
 
 {% endblock %}
 

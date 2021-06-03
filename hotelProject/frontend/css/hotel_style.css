@@ -792,7 +792,7 @@ textarea {
     Register
 ----------------------------------------------------------------------------*/
   .wrapper{
-    min-height:100vh;
+    min-height:125vh;
     background-size:cover;
     background-repeat:no-repeat;
     display:flex;
@@ -802,7 +802,7 @@ textarea {
   .wrapper-inner{
     padding:20px;
     background:#fff;
-    max-width:850px;
+    max-width:900px;
     margin:auto;
     display:flex;}
   .wrapper-inner .image-holder{width:50%;margin-right: 3%;}
@@ -818,7 +818,7 @@ textarea {
     font-family:Montserrat;
     text-align:center;
     font-weight: 1000;
-    margin-bottom:20px;}
+    margin-bottom:30px;}
   .wrapper-inner .form-group{display:flex;}
   .wrapper-inner .form-group input{width:50%;}
   .wrapper-inner .form-wrapper{position:relative;}

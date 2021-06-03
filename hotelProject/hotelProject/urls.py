@@ -31,7 +31,7 @@ urlpatterns = [
     path('loginaccept/',views.loginaccept,name='loginaccept'),
     path('book_room/',views.bookroom,name='bookroom'),
     path('book_table/',views.bookrest,name='bookrest'),
-    path('logout/',auth.LogoutView.as_view(template_name= 'index.html'),name='logout'),
+    path('logout/', views.logout, name='logout'),
     path('moreinfo1/',views.moreinfo1, name='moreinfo1'),
     path('moreinfo2/',views.moreinfo2, name='moreinfo2'),
     path('moreinfo3/',views.moreinfo3, name='moreinfo3'),

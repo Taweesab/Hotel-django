@@ -832,6 +832,9 @@ textarea {
     z-index:9;
     padding:77px 61px 66px;
     background:#fff;
+    max-width:900px;
+    margin:auto;
+    /* display:flex; */
     box-shadow:0 0 10px 0 rgba(0,0,0,.2);
     -webkit-box-shadow:0 0 10px 0 rgba(0,0,0,.2);
     -moz-box-shadow:0 0 10px 0 rgba(0,0,0,.2);

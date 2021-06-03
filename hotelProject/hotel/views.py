@@ -4,8 +4,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from .models import promotion_type, service 
-from .models import room_booking
+from .models import *
+from django.db import connection 
+
 
 
 # Create your views here.
@@ -71,6 +72,13 @@ def loginaccept(request):
 
 def bookroom(request):
     if request.user.is_authenticated:
+        if request.method == "POST" :
+                saveobj = room_booking()
+                saveobj.date_check_in = request.POST.get('checkin')
+                saveobj.date_check_out = request.POST.get('checkout')
+                saveobj.save()
+
+
         return render(request,'book_hotel.html')
     else:
         messages.info(request,'Please Log in')

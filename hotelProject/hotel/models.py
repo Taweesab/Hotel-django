@@ -10,7 +10,7 @@ class staff(models.Model):
         else:
             return "STF" + str(n+1).zfill(6)
 
-    staff_id = models.CharField(max_length=9, default=genID ,primary_key=True)
+    staff_id = models.CharField(max_length=9, default=genID)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
     dob = models.DateField(null=False)
@@ -47,7 +47,7 @@ class customer_booking(models.Model):
             return "BH" + str(n+1).zfill(9)
     
     def brID():
-        n = room_booking.objects.count()
+        n = resbooking.objects.count()
         if n == 0:
             return "BR00000001"
         else:
@@ -59,7 +59,7 @@ class customer_booking(models.Model):
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
 
 class promotion_type(models.Model):
-    promotion_code = models.CharField(max_length=7, null=False,primary_key=True)
+    promotion_code = models.CharField(max_length=7, null=False)
     promotion_name = models.CharField(max_length=32, null=False)
     promotion_detail = models.CharField(max_length=500, null = False)
     start_date = models.DateField(null=False)
@@ -96,7 +96,7 @@ class room_type(models.Model):
 
 class room_available(models.Model):
     room_no = models.CharField(max_length=4,null=False)
-    roomtype = models.ForeignKey(room_type, on_delete=models.CASCADE, null=False,unique=True)
+    roomtype = models.ForeignKey(room_type, on_delete=models.CASCADE, null=False)
     status = models.BooleanField(null=False)
 
 class service(models.Model):
@@ -125,12 +125,12 @@ class resbooking(models.Model):
     #wait for payment page
 
 class buffet_round(models.Model):
-    buffet_round=models.CharField(max_length=64, null=False,primary_key=True)
+    round=models.CharField(max_length=64, null=False)
     charge=models.FloatField(null =True)
 
 class buffet_table(models.Model):
-    table_no = models.IntegerField(null=False,primary_key=True)
-    buffet_round = models.ForeignKey(buffet_round, on_delete=models.CASCADE, null=False)
+    table_no = models.IntegerField(null=False)
+    round = models.ForeignKey(buffet_round, on_delete=models.CASCADE, null=False)
     status = models.BooleanField(null = False)
 
 class resb_detail(models.Model):

@@ -1,0 +1,15 @@
+
+{% extends 'main.html' %} 
+{% load static %}
+
+{% block title %}Log In{% endblock title %}
+{% block body %} class = "bg-1" {% endblock body %}
+
+{% block content %}
+    <form action="" method = "POST">
+        {% csrf_token %}
+        {{form.username.label}}
+        {{form.username}}
+        {{form.errors}}
+    </form>
+{% endblock %}

@@ -26,6 +26,7 @@ urlpatterns = [
     path('promotions/',views.promotion, name='promotion'),
     path('contact/',views.contact, name='contact'),
     path('login/',views.login,name='login'),
+    path('signup/',views.register,name='register'),
     path('loginaccept/',views.loginaccept,name='loginaccept'),
     path('book_room/',views.bookroom,name='bookroom'),
     path('book_table/',views.bookrest,name='bookrest'),

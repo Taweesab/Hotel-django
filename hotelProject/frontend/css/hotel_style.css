@@ -787,3 +787,38 @@ textarea {
         border: 1px solid #525252;
         background: transparent;
         color: #ffffff; }
+
+/*--------------------------------------------------------------------------
+    Register
+----------------------------------------------------------------------------*/
+  .wrapper{
+    min-height:100vh;
+    background-size:cover;
+    background-repeat:no-repeat;
+    display:flex;
+    align-items:center;
+    color: #000;
+  }
+  .wrapper-inner{
+    padding:20px;
+    background:#fff;
+    max-width:850px;
+    margin:auto;
+    display:flex;}
+  .wrapper-inner .image-holder{width:50%;margin-right: 3%;}
+  .wrapper-inner form
+  {width:50%;
+    padding-top:15px;
+    padding-left:45px;
+    padding-right:30px;
+  }
+  .wrapper-inner h2{
+    text-transform:uppercase;
+    font-size:25px;
+    font-family:Montserrat;
+    text-align:center;
+    font-weight: 1000;
+    margin-bottom:20px;}
+  .wrapper-inner .form-group{display:flex;}
+  .wrapper-inner .form-group input{width:50%;}
+  .wrapper-inner .form-wrapper{position:relative;}

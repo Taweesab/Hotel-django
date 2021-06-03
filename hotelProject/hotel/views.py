@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from .models import *
 from django.db import connection 
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .models import *
+from .forms import CreateUserForm
 
 
 
@@ -57,18 +59,35 @@ def login(request):
     return render(request,'login.html')
 
 def loginaccept(request):
-    username = request.POST['username']
-    password = request.POST['password']
-
-    #Check username, password
-    user = auth.authenticate(username=username,password=password)
     
-    if user is not None :
-        auth.login(request,user)
-        return redirect('/')
-    else :
-        messages.info(request,'Not found infomation')
-        return redirect('login.html')
+    if request.method == 'POST':
+        email = request.POST.get['email']
+        password = request.POST.get['password']
+
+        user = authenticate(email=email,password=password)
+
+        #Check username, password
+        if user is not None :
+            login(request,user)
+            return redirect('home')
+        else :
+            messages.info(request,'Not found infomation')
+            return redirect('login')
+    
+
+def register(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            #user = form.cleaned_data.get('username')
+            messages.success(request,'Success')
+            return redirect('login')
+    
+    context = {'form':form}
+    return render(request,'register.html',context)
 
 def bookroom(request):
     if request.user.is_authenticated:

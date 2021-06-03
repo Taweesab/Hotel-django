@@ -12,14 +12,13 @@
             <div class="col-sm-4">
                     <div class="promotion">
                         <h5><strong>PROMOTIONS</strong></h5>
-                        <p>code : {{pro.promotion_code}}</p>
-                        <p>name : {{pro.promotion_name}}</p>
-                        <p>detail : {{pro.promotion_detail}}</p>
-                        <p>start date: {{pro.start_date}}</p>
-                        <p>expire date : {{pro.expire_date}}</p>
-                        <p>discount : {{pro.discount}}</p>
+                        <p>name : {{pro.promotion_name}}<br>
+                           detail : {{pro.promotion_detail}}<br>
+                           start date: {{pro.start_date}}<br>
+                           expire date : {{pro.expire_date}}<br>
+                           discount : {{pro.discount}}</p>
+                        <h6>code : {{pro.promotion_code}}</h6>
                         <a class="btn" href="#">Reservation</a>
-                        <h5></h5>
                     </div>
             </div>
             {%endfor%}

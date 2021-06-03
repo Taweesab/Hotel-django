@@ -3,31 +3,59 @@ from django.db import models
 
 # Create your models here.
 class staff(models.Model):
-    staff_id = models.CharField(max_length=9, null= False)
+    def genID():
+        n = staff.objects.count()
+        if n == 0:
+            return "STF00000001"
+        else:
+            return "STF" + str(n+1).zfill(6)
+
+    staff_id = models.CharField(max_length=9, default=genID)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
     dob = models.DateField(null=False)
     job_title = models.CharField(max_length=64, null=False)
     salary = models.FloatField(null=False)
-    email = models.EmailField(null=False)
+    email = models.EmailField(null=False,unique=True)
     password = models.CharField(max_length=100, null=False)
 
 class customer(models.Model):
-    customer_id = models.CharField(max_length=11, null=False)
+    def genID():
+        n = customer.objects.count()
+        if n == 0:
+            return "CST00000001"
+        else:
+            return "CST" + str(n+1).zfill(8)
+    
+    customer_id = models.CharField(max_length=11,default=genID,null=False)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
-    email = models.EmailField(null=False)
+    email = models.EmailField(null=False,unique=True)
     password = models.CharField(max_length=100, null=False)
     address = models.CharField(max_length=200, null=False)
-    tel = models.CharField(max_length=10, null=False)
+    tel = models.CharField(max_length=10, null=False,unique=True)
 
     def fullName(self):
         return self.fName + " " + self.lName
 
 class customer_booking(models.Model):
+    def bhID():
+        n = room_booking.objects.count()
+        if n == 0:
+            return "BH00000001"
+        else:
+            return "BH" + str(n+1).zfill(9)
+    
+    def brID():
+        n = resbooking.objects.count()
+        if n == 0:
+            return "BR00000001"
+        else:
+            return "BR" + str(n+1).zfill(9)
+    
     customer_id = models.ForeignKey(customer, on_delete=models.RESTRICT, null=False)
-    booking_no = models.CharField(max_length=11, null=True)
-    resb_no = models.CharField(max_length=11, null=True)
+    booking_no = models.CharField(max_length=11,default=bhID, null=True,unique=True)
+    resb_no = models.CharField(max_length=11,default= brID ,null=True,unique=True)
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
 
 class promotion_type(models.Model):
@@ -73,7 +101,7 @@ class room_available(models.Model):
 
 class service(models.Model):
     service_code = models.CharField(max_length=10, null=False)
-    service_name = models.CharField(max_length=20, null = False)
+    service_name = models.CharField(max_length=20, null = False,unique=True)
     charge = models.FloatField(null = True)
 
     #try query data    
@@ -97,12 +125,12 @@ class resbooking(models.Model):
     #wait for payment page
 
 class buffet_round(models.Model):
-    buffet_round=models.CharField(max_length=64, null=False)
+    round=models.CharField(max_length=64, null=False)
     charge=models.FloatField(null =True)
 
 class buffet_table(models.Model):
     table_no = models.IntegerField(null=False)
-    buffet_round = models.ForeignKey(buffet_round, on_delete=models.CASCADE, null=False)
+    round = models.ForeignKey(buffet_round, on_delete=models.CASCADE, null=False)
     status = models.BooleanField(null = False)
 
 class resb_detail(models.Model):

@@ -7,7 +7,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.db import connection 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
-from .forms import CreateUserForm
+from .forms import CreateUserForm, RegisterForm
+from django.contrib.auth.hashers import check_password, make_password
+from .decorators import staff_login_required
 
 
 
@@ -61,18 +63,26 @@ def login(request):
 def loginaccept(request):
     
     if request.method == 'POST':
-        email = request.POST.get['email']
-        password = request.POST.get['password']
+        email = request.POST['email']
+        password = request.POST['password']
 
-        user = authenticate(email=email,password=password)
-
-        #Check username, password
-        if user is not None :
-            login(request,user)
+        user = Staff.objects.get(email=email)
+        # print(user.password)
+        # print(check_password(password, user.password))
+        if check_password(password, user.password):
+            print(user)
+            # return 
+            request.session['staff_id'] = user.staff_id
             return redirect('home')
-        else :
-            messages.info(request,'Not found infomation')
-            return redirect('login')
+
+        return redirect('login')
+        #Check username, password
+        # if user is not None :
+        #     login(request,user)
+        #     return redirect('home')
+        # else :
+        #     messages.info(request,'Not found infomation')
+        #     return redirect('login')
     
 
 def register(request):
@@ -90,7 +100,23 @@ def register(request):
     return render(request,'register.html',context)
 
 def register_staff(request):
+
+    if request.method == 'POST':
+        if Staff.objects.filter(email=request.POST['email']).exists():
+            return 
+        # request.POST['password'] = make_password(request.POST['password'])
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            new_user = form.save(commit=False)
+            new_user.password = make_password(new_user.password)
+            new_user.save()
+        else:
+            messages.info(request, form.errors)
+            render(request,'register_staff.html')
+        
+
     return render(request,'register_staff.html')
+
 
 def bookroom(request):
     if request.user.is_authenticated:
@@ -106,6 +132,7 @@ def bookroom(request):
         messages.info(request,'Please Log in')
         return login(request)
 
+@staff_login_required
 def profile(request):
     return render(request,'profile.html')
 
@@ -126,3 +153,7 @@ def res3(request):
     return render(request,'book_res3.html')
 
 
+def logout(request):
+    if 'staff_id' in request.session:
+        del request.session['staff_id'] # delete user session
+    return redirect('login')

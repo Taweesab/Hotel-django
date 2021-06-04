@@ -36,8 +36,9 @@ class RestBookingForm(forms.ModelForm):
 class hotelbookingForm(forms.ModelForm) :
     class Meta :
         model = Room_booking
-        exclude = ['booking_no ','staff_id']
-    
+        fields = '__all__'
+
+
 
 
 

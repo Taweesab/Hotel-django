@@ -128,11 +128,13 @@ def bookrest(request):
 
 @customer_login_required
 def bookroom(request):
+    print("fggggg)")
     if request.method == "POST" :
+        print("fggggg")
         form = hotelbookingForm(request.POST)
         if form.is_valid():
-           bookhotel = form.save(commit=False)
-           bookhotel.save()
+        #    bookhotel = form.save(commit=False)
+        #    bookhotel.save()
            form.save_m2m()
            print(request.POST)
     return render(request,'book_hotelcopy.html')

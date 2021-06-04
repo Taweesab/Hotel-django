@@ -79,15 +79,18 @@
             </tr>
           </Table>
         </div>
-        <div class="info">
-          <form id="date" action="" method="POST">
-            Check-In &emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Check-Out <br><br>
+        <div class="info"> 
+         <form id="date" action="" method="POST">
+            Check-In &emsp;&emsp;&emsp;   
+            <!-- {%csrf_token%} -->
+             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Check-Out <br><br>
             <input type="date"  name="checkin">
-            <input type="date"  name="checkout"> <br><br>
-          </form>
+            <input type="date"  name="checkout"> <br><br> 
+            <!-- {{form}} -->
+            <input type="submit">
+          </form> 
 
-          <form id="room" action="" method="get">
+           <!-- <form id="room" action="" method="get">
             <h2>Type</h2>
             <label class="radio-inline" >
               <input type="radio" name="type">Junior Suite
@@ -129,17 +132,18 @@
 
           </form>
 
-          <form id="promotion" action="" method="get">
+          <form id="promotion" action="" method="POST">
             <h2>Promotion Code&emsp;</h2>
-            <input type="text" id="code" name="Promotion Code">
-
+            {%csrf_token%}
+            <input type="text"  name="PromotionCode">
+            <input type="submit">
           </form>
-
+          
           <div class="next">
             <button type="submit">
               <a href="{%url 'odersummary' %}">Next</a>
             </button>
-          </div>
+          </div> -->
 
         </div>
 

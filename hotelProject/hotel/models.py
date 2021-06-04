@@ -1,5 +1,6 @@
 from os import name
 from django.db import models
+from datetime import datetime,date
 
 # Create your models here.
 class staff(models.Model):
@@ -145,3 +146,5 @@ class invoice(models.Model):
     staff_id = models.ForeignKey(staff, on_delete=models.CASCADE, null=False)
     tax = models.FloatField(null=False)
     date = models.DateField(null=False)
+
+

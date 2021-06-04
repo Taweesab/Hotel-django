@@ -8,6 +8,7 @@ from django.db import connection
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
 from .forms import CreateUserForm
+from .forms import *
 
 
 
@@ -91,13 +92,6 @@ def register(request):
 
 def bookroom(request):
     if request.user.is_authenticated:
-        if request.method == "POST" :
-                saveobj = room_booking()
-                saveobj.date_check_in = request.POST.get('checkin')
-                saveobj.date_check_out = request.POST.get('checkout')
-                saveobj.save()
-
-
         return render(request,'book_hotel.html')
     else:
         messages.info(request,'Please Log in')
@@ -123,3 +117,18 @@ def res3(request):
     return render(request,'book_res3.html')
 
 
+# def reser(request) :
+#     if request.method == "POST" :
+#                 saveobj = room_booking()
+#                 saveobj.date_check_in = request.POST['checkin']
+#                 saveobj.date_check_out = request.POST['checkout']
+#                 print(request.POST('checkin'))
+#                 print(request.POST('checkout'))
+#                 saveobj.save()
+#                 return render(request,'book_hotel.html')
+
+    # if request.method == "POST":
+    #     form  = bookhotel(request.POST)
+    #     if  form .is_valid():
+    #         form .save()
+    #         print(request.POST)

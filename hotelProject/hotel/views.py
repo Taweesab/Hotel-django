@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.db import connection 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
+# from .forms import CreateUserForm
+from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
 from .decorators import staff_login_required,customer_login_required
@@ -42,13 +44,11 @@ def moreinfo3(request):
 # def booknow(request):
 #     return render(request,'book_hotel.html')
 
-def odersummary(request):
-    result = Room_booking.objects.all()
-    context = {'result' : result}
-    return render(request,'book_hotel2.html',context)
+def odersummaryhotel(request):
+    return render(request,'book_hotel2copy.html')
 
-def payment(request):
-    return render(request,'book_hotel3.html')
+def paymenthotel(request):
+    return render(request,'book_hotel3copy.html')
 
 # def add(request):
 #     return render(request,'book_hotel.html')
@@ -119,13 +119,13 @@ def register_staff(request):
     return render(request,'register_staff.html')
 
 @customer_login_required
-def bookroom(request):
-    if request.method == "POST" :
-        saveobj = Room_booking()
-        saveobj.date_check_in = request.POST.get('checkin')
-        saveobj.date_check_out = request.POST.get('checkout')
-        saveobj.save()
-    return render(request,'book_hotel.html')
+# def bookroom(request):
+#     if request.method == "POST" :
+#         saveobj = Room_booking()
+#         saveobj.date_check_in = request.POST.get('checkin')
+#         saveobj.date_check_out = request.POST.get('checkout')
+#         saveobj.save()
+#     return render(request,'book_hotel.html')
 
 @customer_login_required
 def profile(request):
@@ -136,16 +136,45 @@ def profile(request):
 def bookrest(request):
     return render(request,'book_res copy.html')
 
+@customer_login_required
+def bookroom(request):
+    if request.method == "POST" :
+        form = hotelbookingForm(request.POST)
+        if form.is_valid():
+           bookhotel = form.save(commit=False)
+           bookhotel.save()
+           form.save_m2m()
+           print(request.POST)
+    return render(request,'book_hotelcopy.html')
+    
+
 
 # def res1(request):
 #     return render(request,'book_res.html')
 
-def res2(request):
-    return render(request,'book_res2.html')
+def ordersummaryres(request):
+    return render(request,'book_res2copy.html')
 
-def res3(request):
-    return render(request,'book_res3.html')
+def paymentres(request):
+    return render(request,'book_res3copy.html')
 
+
+
+# def reser(request) :
+#     if request.method == "POST" :
+#                 saveobj = room_booking()
+#                 saveobj.date_check_in = request.POST['checkin']
+#                 saveobj.date_check_out = request.POST['checkout']
+#                 print(request.POST('checkin'))
+#                 print(request.POST('checkout'))
+#                 saveobj.save()
+#                 return render(request,'book_hotel.html')
+
+    # if request.method == "POST":
+    #     form  = bookhotel(request.POST)
+    #     if  form .is_valid():
+    #         form .save()
+    #         print(request.POST)
 
 def logout_staff(request):
     if 'staff_id' in request.session:
@@ -156,3 +185,4 @@ def logout(request):
     if 'customer_id' in request.session:
         del request.session['customer_id'] # delete user session
     return redirect('home')
+

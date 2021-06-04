@@ -1,14 +1,10 @@
+# from hotelProject.hotel.models import room_booking
 from django.forms import ModelForm, fields
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from django.forms.widgets import DateInput
 from .models import *
 
-
-class bookhotel(forms.Form) :
-    checkin = forms.DateField(widget=DateInput)
-    
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -36,3 +32,14 @@ class RestBookingForm(forms.ModelForm):
     class Meta:
         model = Resbooking
         exclude = ['resb_no']
+
+class hotelbookingForm(forms.ModelForm) :
+    class Meta :
+        model = Room_booking
+        exclude = ['booking_no ','staff_id']
+    
+
+
+
+
+

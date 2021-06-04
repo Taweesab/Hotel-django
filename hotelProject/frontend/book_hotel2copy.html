@@ -1,0 +1,41 @@
+{% extends 'layout.html' %} 
+{% load static %}
+
+{% block title %}Book Restaurant{% endblock title %}
+{% block body %}style="background-color: whitesmoke;"{% endblock body %}
+{% block content %}
+
+      <div class="card" >
+        <div class="card-header">
+          <h2><a href="#" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
+        <div class="card-body ">
+          <!-- <h5 class="card-title">Light card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <div class="step">
+          <Table border="0" style=" justify-content:center;margin:auto;margin-bottom:10%;margin-top:7%;">
+            <tr>
+              <td><i id="check1" class="gg-check-o"></i></td>
+              <td><i id="line" class="gg-border-style-solid"></i></td>
+              <td><i id="check" class="gg-check-o"></i></td>
+              <td><i id="line" class="gg-border-style-solid"></i></td>
+              <td><i id="check" class="gg-check-o1"></i></td>
+            </tr>
+          </Table>
+        </div>
+          <form action="" method="POST">
+            <h5>Date checkin : </h5>
+            <h5>Date checkin : </h5>
+            <h5>Room type : </h5>
+            <h5>Number of Guests : </h5>
+            <h5>Services : </h5>
+            <hr>
+            <h5>Discount : </h5>
+            <h5>Total : </h5><br>
+            <hr> <br>
+            <div class="form-wrapper" style="text-align: end;">
+                <br><a class="btn" href="#">Reservation</a>
+            </div>
+          </form>
+        </div>
+      </div>
+{% endblock %}

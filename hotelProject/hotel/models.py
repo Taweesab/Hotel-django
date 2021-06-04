@@ -54,8 +54,8 @@ class Customer_booking(models.Model):
         else:
             return "BR" + str(n+1).zfill(9)
 
-    customer_surrogate = models.AutoField(primary_key=True) 
-    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False)
+    # customer_surrogate = models.AutoField(primary_key=True) 
+    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False,primary_key=True)
     booking_no = models.CharField(max_length = 11,default = bhID, null = True)
     resb_no = models.CharField(max_length = 11,default = brID ,null = True,unique = True)
     booking_date = models.DateTimeField(auto_now_add=True, null=False)

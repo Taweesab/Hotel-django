@@ -28,18 +28,19 @@ urlpatterns = [
     path('contact/',views.contact, name='contact'),
     path('login/',views.login,name='login'),
     path('signup/',views.register,name='register'),
+    path('signup_staff/',views.register_staff,name='register_staff'),
     path('loginaccept/',views.loginaccept,name='loginaccept'),
     path('book_room/',views.bookroom,name='bookroom'),
     path('book_table/',views.bookrest,name='bookrest'),
-    path('logout/',auth.LogoutView.as_view(template_name= 'index.html'),name='logout'),
+    path('logout/', views.logout, name='logout'),
     path('moreinfo1/',views.moreinfo1, name='moreinfo1'),
     path('moreinfo2/',views.moreinfo2, name='moreinfo2'),
     path('moreinfo3/',views.moreinfo3, name='moreinfo3'),
-    path('odersummary/',views.odersummary, name='odersummary'),
-    path('payment/',views.payment, name='payment'),
+    path('odersummaryhotel/',views.odersummaryhotel, name='odersummaryhotel'),
+    path('paymenthotel/',views.paymenthotel, name='paymenthotel'),
     path('profile/',views.profile,name='profile'),
-    path('res2/',views.res2,name='res2'),
-    path('res3/',views.res3,name='res3'),
-    # path('reser/',views.reser,name='reser')
+    path('ordersummaryres/',views.ordersummaryres,name='ordersummaryres'),
+    path('paymentres/',views.paymentres,name='paymentres'),
+
 
 ]

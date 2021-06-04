@@ -3,17 +3,43 @@ from django.forms import ModelForm, fields
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from django.forms.widgets import DateInput
 from .models import *
 
 
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
+        fields = ['first_name','last_name','email','password1','password2']
+        
 
-# class bookhotel(ModelForm) :
-#     class Meta:
-#         model = room_booking
-#         fields = ['date_check_in','date_check_out','promotion_code','number_guest','total_charge','payment_method']
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = Staff
+        fields = '__all__'
+
+class CustomerRegisterForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        exclude = ['customer_id']
+    def __init__(self,*args,**kwargs):
+        super(CustomerRegisterForm, self).__init__(*args,**kwargs)
+        self.fields['fname'].error_messages = {'required': 'Please enter your first name',}
+        self.fields['lname'].error_messages = {'required': 'Please enter your last name',}
+        self.fields['email'].error_messages = {'required': 'Please enter your e-mail','invalid': 'This e-mail is used',}
+        self.fields['tel'].error_messages = {'required': 'Please enter your telphone','invalid': 'Please enter a valid telphone',}
+
+class RestBookingForm(forms.ModelForm):
+    class Meta:
+        model = Resbooking
+        exclude = ['resb_no']
+
+class hotelbookingForm(forms.ModelForm) :
+    class Meta :
+        model = Room_booking
+        exclude = ['booking_no ','staff_id']
+    
+
+
+
+
 

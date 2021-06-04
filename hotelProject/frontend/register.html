@@ -1,15 +1,84 @@
-
-{% extends 'main.html' %} 
+{% extends 'layout.html' %} 
 {% load static %}
 
-{% block title %}Log In{% endblock title %}
-{% block body %} class = "bg-1" {% endblock body %}
-
+{% block title %}Register{% endblock title %}
+{% block body %}class = "bg-1"{% endblock body %}
 {% block content %}
-    <form action="" method = "POST">
-        {% csrf_token %}
-        {{form.username.label}}
-        {{form.username}}
-        {{form.errors}}
-    </form>
+    {% comment %} {% if messages %}
+        <p>Hello</p>  
+    {% else %}
+        <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{form.errors}}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    {% endif %} {% endcomment %}
+    <div class="wrapper">
+        <div class="wrapper-inner">
+            <div class="image-holder">
+                <img src="{% static 'images/Untitled-1.png' %}" alt="">
+            </div>
+            <form action="{% url 'register' %}" method = "POST">
+                {% csrf_token %}
+                <h2>Registration Form</h2>
+                <div class="form-wrapper">
+                    {% comment %} {{form.first_name.label}}{{form.first_name}} {% endcomment %}
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname" placeholder="First Name" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    {% comment %} {{form.first_name.label}}{{form.first_name}} {% endcomment %}
+                    <label for="lname">Last Name</label>
+                    <input type="text" name="lname" placeholder="Last Name" class="form-control"> 
+                </div>
+                <div class="form-wrapper">
+                    <label for="email">E-mail</label>
+                    <input type="text" name = "email" placeholder="Email Address" class="form-control">
+                    {% comment %} {{form.email.label}}{{form.email}} {% endcomment %}
+                </div>
+                <div class="form-wrapper">
+                    {% comment %} {{form.password1.label}}{{form.password1}} {% endcomment %}
+                    <label for="password">Password</label>
+                    <input type="password" name = "password" placeholder="Password" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    <label for="repassword">Confirm Password</label>
+                    <input type="password" name = "repassword" placeholder="Confirm Password" class="form-control">
+                    {% comment %} {{form.password2.label}}{{form.password2}} {% endcomment %}
+                </div>
+                <div class="form-wrapper">
+                    <label for="address">Address</label>
+                    <input type="text" name = "address" placeholder="address" class="form-control"> 
+                </div>
+                <div class="form-wrapper">
+                    <label for="phone">Tel</label>
+                    <input type="tel" name = "tel" placeholder="tel" class="form-control"> 
+                </div>
+                <div class="form-wrapper">
+                    <button type="submit" value = "sign up" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top:5%">Register</button>
+                </div>
+                {% comment %} <p class="text-center" style="margin-top: 3%;">Have an member? <a data-toggle="tab" href="/login" style="text-decoration: none;color=grey;">Log In</a></p> {% endcomment %}
+            </form>
+        </div>
+    </div>
+    {% comment %} {% block script %}
+        <script>
+            var form_fields = document.getElementsByTagName('input')
+            form_fields[1].placeholder='First Name..';
+            form_fields[2].placeholder='Last Name..';
+            form_fields[3].placeholder='E-mail...';
+            form_fields[4].placeholder='Enter Password...';
+            form_fields[5].placeholder='Re-enter Password...'; 
+            
+            for (var field in form_fields){	
+                form_fields[field].className += ' form-control'
+            }
+        </script>
+    {% endblock script %}  {% endcomment %}
+
+
 {% endblock %}
+
+

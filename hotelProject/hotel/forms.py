@@ -31,7 +31,7 @@ class CustomerRegisterForm(forms.ModelForm):
 class RestBookingForm(forms.ModelForm):
     class Meta:
         model = Resbooking
-        exclude = ['resb_no']
+        exclude = ['resb_no','total_charge']
 
 class hotelbookingForm(forms.ModelForm) :
     class Meta :

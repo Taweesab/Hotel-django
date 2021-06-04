@@ -111,20 +111,22 @@ class Room_booking(models.Model):
     def __str__(self) :
         return self.date_check_in
 
-class Resbooking(models.Model):
-    resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)
-    promotion_code = models.ForeignKey(Promotion_type, on_delete=models.SET_NULL, null=True)
-    number_guest = models.IntegerField(null=False)
-    eatdate = models.DateTimeField(null=False)
-    total_charge = models.FloatField(null=False)
-    payment_method = models.CharField(max_length=32, null=False)
-
 class Buffet_round(models.Model):
     # round = (('lunch',"LUNCH"),('dinner',"DINNER"))
     # buffet_round=models.CharField(max_length=64,choices=round,default=False ,null=False)
     buffet_round=models.CharField(max_length=64, primary_key = True ,null=False)
     charge=models.FloatField(null =True)
     amount = models.IntegerField(null=False)
+
+class Resbooking(models.Model):
+    resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)
+    promotion_code = models.ForeignKey(Promotion_type, on_delete=models.SET_NULL, null=True)
+    number_guest = models.IntegerField(null=False)
+    eatdate = models.DateTimeField(null=False)
+    buffet_round = models.ForeignKey(Buffet_round, on_delete=models.SET_NULL, null=True)
+    total_charge = models.FloatField(null=False)
+    payment_method = models.CharField(max_length=32, null=False)
+
 
 
 class Invoice(models.Model):

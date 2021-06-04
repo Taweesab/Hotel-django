@@ -118,7 +118,7 @@ def register_staff(request):
 
     return render(request,'register_staff.html')
 
-@customer_login_required
+# @customer_login_required
 # def bookroom(request):
 #     if request.method == "POST" :
 #         saveobj = Room_booking()
@@ -134,6 +134,11 @@ def profile(request):
 
 @customer_login_required
 def bookrest(request):
+    # form = RestBookingForm(request)
+    # if form.is_valid():
+    #     new_restbooking = form.save(commit=False)
+    
+    
     return render(request,'book_res copy.html')
 
 @customer_login_required

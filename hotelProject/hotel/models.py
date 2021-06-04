@@ -39,6 +39,27 @@ class Customer(models.Model):
     def fullname(self):
         return self.fname + " " + self.lname
 
+class Customer_booking(models.Model):  
+    def bhID():
+        n = Room_booking.objects.count()
+        if n == 0:
+            return "BH00000001"
+        else:
+            return "BH" + str(n+1).zfill(9)
+    
+    def brID():
+        n = Resbooking.objects.count()
+        if n == 0:
+            return "BR00000001"
+        else:
+            return "BR" + str(n+1).zfill(9)
+
+    customer_surrogate = models.AutoField(primary_key=True) 
+    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False)
+    booking_no = models.CharField(max_length = 11,default = bhID, null = True)
+    resb_no = models.CharField(max_length = 11,default = brID ,null = True,unique = True)
+    booking_date = models.DateTimeField(auto_now_add=True, null=False)
+
 class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
     promotion_name = models.CharField(max_length=32, null=False)
@@ -76,14 +97,8 @@ class Room_detail(models.Model):
     room_count = models.IntegerField(null=False)
     
 class Room_booking(models.Model):
-    def bhID():
-        n = Room_booking.objects.count()
-        if n == 0:
-            return "BH00000001"
-        else:
-            return "BH" + str(n+1).zfill(9)
     bhsurrogate = models.AutoField(primary_key = True)
-    booking_no = models.CharField(max_length = 11,default = bhID, null = False)
+    booking_no = models.ForeignKey(Customer_booking,on_delete=models.RESTRICT, null=True)
     date_check_in = models.DateTimeField(null = False)
     date_check_out = models.DateTimeField(null = False)
     detail_no = models.ForeignKey(Room_detail, on_delete = models.CASCADE, null = False)
@@ -97,14 +112,7 @@ class Room_booking(models.Model):
         return self.date_check_in
 
 class Resbooking(models.Model):
-    def brID():
-        n = Resbooking.objects.count()
-        if n == 0:
-            return "BR00000001"
-        else:
-            return "BR" + str(n+1).zfill(9)
-
-    resb_no = models.CharField(max_length = 11,default = brID ,null = False,unique = True, primary_key = True)
+    resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)
     promotion_code = models.ForeignKey(Promotion_type, on_delete=models.SET_NULL, null=True)
     number_guest = models.IntegerField(null=False)
     eatdate = models.DateTimeField(null=False)
@@ -118,12 +126,6 @@ class Buffet_round(models.Model):
     charge=models.FloatField(null =True)
     amount = models.IntegerField(null=False)
 
-class Customer_booking(models.Model):  
-    customer_surrogate = models.AutoField(primary_key=True) 
-    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False)
-    booking_no = models.ForeignKey(Room_booking,on_delete=models.RESTRICT, null=True)
-    resb_no = models.ForeignKey(Resbooking, on_delete=models.RESTRICT, null=True)
-    booking_date = models.DateTimeField(auto_now_add=True, null=False)
 
 class Invoice(models.Model):
     invoice_no = models.CharField(max_length=12, null=False, primary_key=True, unique=True)

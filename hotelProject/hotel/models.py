@@ -35,8 +35,8 @@ class Customer(models.Model):
     address = models.CharField(max_length=200, null=False)
     tel = models.CharField(max_length=10, null=False,unique=True)
 
-    def fullName(self):
-        return self.fName + " " + self.lName
+    def fullname(self):
+        return self.fname + " " + self.lname
 
 class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
@@ -116,12 +116,13 @@ class Resbooking(models.Model):
     payment_method = models.CharField(max_length=32)
 
 class Buffet_round(models.Model):
-    round=models.CharField(max_length=64, null=False)
+    round = (('lunch',"LUNCH"),('dinner',"DINNER"))
+    buffet_round=models.CharField(max_length=64,choices=round,default=False ,null=False)
     charge=models.FloatField(null =True)
 
 class Buffet_table(models.Model):
     table_no = models.IntegerField(null=False)
-    round = models.ForeignKey(Buffet_round, on_delete=models.CASCADE, null=False)
+    buffet_round = models.ForeignKey(Buffet_round, on_delete=models.CASCADE, null=False)
     status = models.BooleanField(null = False)
 
 class Resb_detail(models.Model):

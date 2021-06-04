@@ -20,38 +20,41 @@
             <div class="image-holder">
                 <img src="{% static 'images/Untitled-1.png' %}" alt="">
             </div>
-            <form action="" method = "POST">
+            <form action="{% url 'register' %}" method = "POST">
                 {% csrf_token %}
                 <h2>Registration Form</h2>
                 <div class="form-wrapper">
-                    {{form.first_name.label}}{{form.first_name}}
-                    {% comment %} <input type="text" placeholder="First Name" class="form-control">
-                    <input type="text" placeholder="Last Name" class="form-control"> {% endcomment %}
+                    {% comment %} {{form.first_name.label}}{{form.first_name}} {% endcomment %}
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname" placeholder="First Name" class="form-control">
                 </div>
                 <div class="form-wrapper">
-                    {{form.last_name.label}}{{form.last_name}}
-                    {% comment %} <input type="text" placeholder="First Name" class="form-control">
-                    <input type="text" placeholder="Last Name" class="form-control"> {% endcomment %}
+                    {% comment %} {{form.first_name.label}}{{form.first_name}} {% endcomment %}
+                    <label for="lname">Last Name</label>
+                    <input type="text" name="lname" placeholder="Last Name" class="form-control"> 
                 </div>
                 <div class="form-wrapper">
-                    {% comment %} <input type="text" placeholder="Email Address" class="form-control"> {% endcomment %}
-                    {{form.email.label}}{{form.email}}
+                    <label for="email">E-mail</label>
+                    <input type="text" name = "email" placeholder="Email Address" class="form-control">
+                    {% comment %} {{form.email.label}}{{form.email}} {% endcomment %}
                 </div>
                 <div class="form-wrapper">
-                    {{form.password1.label}}{{form.password1}}
-                    {% comment %} <input type="password" placeholder="Password" class="form-control"> {% endcomment %}
+                    {% comment %} {{form.password1.label}}{{form.password1}} {% endcomment %}
+                    <label for="password">Password</label>
+                    <input type="password" name = "password" placeholder="Password" class="form-control">
                 </div>
                 <div class="form-wrapper">
-                    {% comment %} <input type="password" placeholder="Confirm Password" class="form-control"> {% endcomment %}
-                    {{form.password2.label}}{{form.password2}}
+                    <label for="repassword">Confirm Password</label>
+                    <input type="password" name = "repassword" placeholder="Confirm Password" class="form-control">
+                    {% comment %} {{form.password2.label}}{{form.password2}} {% endcomment %}
                 </div>
                 <div class="form-wrapper">
                     <label for="address">Address</label>
-                    <input type="text" placeholder="address" name = "address" class="form-control"> 
+                    <input type="text" name = "address" placeholder="address" class="form-control"> 
                 </div>
                 <div class="form-wrapper">
                     <label for="phone">Tel</label>
-                    <input type="tel" placeholder="tel" name = "phone" class="form-control"> 
+                    <input type="tel" name = "tel" placeholder="tel" class="form-control"> 
                 </div>
                 <div class="form-wrapper">
                     <button type="submit" value = "sign up" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top:5%">Register</button>
@@ -60,7 +63,7 @@
             </form>
         </div>
     </div>
-    {% block script %}
+    {% comment %} {% block script %}
         <script>
             var form_fields = document.getElementsByTagName('input')
             form_fields[1].placeholder='First Name..';
@@ -73,17 +76,9 @@
                 form_fields[field].className += ' form-control'
             }
         </script>
-    {% endblock script %} 
+    {% endblock script %}  {% endcomment %}
 
 
 {% endblock %}
 
 
-{% comment %} 
-    <form action="" method = "POST">
-        {% csrf_token %}
-        {{form.username.label}}
-        {{form.username}}
-        {{form.errors}}
-    </form> 
-{% endcomment %}

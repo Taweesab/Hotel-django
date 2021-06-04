@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
@@ -7,9 +6,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.db import connection 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
-from .forms import CreateUserForm, RegisterForm
+from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
-from .decorators import staff_login_required
+from .decorators import staff_login_required,customer_login_required
 
 
 
@@ -24,7 +23,7 @@ def room(request):
     return render(request,'room.html')
 
 def promotion(request):
-    allpromotion = promotion_type.objects.all()
+    allpromotion = Promotion_type.objects.all()
     context = {'allpromotion' : allpromotion}
     return render(request,'promotion.html',context)
 
@@ -44,7 +43,7 @@ def moreinfo3(request):
 #     return render(request,'book_hotel.html')
 
 def odersummary(request):
-    result = room_booking.objects.all()
+    result = Room_booking.objects.all()
     context = {'result' : result}
     return render(request,'book_hotel2.html',context)
 
@@ -60,22 +59,24 @@ def payment(request):
 def login(request):
     return render(request,'login.html')
 
+
 def loginaccept(request):
     
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
 
-        user = Staff.objects.get(email=email)
+        user = Customer.objects.get(email=email)
         # print(user.password)
         # print(check_password(password, user.password))
         if check_password(password, user.password):
             print(user)
             # return 
-            request.session['staff_id'] = user.staff_id
+            request.session['customer_id'] = user.customer_id
             return redirect('home')
-
-        return redirect('login')
+        else:
+            messages.info(request,'Not found infomation')
+            return redirect('login')
         #Check username, password
         # if user is not None :
         #     login(request,user)
@@ -86,18 +87,25 @@ def loginaccept(request):
     
 
 def register(request):
-    form = CreateUserForm()
 
     if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request,'Success')
-            return redirect('login')
-    
-    context = {'form':form}
-    return render(request,'register.html',context)
+        if request.POST['password'] == request.POST['repassword']:
+            if Customer.objects.filter(email=request.POST['email']).exists():
+                messages.info(request,'This e-mail is used')
+                return render(request,'register.html')
+            form = CustomerRegisterForm(request.POST)
+            if form.is_valid():
+                new_user = form.save(commit=False)
+                new_user.password = make_password(new_user.password)
+                new_user.save()
+                messages.success(request,'Success')
+                return redirect('login')
+            else:
+                messages.info(request, form.errors)
+                return render(request,'register_staff.html')
+        else:
+            messages.info(request,'Those passwords didn’t match. Try again.')
+    return render(request,'register.html')
 
 def register_staff(request):
 
@@ -117,31 +125,24 @@ def register_staff(request):
 
     return render(request,'register_staff.html')
 
-
+@customer_login_required
 def bookroom(request):
-    if request.user.is_authenticated:
-        if request.method == "POST" :
-                saveobj = room_booking()
-                saveobj.date_check_in = request.POST.get('checkin')
-                saveobj.date_check_out = request.POST.get('checkout')
-                saveobj.save()
+    if request.method == "POST" :
+        saveobj = Room_booking()
+        saveobj.date_check_in = request.POST.get('checkin')
+        saveobj.date_check_out = request.POST.get('checkout')
+        saveobj.save()
+    return render(request,'book_hotel.html')
 
-
-        return render(request,'book_hotel.html')
-    else:
-        messages.info(request,'Please Log in')
-        return login(request)
-
-@staff_login_required
+@customer_login_required
 def profile(request):
-    return render(request,'profile.html')
+    customer = Customer.objects.get(customer_id = request.session['customer_id']) 
+    return render(request,'profile.html',{'customer':customer})
 
+@customer_login_required
 def bookrest(request):
-    if request.user.is_authenticated:
-        return render(request,'book_res.html')
-    else:
-        messages.info(request,'Please Log in')
-        return login(request)
+    return render(request,'book_res copy.html')
+
 
 # def res1(request):
 #     return render(request,'book_res.html')
@@ -153,7 +154,12 @@ def res3(request):
     return render(request,'book_res3.html')
 
 
-def logout(request):
+def logout_staff(request):
     if 'staff_id' in request.session:
         del request.session['staff_id'] # delete user session
     return redirect('login')
+
+def logout(request):
+    if 'customer_id' in request.session:
+        del request.session['customer_id'] # delete user session
+    return redirect('home')

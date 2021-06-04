@@ -41,24 +41,14 @@ def moreinfo2(request):
 def moreinfo3(request):
     return render(request,'info_room3.html')
 
-# def booknow(request):
-#     return render(request,'book_hotel.html')
-
 def odersummaryhotel(request):
-    return render(request,'book_hotel2copy.html')
-
-def paymenthotel(request):
     return render(request,'book_hotel3copy.html')
 
-# def add(request):
-#     return render(request,'book_hotel.html')
-
-# def back3(request):
-#     return render(request,'book_hotel2.html')
+def paymenthotel(request):
+    return render(request,'book_hotel4copy.html')
 
 def login(request):
     return render(request,'login.html')
-
 
 def loginaccept(request):
     
@@ -193,3 +183,5 @@ def logout(request):
         del request.session['customer_id'] # delete user session
     return redirect('home')
 
+def checkroom(request) :
+    return render(request,'book_hotel2copy.html')

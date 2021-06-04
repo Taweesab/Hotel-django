@@ -59,22 +59,15 @@ def loginaccept(request):
         user = Customer.objects.get(email=email)
         # print(user.password)
         # print(check_password(password, user.password))
-        if check_password(password, user.password):
-            print(user)
-            # return 
-            request.session['customer_id'] = user.customer_id
-            return redirect('home')
-        else:
-            messages.info(request,'Not found infomation')
-            return redirect('login')
-        #Check username, password
-        # if user is not None :
-        #     login(request,user)
-        #     return redirect('home')
-        # else :
-        #     messages.info(request,'Not found infomation')
-        #     return redirect('login')
-    
+        if  user is not None :
+            if check_password(password, user.password):
+                print(user)
+                # return 
+                request.session['customer_id'] = user.customer_id
+                return redirect('home')
+
+        messages.error(request,'Not found infomation')
+        return redirect('login')
 
 def register(request):
 

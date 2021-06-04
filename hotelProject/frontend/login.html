@@ -1,5 +1,5 @@
 
-{% extends 'main.html' %} 
+{% extends 'layout.html' %} 
 {% load static %}
 
 {% block title %}Log In{% endblock title %}
@@ -27,7 +27,7 @@
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
   </div> {% endcomment %}
-   {% if messages %}
+   {% if messages.tags == 'error' %} 
 		{% for m in messages %}
 				<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 				

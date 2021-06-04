@@ -132,7 +132,9 @@ def bookroom(request):
     if request.method == "POST" :
         print("fggggg")
         form = hotelbookingForm(request.POST)
+        print("data :" , request.POST)
         if form.is_valid():
+            
         #    bookhotel = form.save(commit=False)
         #    bookhotel.save()
            form.save_m2m()

@@ -7,7 +7,7 @@
 
       <div class="card" >
         <div class="card-header">
-          <h2><a href="#" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
+          <h2><a href="{%url 'room' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -19,45 +19,33 @@
               <td><i id="check" class="gg-check-o1"></i></td>
               <td><i id="line" class="gg-border-style-solid"></i></td>
               <td><i id="check" class="gg-check-o1"></i></td>
+              <td><i id="line" class="gg-border-style-solid"></i></td>
+              <td><i id="check" class="gg-check-o1"></i></td>
             </tr>
           </Table>
         </div>
-          <form action="" method="POST">
-            <div class="form-wrapper">
-              {%csrf_token%}
-              <label for="datebook"><h5>checkin</h5></label><br>
-              {{form.date_check_in}}
-              <input type="date" name="checkin" id="date" class="form-control">
-              <label for="datebook"><h5>checkout</h5></label><br>
-              <input type="date" name="checkout" id="date" class="form-control">
-            </div><br>
-            <div class="form-wrapper">
-                <h5>Type</h5>
-                <label for="typeroom" style="margin-left: 5%;">
-                  <input type="radio" name="typeroom" id="junior" >Junior Suite
-                </label>
-                <label for="typeroom" style="margin-left: 5%;">
-                  <input type="radio" name="typeroom" id="standard" >Standard Room
-                <label for="typeroom" style="margin-left: 0.5%;">
-                    <input type="radio" name="typeroom" id="superior" >Superior Room
-                </label><br>
-            </div><br>
-            <div class="form-wrapper">
-              <label for="number_guest"><h5>Number Of Guest</h5></label><br>
-              <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="800"><br>
-            </div>  
-            <div class="form-wrapper">
-              <label for="promotion_code"><h5>Promotion Code</h5></label><br>
-              <input type="text" name="promotion_code" id="promotion_code" class="form-control">
-            </div>
-            <div class="form-wrapper" style="text-align: end;">
-              <br><a class="btn" href="#">Reservation</a>
-            </div>
-          </form>
-        </div>
+        <form action="{% 'bookroom'}" method="POST">
+          {%csrf_token%}
+          <div class="form-wrapper">    
+            <label for="datebook"><h5>checkin</h5></label><br>
+            <input type="date" name="date_check_in" id="date" class="form-control">
+            <label for="datebook"><h5>checkout</h5></label><br>
+            <input type="date" name="date_check_out" id="date" class="form-control">
+          </div><br>
+          <div class="form-wrapper">
+            <label for="number_guest"><h5>Number Of Guest</h5></label><br>
+            <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="800"><br>
+          </div>  
+          <div class="form-wrapper" style="text-align: end;">
+            <br><a class="btn" href="{%url 'checkroom' %}">Reservation</a>
+            <button type="submit" value = "Login" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top: 5%;">Reservation</button>
+          </div>
+        </form>
       </div>
+    </div>
       <script>
         var today = new Date().toISOString().split('T')[0];
         document.getElementsByName("checkin")[0].setAttribute('min', today); 
+        document.getElementsByName("checkout")[0].setAttribute('min', today);
       </script> 
 {% endblock %}

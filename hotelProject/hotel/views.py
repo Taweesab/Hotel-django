@@ -41,24 +41,14 @@ def moreinfo2(request):
 def moreinfo3(request):
     return render(request,'info_room3.html')
 
-# def booknow(request):
-#     return render(request,'book_hotel.html')
-
 def odersummaryhotel(request):
-    return render(request,'book_hotel2copy.html')
-
-def paymenthotel(request):
     return render(request,'book_hotel3copy.html')
 
-# def add(request):
-#     return render(request,'book_hotel.html')
-
-# def back3(request):
-#     return render(request,'book_hotel2.html')
+def paymenthotel(request):
+    return render(request,'book_hotel4copy.html')
 
 def login(request):
     return render(request,'login.html')
-
 
 def loginaccept(request):
     
@@ -143,11 +133,15 @@ def bookrest(request):
 
 @customer_login_required
 def bookroom(request):
+    print("fggggg)")
     if request.method == "POST" :
+        print("fggggg")
         form = hotelbookingForm(request.POST)
+        print("data :" , request.POST)
         if form.is_valid():
-           bookhotel = form.save(commit=False)
-           bookhotel.save()
+            
+        #    bookhotel = form.save(commit=False)
+        #    bookhotel.save()
            form.save_m2m()
            print(request.POST)
     return render(request,'book_hotelcopy.html')
@@ -191,3 +185,5 @@ def logout(request):
         del request.session['customer_id'] # delete user session
     return redirect('home')
 
+def checkroom(request) :
+    return render(request,'book_hotel2copy.html')

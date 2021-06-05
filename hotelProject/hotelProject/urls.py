@@ -41,7 +41,6 @@ urlpatterns = [
     path('profile/',views.profile,name='profile'),
     path('ordersummaryres/',views.ordersummaryres,name='ordersummaryres'),
     path('paymentres/',views.paymentres,name='paymentres'),
-    path('comfirm_rest/',views.ComfirmeResbooking,name='ComfirmeResbooking'),
     path('checkroom/',views.checkroom,name='checkroom')
 
 

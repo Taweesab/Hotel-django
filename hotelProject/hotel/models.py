@@ -46,18 +46,12 @@ class Customer_booking(models.Model):
             return "BH00000001"
         else:
             return "BH" + str(n+1).zfill(9)
-    
-    def brID():
-        n = Resbooking.objects.count()
-        if n == 0:
-            return "BR00000001"
-        else:
-            return "BR" + str(n+1).zfill(9)
 
     # customer_surrogate = models.AutoField(primary_key=True) 
-    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False,primary_key=True)
+    booking_no = models.AutoField(primary_key=True)
+    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False)
     booking_no = models.CharField(max_length = 11,default = bhID, null = True)
-    resb_no = models.CharField(max_length = 11,default = brID ,null = True,unique = True)
+    resb_no = models.CharField(max_length = 11,null = True,unique = True)
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
 
 class Promotion_type(models.Model):

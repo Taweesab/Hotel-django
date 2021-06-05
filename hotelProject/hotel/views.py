@@ -122,7 +122,7 @@ def profile(request):
 
     customer = Customer.objects.get(customer_id = request.session['customer_id']) 
     if request.method == "POST":
-        edit_form = ProfileEdit(request.POST, instance=customer)
+        edit_form = ProfileEditForm(request.POST, instance=customer)
         if edit_form.is_valid :
             edit_form.save()
         return redirect('profile')   
@@ -144,20 +144,34 @@ def bookroom(request):
 @customer_login_required
 def bookrest(request):
     # customer = Customer.objects.get(customer_id = request.session['customer_id'])
-    Customer_booking.customer_id = request.session['customer_id']
-    cst_id = Customer_booking.objects.last()
-    context = {"cst_id":cst_id}
-    print(cst_id.resb_no)
-    return render(request,'book_res.html',context)
+    # customer_booking = Customer_booking.objects.last()
+    # customer_booking.customer_id = customer.customer_id
+    print()
+    def brID():
+        n = Resbooking.objects.count()
+        if n == 0:
+            return "BR00000001"
+        else:
+            return "BR" + str(n+1).zfill(9)
+    
+    bookid = brID()
+    print(bookid)
+    # customer_booking.resb_no = brID()
+    # Resbooking.objects.last().resb_no = brID()
+    # cst_id = Customer_booking.objects.last()
+    # context = {"cst_id":cst_id}
+    # print(cst_id.resb_no)
+    return render(request,'book_res.html')
 
 def ordersummaryres(request):
-    resb_no = request.POST["resb_no"]
+    # resb_no = request.POST["resb_no"]
     eatdate = request.POST["eatdate"]
     buffet_round = request.POST["buffet_round"]
     number_guest = request.POST["number_guest"]
     promotion_code = request.POST["promotion_code"]
     bf_round = Buffet_round.objects.get(buffet_round=buffet_round)
     discount = 0
+    print(bf_round)
 
     if promotion_code is not None:
         if Promotion_type.objects.filter(promotion_code=promotion_code).exists() :
@@ -167,9 +181,8 @@ def ordersummaryres(request):
             messages.error(request,'No this code')
             return render(request,'book_res2.html')
     
-    # total_charge = (number_guest * bf_round.charge) - discount
-    total_charge = 1000
-    context = {"resb_no": resb_no,"eatdate": eatdate, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"discount" : discount,"total_charge":total_charge}
+    total_charge = (int(number_guest) * bf_round.charge) - discount
+    context = {"eatdate": eatdate, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"discount" : discount,"total_charge":total_charge}
     return render(request,'book_res2.html', context)
 
 def paymentres(request):
@@ -183,7 +196,7 @@ def paymentres(request):
         else:
             messages.info(request,'Invalid Infomation')
             print("error")
-            render(request,'book_res3.html')
+            render(request,'book_res2.html')
     # eatdate = request.POST["eatdate"]
     # buffet_round = request.POST["buffet_round"]
     # number_guest = request.POST["number_guest"]

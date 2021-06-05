@@ -12,6 +12,7 @@ from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
 from .decorators import staff_login_required,customer_login_required
+from .forms import FirstForm
 
 
 
@@ -86,13 +87,13 @@ def register(request):
                 return redirect('login')
             else:
                 messages.info(request, form.errors)
-                return render(request,'register_staff.html')
+                return render(request,'register.html')
         else:
             messages.info(request,'Those passwords didn’t match. Try again.')
     return render(request,'register.html')
 
 def register_staff(request):
-
+    form = RegisterForm()
     if request.method == 'POST':
         if Staff.objects.filter(email=request.POST['email']).exists():
             return 
@@ -105,8 +106,29 @@ def register_staff(request):
         else:
             messages.info(request, form.errors)
             render(request,'register_staff.html')
-        
-    return render(request,'register_staff.html')
+    context = {"form": form}
+    return render(request,'register_staff.html',context)
+
+
+def loginstaffaccept(request):
+    
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+
+        user = Staff.objects.get(email=email)
+        # print(user.password)
+        # print(check_password(password, user.password))
+        if  user is not None :
+            if check_password(password, user.password):
+                print(user)
+                # return 
+                request.session['staff_id'] = user.staff_id
+                request.session['job_title'] = user.job_title
+                return redirect('home')
+
+        messages.error(request,'Not found infomation')
+        return redirect('login')
 
 # @customer_login_required
 # def bookroom(request):
@@ -129,6 +151,20 @@ def profile(request):
         
     return render(request,'profile.html',{"customer":customer})
 
+#@customer_login_required
+#def bookroom(request):
+    #print("fggggg)")
+    #if request.method == "POST" :
+        #print("fggggg")
+        #form = hotelbookingForm(request.POST)
+        #print("data :" , request.POST)
+        #if form.is_valid():
+            
+        #    bookhotel = form.save(commit=False)
+        #    bookhotel.save()
+           #form.save_m2m()
+           #print(request.POST)
+    #return render(request,'book_hotelcopy.html')
 @customer_login_required
 def bookroom(request):
     print("fggggg)")
@@ -238,7 +274,9 @@ def ComfirmeResbooking(request):
 
 def logout_staff(request):
     if 'staff_id' in request.session:
-        del request.session['staff_id'] # delete user session
+        del request.session['staff_id']
+    if 'job_title' in request.session:
+        del request.session['job_title'] # delete user session
     return redirect('login')
 
 def logout(request):
@@ -248,3 +286,17 @@ def logout(request):
 
 def checkroom(request) :
     return render(request,'book_hotel2copy.html')
+    
+@customer_login_required
+def Fform(request):
+    print("555555")
+    form= FirstForm(request.POST)
+    if form.is_valid():
+        form.save()
+    context= {'form': form }
+    
+    return render(request, 'book_hotelcopy.html',context)
+
+
+
+

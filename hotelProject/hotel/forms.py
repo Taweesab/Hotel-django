@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import *
+from .models import Room_booking
 
 
 class CreateUserForm(UserCreationForm):
@@ -15,7 +16,7 @@ class CreateUserForm(UserCreationForm):
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Staff
-        fields = '__all__'
+        exclude = ['staff_id','salary','job_title']
 
 class CustomerRegisterForm(forms.ModelForm):
     class Meta:
@@ -48,6 +49,12 @@ class hotelbookingForm(forms.ModelForm) :
     class Meta :
         model = Room_booking
         fields = '__all__'
+
+class FirstForm(forms.ModelForm):
+    class Meta:
+        model= Room_booking
+        fields= ['date_check_in','date_check_out','number_guest']
+
 
 
 

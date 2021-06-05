@@ -22,7 +22,8 @@
             </tr>
           </Table>
         </div>
-          <form action="" method="post">
+          <form action="{% url 'paymentres' %}" method="post">
+            {% csrf_token %}
             <br>
             <h5>Date : </h5>
             <h5>No. of people : </h5>
@@ -31,10 +32,10 @@
             <h5>Discount : </h5>
             <h5>Total : </h5><br>
             <hr> <br>
-            <input type="date" name="date" id="date" value={{date}} hidden>
-            <input type="text" name="buffet_round" value = {{buffet_round}} hidden>
-            <input type="number" name="number_guest" id="number_guest"  value={{number_guest}} hidden> 
-            <input type="text" name="promotion_code" id="promotion_code" value ={{promotion_code}} hidden>
+            <input type="date" name="eatdate" id="eatdate" value="{{eatdate}}" hidden>
+            <input type="text" name="buffet_round" value = "{{buffet_round}}" hidden>
+            <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
+            <input type="text" name="promotion_code" id="promotion_code" value ="{{promotion_code}}" hidden>
             <input type="text" name="total_charge" id="total_charge" value ={{total_charge}} hidden>
             <div class="form-wrapper" style="text-align: end;">
                 <button type="submit" value = "confirm" class="btn" style="margin-top: 5%;">Comfirm</button>

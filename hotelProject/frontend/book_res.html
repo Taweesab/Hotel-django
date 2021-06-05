@@ -22,10 +22,11 @@
             </tr>
           </Table>
         </div>
-          <form action="" method="post">
+          <form action="{% url 'ordersummaryres' %}" method="post">
+            {% csrf_token %}
             <div class="form-wrapper">
               <label for="datebook"><h5>Date</h5></label><br>
-              <input type="date" name="date" id="date" class="form-control">
+              <input type="date" name="eatdate" id="eatdate" class="form-control">
             </div><br>
             <div class="form-wrapper">
                 <h5>Buffet Round</h5>

@@ -106,7 +106,6 @@ def register_staff(request):
             messages.info(request, form.errors)
             render(request,'register_staff.html')
         
-
     return render(request,'register_staff.html')
 
 # @customer_login_required
@@ -150,28 +149,39 @@ def bookrest(request):
     return render(request,'book_res.html')
 
 def ordersummaryres(request):
-    date = request.POST["date"]
+    eatdate = request.POST["eatdate"]
     buffet_round = request.POST["buffet_round"]
     number_guest = request.POST["number_guest"]
     promotion_code = request.POST["promotion_code"]
-    total_charge = number_guest * Buffet_round.charge.get(buffet_round=buffet_round) - Promotion_type.discount.get(promotion_code=promotion_code)
-    context = {"date": date, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"total_charge": total_charge}
+    total_charge = 1000
+    print(eatdate,buffet_round,number_guest,promotion_code,total_charge)
+    # total_charge = number_guest * Buffet_round.charge.get(buffet_round=buffet_round) - Promotion_type.discount.get(promotion_code=promotion_code)
+    context = {"eatdate": eatdate, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"total_charge":total_charge}
     return render(request,'book_res2.html', context)
 
 def paymentres(request):
+    
     if request.method == 'POST':
-        
-        form = RegisterForm(request.POST)
+        form = RestBookingForm(request.POST)
         if form.is_valid():
-            
-            new_user.save()
+            form.save()
+            print(eatdate,buffet_round,number_guest,promotion_code,total_charge,payment_method)
+            print("success")
+            return redirect('home')
         else:
-            messages.info(request, form.errors)
-            render(request,'register_staff.html')
+            messages.info(request,'Invalid Infomation')
+            print("success")
+            render(request,'book_res3.html')
         
-    return render(request,'book_res3.html')
+    eatdate = request.POST["eatdate"]
+    buffet_round = request.POST["buffet_round"]
+    number_guest = request.POST["number_guest"]
+    promotion_code = request.POST["promotion_code"]
+    total_charge = request.POST["promotion_code"]
+    context = {"eatdate": eatdate, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"total_charge":total_charge}
 
-
+    return render(request,'book_res3.html',context)
+        
 
 # def reser(request) :
 #     if request.method == "POST" :

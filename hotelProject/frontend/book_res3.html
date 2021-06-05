@@ -23,15 +23,21 @@
           </Table>
         </div>
           <form action="" method="post">
+            {% csrf_token %}
             <h5>Booking no : </h5>
             <h5>Discount : </h5>
             <h5>Total :  </h5>
             <hr>
             <h5>Credit Card</h5>
             <hr><h5>Payment method</h5>
-            <select class="form-control" required>
-                <option>Master Card</option>
-                <option>Visa</option>
+            <input type="date" name="eatdate" id="eatdate" value="{{eatdate}}" hidden>
+            <input type="text" name="buffet_round" value = "{{buffet_round}}" hidden>
+            <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
+            <input type="text" name="promotion_code" id="promotion_code" value ="{{promotion_code}}" hidden>
+            <input type="text" name="total_charge" id="total_charge" value ={{total_charge}} hidden>
+            <select class="form-control" name="payment_method" required>
+                <option value="Master Card">Master Card</option>
+                <option value="Visa">Visa</option>
             </select>
             <div class="form-wrapper">
                 <label for="cardno" ><h5>Card Number</h5></label><br>

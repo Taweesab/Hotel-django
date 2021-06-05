@@ -7,7 +7,7 @@
 
       <div class="card" >
         <div class="card-header">
-          <h2><a href="#" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
+          <h2><a href="{% url 'ordersummaryres' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -22,7 +22,7 @@
             </tr>
           </Table>
         </div>
-          <form action="" method="post">
+          <form action="{% url 'paymentres' %}" method="post">
             {% csrf_token %}
             <h5>Booking no : </h5>
             <h5>Discount : </h5>
@@ -30,15 +30,17 @@
             <hr>
             <h5>Credit Card</h5>
             <hr><h5>Payment method</h5>
+            <input type="text" name="resb_no" id="resb_no"  value="{{resb_no}}" hidden>
             <input type="date" name="eatdate" id="eatdate" value="{{eatdate}}" hidden>
             <input type="text" name="buffet_round" value = "{{buffet_round}}" hidden>
             <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
             <input type="text" name="promotion_code" id="promotion_code" value ="{{promotion_code}}" hidden>
-            <input type="text" name="total_charge" id="total_charge" value ={{total_charge}} hidden>
-            <select class="form-control" name="payment_method" required>
+            <input type="text" name="total_charge" id="total_charge" value ="{{total_charge}}" hidden>
+            {% comment %} <select class="form-control" name="paymentmethod" required>
                 <option value="Master Card">Master Card</option>
                 <option value="Visa">Visa</option>
-            </select>
+            </select> {% endcomment %}
+            {% comment %} <input type="text" name="paymentmethod" id="paymentmethod" value ="{{paymentmethod}}" hidden> {% endcomment %}
             <div class="form-wrapper">
                 <label for="cardno" ><h5>Card Number</h5></label><br>
                 <input type="text" name="cardno" id="cardno" class="form-control">

@@ -36,7 +36,8 @@ class ProfileEdit(forms.ModelForm):
 class RestBookingForm(forms.ModelForm):
     class Meta:
         model = Resbooking
-        exclude = ['resb_no']
+        fields = '__all__'
+        # exclude = ['resb_no']
 
 class hotelbookingForm(forms.ModelForm) :
     class Meta :

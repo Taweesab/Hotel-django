@@ -154,7 +154,7 @@ def ordersummaryres(request):
     buffet_round = request.POST["buffet_round"]
     number_guest = request.POST["number_guest"]
     promotion_code = request.POST["promotion_code"]
-    total_charge = number_guest * Buffet_round.charge(buffet_round=buffet_round) - Promotion_type.discount(promotion_code=promotion_code)
+    total_charge = number_guest * Buffet_round.charge.get(buffet_round=buffet_round) - Promotion_type.discount.get(promotion_code=promotion_code)
     context = {"date": date, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"total_charge": total_charge}
     return render(request,'book_res2.html', context)
 

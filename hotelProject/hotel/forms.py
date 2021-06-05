@@ -28,10 +28,15 @@ class CustomerRegisterForm(forms.ModelForm):
         self.fields['email'].error_messages = {'required': 'Please enter your e-mail','invalid': 'This e-mail is used',}
         self.fields['tel'].error_messages = {'required': 'Please enter your telphone','invalid': 'Please enter a valid telphone',}
 
+class ProfileEdit(forms.ModelForm):
+    class Meta:
+        model = Customer
+        exclude = ['customer_id','password']
+
 class RestBookingForm(forms.ModelForm):
     class Meta:
         model = Resbooking
-        exclude = ['resb_no','total_charge']
+        exclude = ['resb_no']
 
 class hotelbookingForm(forms.ModelForm) :
     class Meta :

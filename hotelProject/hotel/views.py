@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login
@@ -119,17 +120,15 @@ def register_staff(request):
 
 @customer_login_required
 def profile(request):
-    customer = Customer.objects.get(customer_id = request.session['customer_id']) 
-    return render(request,'profile.html',{'customer':customer})
 
-@customer_login_required
-def bookrest(request):
-    # form = RestBookingForm(request)
-    # if form.is_valid():
-    #     new_restbooking = form.save(commit=False)
-    
-    
-    return render(request,'book_res copy.html')
+    customer = Customer.objects.get(customer_id = request.session['customer_id']) 
+    if request.method == "POST":
+        edit_form = ProfileEdit(request.POST, instance=customer)
+        if edit_form.is_valid :
+            edit_form.save()
+        return redirect('profile')   
+        
+    return render(request,'profile.html',{"customer":customer})
 
 @customer_login_required
 def bookroom(request):
@@ -146,16 +145,31 @@ def bookroom(request):
            print(request.POST)
     return render(request,'book_hotelcopy.html')
     
-
-
-# def res1(request):
-#     return render(request,'book_res.html')
+@customer_login_required
+def bookrest(request):
+    return render(request,'book_res.html')
 
 def ordersummaryres(request):
-    return render(request,'book_res2copy.html')
+    date = request.POST["date"]
+    buffet_round = request.POST["buffet_round"]
+    number_guest = request.POST["number_guest"]
+    promotion_code = request.POST["promotion_code"]
+    total_charge = number_guest * Buffet_round.charge(buffet_round=buffet_round) - Promotion_type.discount(promotion_code=promotion_code)
+    context = {"date": date, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"total_charge": total_charge}
+    return render(request,'book_res2.html', context)
 
 def paymentres(request):
-    return render(request,'book_res3copy.html')
+    if request.method == 'POST':
+        
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            
+            new_user.save()
+        else:
+            messages.info(request, form.errors)
+            render(request,'register_staff.html')
+        
+    return render(request,'book_res3.html')
 
 
 

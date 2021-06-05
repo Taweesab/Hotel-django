@@ -22,25 +22,13 @@
             </tr>
           </Table>
         </div>
-          <form action="{% url 'paymentres' %}" method="post">
-            {% csrf_token %}
-            <h5>Booking no : </h5>
-            <h5>Discount : </h5>
-            <h5>Total :  </h5>
+          <form action="" >
+            <h5>Booking no : {{resb_no}}</h5>
+            <h5>Discount : {{discount}}</h5>
+            <h5>Total :  {{total_charge}}</h5>
             <hr>
             <h5>Credit Card</h5>
-            <hr><h5>Payment method</h5>
-            {% comment %} <input type="text" name="resb_no" id="resb_no"  value="{{resb_no}}" hidden> {% endcomment %}
-            <input type="date" name="eatdate" id="eatdate" value="{{eatdate}}" hidden>
-            <input type="text" name="buffet_round" value = "{{buffet_round}}" hidden>
-            <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
-            <input type="text" name="promotion_code" id="promotion_code" value ="{{promotion_code}}" hidden>
-            <input type="text" name="total_charge" id="total_charge" value ="{{total_charge}}" hidden>
-            {% comment %} <select class="form-control" name="paymentmethod" required>
-                <option value="Master Card">Master Card</option>
-                <option value="Visa">Visa</option>
-            </select> {% endcomment %}
-            {% comment %} <input type="text" name="paymentmethod" id="paymentmethod" value ="{{paymentmethod}}" hidden> {% endcomment %}
+            <hr>
             <div class="form-wrapper">
                 <label for="cardno" ><h5>Card Number</h5></label><br>
                 <input type="text" name="cardno" id="cardno" class="form-control">
@@ -307,7 +295,8 @@
                 <option value="Zimbabwe">Zimbabwe</option>
             </select>
             <div class="form-wrapper" style="text-align: end;">
-              <button type="submit" value = "confirm" class="btn" style="margin-top: 5%;">Reservation</button>
+              <a class="btn" href="{% url 'home' %}" style="margin-top: 5%;>Reservation</a>
+              {% comment %} <button type="submit" value = "confirm" class="btn" style="margin-top: 5%;">Reservation</button> {% endcomment %}
             </div>
           </form>
         </div>

@@ -43,7 +43,7 @@ class RestBookingForm(forms.ModelForm):
 class CustomerBookingForm(forms.ModelForm):
     class Meta:
         model = Customer_booking
-        exclude = ['booking_no'] 
+        exclude = ['no','booking_no'] 
 
 class hotelbookingForm(forms.ModelForm) :
     class Meta :

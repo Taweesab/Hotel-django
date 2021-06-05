@@ -19,22 +19,30 @@
               <td><i id="check" class="gg-check-o"></i></td>
               <td><i id="line" class="gg-border-style-solid"></i></td>
               <td><i id="check" class="gg-check-o"></i></td>
-              <td><i id="line" class="gg-border-style-solid"></i></td>
-              <td><i id="check" class="gg-check-o"></i></td>
             </tr>
           </Table>
         </div>
-          <form action="" method="post">
-            <h5>Booking no : </h5>
-            <h5>Discount : </h5>
-            <h5>Total : </h5>
+          <form action="{% url 'payhotel' %}" method="POST">
+            {%csrf_token%}
+            <!-- <h5>Booking no : {{bookinghotel}} </h5> -->
+            <h5>Discount : {{discount}} </h5>
+            <h5>Total : {{total_charge}} </h5>
             <hr>
             <h5>Credit Card</h5>
             <hr><h5>Payment method</h5>
-            <select class="form-control">
-                <option>Master Card</option>
-                <option>Visa</option>
+            <!-- <input type="text" name="resb_no" id="resb_no"  value="{{resb_no}}" hidden> -->
+            <input type="text" name="date_check_in" id="date" value="{{date_check_in}}" hidden>
+            <input type="text" name="date_check_out" id="date" value="{{date_check_out}}" hidden>
+            <input type="text" name="roomtype" value = "{{roomtype}}" hidden>
+            <input type="text" name="room_count" id="room_count"  value="{{room_count}}" hidden> 
+            <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
+            <input type="text" name="service_name" value = "{{service_name}}" hidden>
+            <input type="text" name="total_charge" id="total_charge" value ="{{total_charge}}" hidden>
+            <select class="form-control" name="paymentmethod" >
+                <option value="Master Card">Master Card</option>
+                <option value="Visa">Visa</option>
             </select>
+            {% comment %} <input type="text" name="paymentmethod" id="paymentmethod" value ="{{paymentmethod}}" hidden> {% endcomment %}
             <div class="form-wrapper">
                 <label for="cardno"><h5>Card Number</h5></label><br>
                 <input type="text" name="cardno" id="cardno" class="form-control">

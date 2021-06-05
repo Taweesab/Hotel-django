@@ -19,12 +19,10 @@
               <td><i id="check" class="gg-check-o1"></i></td>
               <td><i id="line" class="gg-border-style-solid"></i></td>
               <td><i id="check" class="gg-check-o1"></i></td>
-              <td><i id="line" class="gg-border-style-solid"></i></td>
-              <td><i id="check" class="gg-check-o1"></i></td>
             </tr>
           </Table>
         </div>
-        <form action="{% url 'bookroom' %}" method="POST">
+        <form action="{% url 'odersummaryhotel' %}" method="POST">
           {%csrf_token%}
           <div class="form-wrapper">    
             <label for="datebook"><h5>checkin</h5></label><br>
@@ -35,12 +33,12 @@
           <div class="form-wrapper">
             <h5>Type</h5>
             <label for="typeroom" style="margin-left: 5%;">
-              <input type="radio" name="junior" id="junior" >Junior Suite
+              <input type="radio" name="roomtype" id="junior" value="junior" >Junior Suite
             </label>
             <label for="typeroom" style="margin-left: 5%;">
-              <input type="radio" name="standard" id="standard" >Standard Room
+              <input type="radio" name="roomtype" id="standard" value="standard" >Standard Room
             <label for="typeroom" style="margin-left: 0.5%;">
-                <input type="radio" name="superior" id="superior" >Superior Room
+                <input type="radio" name="roomtype" id="superior" value="superior" >Superior Room
             </label><br>
         </div><br>
         <div class="form-wrapper">
@@ -54,12 +52,12 @@
         <div class="form-wrapper">
           <h5>Services</h5>
           <label for="Services" style="margin-left: 5%;">
-            <input type="checkbox" name="Cleaning" id="Cleaning" >Cleaning Room(500 THB)
+            <input type="checkbox" name="service_name" id="Cleaning" value="Cleaning" >Cleaning Room(500 THB)
           </label>
           <label for="Services" style="margin-left: 5%;">
-            <input type="checkbox" name="ExtraBed" id="ExtraBed" >Extra Bed(700 THB)
+            <input type="checkbox" name="service_name" id="ExtraBed" value="ExtraBed" >Extra Bed(700 THB)
           <label for="Services" style="margin-left: 0.5%;">
-              <input type="checkbox" name="BreakFast" id="BreakFast" >Break Fast(500 THB/PEOPLE)
+              <input type="checkbox" name="service_name" id="BreakFast" value="BreakFast" >Break Fast(500 THB/PEOPLE)
           </label><br>
       </div><br> 
       <div class="form-wrapper">
@@ -71,11 +69,6 @@
         <!-- <br><a class="btn" href="{%url 'checkroom' %}">Reservation</a> -->
         <button type="submit" value = "Login" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top: 5%;">Reservation</button>
       </div>
-          
-                
-        
-            
-
           
         </form>
       </div>

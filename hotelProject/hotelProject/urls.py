@@ -30,7 +30,7 @@ urlpatterns = [
     path('signup/',views.register,name='register'),
     path('signup_staff/',views.register_staff,name='register_staff'),
     path('loginaccept/',views.loginaccept,name='loginaccept'),
-    path('book_room/',views.bookroom,name='bookroom'),
+   # path('book_room/',views.bookroom,name='bookroom'),
     path('book_table/',views.bookrest,name='bookrest'),
     path('logout/', views.logout, name='logout'),
     path('moreinfo1/',views.moreinfo1, name='moreinfo1'),
@@ -41,7 +41,8 @@ urlpatterns = [
     path('profile/',views.profile,name='profile'),
     path('ordersummaryres/',views.ordersummaryres,name='ordersummaryres'),
     path('paymentres/',views.paymentres,name='paymentres'),
-    path('checkroom/',views.checkroom,name='checkroom')
+    path('checkroom/',views.checkroom,name='checkroom'),
+
 
 
 ]

@@ -11,12 +11,20 @@ class Staff(models.Model):
         else:
             return "STF" + str(n+1).zfill(6)
 
-    staff_id = models.CharField(max_length=9, default=genID, primary_key=True)
+    staff_id = models.CharField(max_length=12, default=genID, primary_key=True)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
     dob = models.DateField(null=False)
-    job_title = models.CharField(max_length=64, null=False)
-    salary = models.FloatField(null=False)
+    Job_title = (
+        ("S", "Staff"),
+        ("A", "Admin"),
+        ("M", "Manager"),
+        ("R", "Receptionist"),
+        ("HS", "Hotel Staff"),
+        ("RS", "Restaurant Staff"),
+    )
+    job_title = models.CharField(max_length=5, choices=Job_title, default="S")
+    salary = models.FloatField(null=True)
     email = models.EmailField(null=False, unique=True)
     password = models.CharField(max_length=100, null=False)
 
@@ -55,7 +63,7 @@ class Customer_booking(models.Model):
             return "BR" + str(n+1).zfill(9)
 
     # customer_surrogate = models.AutoField(primary_key=True) 
-    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False,primary_key=True)
+    customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT, null=False,primary_key=True,unique=True)
     booking_no = models.CharField(max_length = 11,default = bhID, null = True)
     resb_no = models.CharField(max_length = 11,default = brID ,null = True,unique = True)
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
@@ -137,5 +145,7 @@ class Invoice(models.Model):
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, null=False)
     tax = models.FloatField(null=False)
     date = models.DateField(null=False)
+
+
 
 

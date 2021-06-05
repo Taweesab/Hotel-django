@@ -7,18 +7,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.db import connection 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
-# from .forms import CreateUserForm
 from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
 from .decorators import staff_login_required,customer_login_required
-<<<<<<< HEAD
-from decimal import Decimal
-=======
-from .forms import FirstForm
 
 
->>>>>>> cc36e79730fb42a0843aa8eb1b96ee9a0684ea4d
+
 
 # Create your views here.
 def home(request):
@@ -48,16 +43,6 @@ def moreinfo2(request):
 def moreinfo3(request):
     return render(request,'info_room3.html')
 
-<<<<<<< HEAD
-=======
-def odersummaryhotel(request):
-    return render(request,'book_hotel3copy.html')
-
-def paymenthotel(request):
-    return render(request,'book_hotel4copy.html')
-
-
->>>>>>> cc36e79730fb42a0843aa8eb1b96ee9a0684ea4d
 def login(request):
     return render(request,'login.html')
 
@@ -154,20 +139,6 @@ def profile(request):
         
     return render(request,'profile.html',{"customer":customer})
 
-#@customer_login_required
-#def bookroom(request):
-    #print("fggggg)")
-    #if request.method == "POST" :
-        #print("fggggg")
-        #form = hotelbookingForm(request.POST)
-        #print("data :" , request.POST)
-        #if form.is_valid():
-            
-        #    bookhotel = form.save(commit=False)
-        #    bookhotel.save()
-           #form.save_m2m()
-           #print(request.POST)
-    #return render(request,'book_hotelcopy.html')
 @customer_login_required
 def bookroom(request):
     Customer_booking.customer_id = request.session['customer_id']
@@ -237,7 +208,6 @@ def checkBookingdetail(request):
 
 def payhotel(request) :
     if request.method == "POST" :
-<<<<<<< HEAD
         room_form = RoomdetailForm(request.POST)
         if room_form.is_valid() :
             room_form.save()
@@ -254,17 +224,6 @@ def payhotel(request) :
 
 ################## restaurant ####################
 @customer_login_required
-=======
-        print("fggggg")
-        form = hotelbookingForm(request.POST)
-        print("data :" , request.POST)
-        if form.is_valid():
-           form.save_m2m()
-           print(request.POST)
-    return render(request,'book_hotelcopy.html')
-    
-# @customer_login_required
->>>>>>> cc36e79730fb42a0843aa8eb1b96ee9a0684ea4d
 def bookrest(request):
     customer = Customer.objects.get(customer_id = request.session['customer_id'])
     def brID():

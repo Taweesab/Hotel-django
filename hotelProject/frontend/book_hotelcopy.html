@@ -24,7 +24,7 @@
             </tr>
           </Table>
         </div>
-        <form action="{% 'bookroom'}" method="POST">
+        <form action="{% url 'bookroom' %}" method="POST">
           {%csrf_token%}
           <div class="form-wrapper">    
             <label for="datebook"><h5>checkin</h5></label><br>
@@ -33,13 +33,50 @@
             <input type="date" name="date_check_out" id="date" class="form-control">
           </div><br>
           <div class="form-wrapper">
-            <label for="number_guest"><h5>Number Of Guest</h5></label><br>
-            <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="800"><br>
-          </div>  
-          <div class="form-wrapper" style="text-align: end;">
-            <br><a class="btn" href="{%url 'checkroom' %}">Reservation</a>
-            <button type="submit" value = "Login" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top: 5%;">Reservation</button>
-          </div>
+            <h5>Type</h5>
+            <label for="typeroom" style="margin-left: 5%;">
+              <input type="radio" name="junior" id="junior" >Junior Suite
+            </label>
+            <label for="typeroom" style="margin-left: 5%;">
+              <input type="radio" name="standard" id="standard" >Standard Room
+            <label for="typeroom" style="margin-left: 0.5%;">
+                <input type="radio" name="superior" id="superior" >Superior Room
+            </label><br>
+        </div><br>
+        <div class="form-wrapper">
+          <label for="room_count"><h5>Number Of Room</h5></label><br>
+          <input type="number" name="room_count" id="room_count" class="form-control" min="1" max="30"><br>
+        </div>
+        <div class="form-wrapper">
+          <label for="number_guest"><h5>Number Of Guest</h5></label><br>
+          <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="20"><br>
+        </div>
+        <div class="form-wrapper">
+          <h5>Services</h5>
+          <label for="Services" style="margin-left: 5%;">
+            <input type="checkbox" name="Cleaning" id="Cleaning" >Cleaning Room(500 THB)
+          </label>
+          <label for="Services" style="margin-left: 5%;">
+            <input type="checkbox" name="ExtraBed" id="ExtraBed" >Extra Bed(700 THB)
+          <label for="Services" style="margin-left: 0.5%;">
+              <input type="checkbox" name="BreakFast" id="BreakFast" >Break Fast(500 THB/PEOPLE)
+          </label><br>
+      </div><br> 
+      <div class="form-wrapper">
+          <label for="promotion_code"><h5>Promotion Code</h5></label><br>
+          <input type="text" name="promotion_code" id="promotion_code" class="form-control">
+      </div>
+      <hr>
+      <div class="form-wrapper" style="text-align: end;">
+        <!-- <br><a class="btn" href="{%url 'checkroom' %}">Reservation</a> -->
+        <button type="submit" value = "Login" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top: 5%;">Reservation</button>
+      </div>
+          
+                
+        
+            
+
+          
         </form>
       </div>
     </div>

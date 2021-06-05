@@ -42,6 +42,10 @@ def moreinfo3(request):
     return render(request,'info_room3.html')
 
 def odersummaryhotel(request):
+    date_check_in = request.POST["date_check_in"]
+    date_check_out = request.POST["date_check_out"]
+    number_guest = request.POST["number_guest"]
+    service_code = Service.objects.get(service_name = service_name)
     return render(request,'book_hotel3copy.html')
 
 def paymenthotel(request):
@@ -133,12 +137,30 @@ def bookroom(request):
         print("fggggg")
         form = hotelbookingForm(request.POST)
         print("data :" , request.POST)
+        room_type = ""
+        if "standard" in request.POST :
+            room_type = "standard"
+        if "superior" in request.POST :
+            room_type = "superior"
+        if "junior" in request.POST :
+            room_type = "junior"
+        print(room_type)
+        Service=""
+        if "Cleaning" in request.POST :
+           Service = "Cleaning"
+        if "ExtraBed" in request.POST :
+            Service= "ExtraBed"
+        if "BreakFast" in request.POST :
+            Service = "BreakFast"
+        print(Service)
+
         if form.is_valid():
+            print("form valid")
             
         #    bookhotel = form.save(commit=False)
         #    bookhotel.save()
-           form.save_m2m()
-           print(request.POST)
+        #    form.save_m2m()
+        # print(request.POST)
     return render(request,'book_hotelcopy.html')
     
 

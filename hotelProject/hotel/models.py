@@ -133,7 +133,7 @@ class Resbooking(models.Model):
     eatdate = models.DateTimeField(null=False)
     buffet_round = models.ForeignKey(Buffet_round, on_delete=models.SET_NULL, null=True)
     total_charge = models.FloatField(null=False)
-    payment_method = models.CharField(max_length=32, null=False)
+    paymentmethod = models.CharField(max_length=32, null=False)
 
 
 

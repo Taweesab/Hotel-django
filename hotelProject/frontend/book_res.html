@@ -24,6 +24,7 @@
         </div>
           <form action="{% url 'ordersummaryres' %}" method="post">
             {% csrf_token %}
+            <input type="text" name="resb_no" id="resb_no" class="form-control" value="{{cst_id.resb_no}}" hidden>
             <div class="form-wrapper">
               <label for="datebook"><h5>Date</h5></label><br>
               <input type="date" name="eatdate" id="eatdate" class="form-control">
@@ -54,6 +55,6 @@
       </div>
       <script>
         var today = new Date().toISOString().split('T')[0];
-        document.getElementsByName("date")[0].setAttribute('min', today); 
+        document.getElementsByName("eatdate")[0].setAttribute('min', today); 
       </script> 
 {% endblock %}

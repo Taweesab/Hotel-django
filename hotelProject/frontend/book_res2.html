@@ -7,7 +7,7 @@
 
       <div class="card" >
         <div class="card-header">
-          <h2><a href="#" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
+          <h2><a href="{% url 'bookrest' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -25,18 +25,26 @@
           <form action="{% url 'paymentres' %}" method="post">
             {% csrf_token %}
             <br>
-            <h5>Date : </h5>
-            <h5>No. of people : </h5>
-            <h5>Buffet round : </h5><br>
+            <h5>Booking no : {{resb_no}}</h5>
+            <h5>Date : {{eatdate}}</h5>
+            <h5>No. of people : {{number_guest}}</h5>
+            <h5>Buffet round : {{buffet_round}}</h5><br>
             <hr>
-            <h5>Discount : </h5>
-            <h5>Total : </h5><br>
+            <h5>Discount : {{discount}}</h5>
+            <h5>Total : {{total_charge}}</h5><br>
             <hr> <br>
+            <div class="form-wrapper">
+              <select class="form-control" name="paymentmethod" required>
+                <option value="Master Card">Master Card</option>
+                <option value="Visa">Visa</option>
+              </select>
+            </div>
+            <input type="text" name="resb_no" id="resb_no"  value="{{resb_no}}" hidden>
             <input type="date" name="eatdate" id="eatdate" value="{{eatdate}}" hidden>
             <input type="text" name="buffet_round" value = "{{buffet_round}}" hidden>
             <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
             <input type="text" name="promotion_code" id="promotion_code" value ="{{promotion_code}}" hidden>
-            <input type="text" name="total_charge" id="total_charge" value ={{total_charge}} hidden>
+            <input type="text" name="total_charge" id="total_charge" value ="{{total_charge}}" hidden>
             <div class="form-wrapper" style="text-align: end;">
                 <button type="submit" value = "confirm" class="btn" style="margin-top: 5%;">Comfirm</button>
             </div>

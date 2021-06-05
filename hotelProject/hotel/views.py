@@ -123,7 +123,8 @@ def loginstaffaccept(request):
             if check_password(password, user.password):
                 print(user)
                 # return 
-                request.session['Staff_id'] = user.staff_id
+                request.session['staff_id'] = user.staff_id
+                request.session['job_title'] = user.job_title
                 return redirect('home')
 
         messages.error(request,'Not found infomation')
@@ -260,7 +261,9 @@ def ComfirmeResbooking(request):
 
 def logout_staff(request):
     if 'staff_id' in request.session:
-        del request.session['staff_id'] # delete user session
+        del request.session['staff_id']
+    if 'job_title' in request.session:
+        del request.session['job_title'] # delete user session
     return redirect('login')
 
 def logout(request):

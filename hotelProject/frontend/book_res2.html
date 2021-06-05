@@ -39,12 +39,16 @@
                 <option value="Visa">Visa</option>
               </select>
             </div>
+            <input type="text" name="customer_id" id="customer_id" class="form-control" value="{{customer_id}}" hidden>
+            {% comment %} <input type="text" name="resb_no" id="resb_no" class="form-control" value="{{bookno}}" hidden> {% endcomment %}
+            <input type="date" name="booking_date" id="booking_date" class="form-control" value ="{{booking_date}}" hidden>
             <input type="text" name="resb_no" id="resb_no"  value="{{resb_no}}" hidden>
             <input type="date" name="eatdate" id="eatdate" value="{{eatdate}}" hidden>
             <input type="text" name="buffet_round" value = "{{buffet_round}}" hidden>
             <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
             <input type="text" name="promotion_code" id="promotion_code" value ="{{promotion_code}}" hidden>
-            <input type="text" name="total_charge" id="total_charge" value ="{{total_charge}}" hidden>
+            <input type="number" name="total_charge" id="total_charge" value ="{{total_charge}}" hidden>
+            <input type="number" name="discount" id="discount" value ="{{discount}}" hidden>
             <div class="form-wrapper" style="text-align: end;">
                 <button type="submit" value = "confirm" class="btn" style="margin-top: 5%;">Comfirm</button>
             </div>

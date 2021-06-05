@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import *
+from .models import Room_booking
 
 
 class CreateUserForm(UserCreationForm):
@@ -15,7 +16,7 @@ class CreateUserForm(UserCreationForm):
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Staff
-        fields = '__all__'
+        exclude = ['staff_id','salary','job_title']
 
 class CustomerRegisterForm(forms.ModelForm):
     class Meta:
@@ -28,7 +29,7 @@ class CustomerRegisterForm(forms.ModelForm):
         self.fields['email'].error_messages = {'required': 'Please enter your e-mail','invalid': 'This e-mail is used',}
         self.fields['tel'].error_messages = {'required': 'Please enter your telphone','invalid': 'Please enter a valid telphone',}
 
-class ProfileEdit(forms.ModelForm):
+class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Customer
         exclude = ['customer_id','password']
@@ -36,19 +37,31 @@ class ProfileEdit(forms.ModelForm):
 class RestBookingForm(forms.ModelForm):
     class Meta:
         model = Resbooking
-        fields = '__all__'
-        # exclude = ['resb_no']
+        # fields = '__all__'
+        exclude = ['resb_no'] 
+
+class CustomerBookingForm(forms.ModelForm):
+    class Meta:
+        model = Customer_booking
+        exclude = ['no','booking_no'] 
 
 class hotelbookingForm(forms.ModelForm) :
     class Meta :
         model = Room_booking
         fields = '__all__'
 
+<<<<<<< HEAD
 class RoomdetailForm(forms.ModelForm) :
     class Meta :
         model = Room_detail
         fields = '__all__'
 
+=======
+class FirstForm(forms.ModelForm):
+    class Meta:
+        model= Room_booking
+        fields= ['date_check_in','date_check_out','number_guest']
+>>>>>>> cc36e79730fb42a0843aa8eb1b96ee9a0684ea4d
 
 
 

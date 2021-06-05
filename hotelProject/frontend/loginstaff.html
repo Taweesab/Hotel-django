@@ -1,0 +1,91 @@
+
+{% extends 'layout.html' %} 
+{% load static %}
+
+{% block title %}Log In{% endblock title %}
+{% block body %} class="ftco-body" style="background-color:rgb(45, 45, 48);opacity: 0.9;" {% endblock body %}
+
+{% block content %}
+  {% comment %} {% if messages %}
+    <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          Hello!!!
+          {% for m in messages %}
+              {{m}}
+          {% endfor %} 
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  {% endif %} {% endcomment %}
+  {% comment %} <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          Hello!!!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+  </div> {% endcomment %}
+   {% if messages.tags == 'error' %} 
+		{% for m in messages %}
+				<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+				
+				<script>
+				Swal.fire({
+					icon: 'error',
+					title: 'Something went wrong!',
+					text: 'Plese try again',
+					footer: '<a href="/signup">Pleses sign up, if you dont have an account</a>'
+				})
+				</script> 
+		{% endfor %}
+   {% endif %}
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">LOG IN</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="img" style="background-image: url({% static 'images/bg-1.jpg' %});"></div>
+						<div class="login-wrap p-4 p-md-5">
+							<div class="d-flex">
+								<div class="w-100">
+									<h3 class="mb-4">Sign In</h3>
+								</div>
+							</div>
+							<form action="/loginstaffaccept/" method="POST">
+                				{% csrf_token %}
+								<div class="form-group mb-3">
+									<label class="label" for="email">E-mail</label>
+									<input type="email" class="form-control" name="email" placeholder="E-mail" required>
+								</div>
+								<div class="form-group mb-3">
+									<label class="label" for="password">Password</label>
+									<input type="password" class="form-control" name="password" placeholder="Password" required>
+								</div>
+								<div class="form-group">
+									<button type="submit" value = "Login" class="form-control login-btn btn-primary rounded submit px-3">Sign In</button>
+								</div>
+								<div class="form-group d-md-flex">
+									<div class="w-50 text-left">
+										<input class="form-check-input" type="checkbox" value="" id="Remember" checked>
+                    					<label class="form-check-label" for="Remember">Remember Me</label>
+									</div>
+									<div class="w-50 text-md-right" style="text-align: end;">
+										<a href="#">Forgot Password</a>
+									</div>
+								</div>
+							</form>
+							<p class="text-center" style="margin-top: 5%;">Not a member? <a data-toggle="tab" href="{% url 'register' %}">Sign Up</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

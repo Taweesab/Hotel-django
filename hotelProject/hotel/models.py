@@ -115,8 +115,8 @@ class Room_booking(models.Model):
     payment_method = models.CharField(max_length = 32, null = True)
 
     #try query data
-    def __str__(self) :
-        return self.date_check_in
+    # def __str__(self) :
+    #     return self.booking_no
 
 class Buffet_round(models.Model):
     # round = (('lunch',"LUNCH"),('dinner',"DINNER"))

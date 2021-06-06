@@ -13,8 +13,9 @@ class Admin_Customer(admin.ModelAdmin):
     search_fields=["fname","lname"]
 
 class Admin_Promo(admin.ModelAdmin):
-    list_display=["promotion_code","promotion_name","start_date","expire_date"]
+    list_display=["promotion_code","promotion_name","promotion_type","start_date","expire_date"]
     search_fields=["promotion_code","promotion_name"]
+    list_filter=["promotion_type"]
 
 class Admin_Room(admin.ModelAdmin):
     list_display=["roomtype","capacity","price"]
@@ -27,10 +28,10 @@ class Admin_RoomDe(admin.ModelAdmin):
     list_display=["detail_no","roomtype","service_name","room_count"]
 
 class Admin_BH(admin.ModelAdmin):
-    list_display=["booking_no","date_check_in","date_check_out","number_guest"]
+    list_display=["bhsurrogate","booking_no","date_check_in","date_check_out","number_guest"]
     search_fields=["booking_no"]
 
-class  Admin_Buffet(admin.ModelAdmin):
+class Admin_Buffet(admin.ModelAdmin):
     list_display=["buffet_round","charge","amount"]
 
 class Admin_BR(admin.ModelAdmin):
@@ -38,7 +39,7 @@ class Admin_BR(admin.ModelAdmin):
     search_fields=["resb_no"]
 
 class Admin_CusBook(admin.ModelAdmin):
-    list_display=["customer_id","booking_no","resb_no","booking_date"]
+    list_display=["no","customer_id","booking_no","resb_no","booking_date"]
     list_filter=["customer_id"]
 
 class Admin_Invoice(admin.ModelAdmin):
@@ -56,7 +57,7 @@ admin.site.register(Room_booking,Admin_BH)
 admin.site.register(Resbooking,Admin_BR)
 admin.site.register(Buffet_round,Admin_Buffet)
 admin.site.register(Customer_booking,Admin_CusBook)
-admin.site.register(Invoice)
+admin.site.register(Invoice,Admin_Invoice)
 
 #Admin Header
 admin.site.site_header = "Boiled-Youtiao Administration"

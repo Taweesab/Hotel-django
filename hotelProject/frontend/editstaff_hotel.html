@@ -1,0 +1,29 @@
+{% extends 'layout.html' %} 
+{% load static %}
+
+{% block title %}Book Restaurant{% endblock title %}
+{% block body %}style="background-color: whitesmoke;"{% endblock body %}
+{% block content %}
+
+<table class="table">
+    <thead class="thead-dark">
+    <br><br><br><br><br>
+      <tr>
+        <th scope="col">BookingNo</th>
+        <th scope="col">CustomerID</th>
+        <th scope="col">Check In</th>
+        <th scope="col">Check Out</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in Hotel %}
+      <tr>
+        <th scope="row"></th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock content %}

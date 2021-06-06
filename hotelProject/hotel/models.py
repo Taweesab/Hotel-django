@@ -28,7 +28,7 @@ class Staff(models.Model):
 
     job_title = models.CharField(max_length=5, choices=Job_title, default="S")
     salary = models.FloatField(null=True)
-    email = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    email = models.EmailField(null=False, unique=True)
     password = models.CharField(max_length=100, null=False)
 
 class Customer(models.Model):
@@ -70,11 +70,7 @@ class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
     promotion_name = models.CharField(max_length=32, null=False)
     promotion_detail = models.CharField(max_length=500, null = False)
-    type = (
-        ("Hotel", "Hotel"),
-        ("Restaurant", "Restaurant"),
-    )
-    promotion_type = models.CharField(max_length=15, choices=type, null=False, default="Hotel")
+    promotion_type = models.CharField(max_length=20, null=False,default="type")
     start_date = models.DateField(null=False)
     expire_date = models.DateField(null= False)
     discount = models.FloatField(null=False)
@@ -148,3 +144,7 @@ class Invoice(models.Model):
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, null=False)
     tax = models.FloatField(null=False)
     date = models.DateField(null=False)
+
+
+
+

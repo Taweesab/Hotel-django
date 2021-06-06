@@ -50,6 +50,9 @@ def login(request):
 def loginstaff(request):
     return render(request,'loginstaff.html')
 
+#@unauthenticated_staff
+@allowed_staff(allowed_roles=['A','M','HS','RS','S'])
+#@staff_login_required
 def invoice(request):
     return render(request,'invoice.html')
 
@@ -155,7 +158,7 @@ def register(request):
             messages.info(request,'Those passwords didn’t match. Try again.')
     return render(request,'register.html')
 
-@unauthenticated_staff
+#@unauthenticated_staff
 def register_staff(request):
     form = RegisterForm()
     if request.method == 'POST':
@@ -167,16 +170,16 @@ def register_staff(request):
             new_user = form.save(commit=False)
             new_user.password = make_password(new_user.password)
             new_user.save()
-            group = Group.objects.get(name='staff')
-            user.groups.add(group)
-            
+            # group = Group.objects.get(name='staff')
+            # user.groups.add(group)
+
         else:
             messages.info(request, form.errors)
             render(request,'register_staff.html')
     context = {"form": form}
     return render(request,'register_staff.html',context)
 
-@unauthenticated_staff
+#@unauthenticated_staff
 def loginstaffaccept(request):
     
     if request.method == 'POST':
@@ -417,6 +420,10 @@ def checkroom(request) :
 #     context= {'form': form }
     
 #     return render(request, 'book_hotel.html',context)
+
+def staff_home(request):
+    customer = Customer_booking.objects.all()
+    return render(request, 'staff_home.html',{'list' : customer})
 
 
 

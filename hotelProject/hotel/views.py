@@ -132,7 +132,6 @@ def loginaccept(request):
         return redirect('login')
 
 def register(request):
-
     if request.method == 'POST':
         if request.POST['password'] == request.POST['repassword']:
             if Customer.objects.filter(email=request.POST['email']).exists():

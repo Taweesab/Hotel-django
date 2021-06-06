@@ -47,7 +47,7 @@ urlpatterns = [
     # path('payhotel/',views.payhotel,name='payhotel'),
     path('checkroom/',views.checkroom,name='checkroom'),
     path('invoice/',views.invoice,name='invoice'),
-     path('resultinvoice/',views.resultinvoice,name='resultinvoice')
+    path('resultinvoice/',views.resultinvoice,name='resultinvoice')
 
 
 ]

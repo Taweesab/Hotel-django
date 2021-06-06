@@ -10,12 +10,10 @@ from .models import *
 from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
-from .decorators import customer_login_required,unauthenticated_staff,allowed_staff
+from .decorators import customer_login_required,staff_login_required
 from decimal import Decimal
 from django.contrib.auth.models import Group
 
-# Create your views here.
-# @allowed_staff(allowed_roles=['A','M','HS','RS'])
 def home(request):
     return render(request,'index.html')
 
@@ -25,7 +23,6 @@ def dinning(request):
 def room(request):
     return render(request,'room.html')
 
-@staff_login_required()
 def promotion(request):
     allpromotion = Promotion_type.objects.all()
     context = {'allpromotion' : allpromotion}
@@ -34,7 +31,6 @@ def promotion(request):
 def contact(request):
     return render(request,'contact.html')
 
-# @allowed_staff(allowed_roles=['A','M','HS','RS'])
 def moreinfo1(request):
     return render(request,'info_room1.html')
 
@@ -50,9 +46,7 @@ def login(request):
 def loginstaff(request):
     return render(request,'loginstaff.html')
 
-#@unauthenticated_staff
-@allowed_staff(allowed_roles=['A','M','HS','RS','S'])
-#@staff_login_required
+@staff_login_required()
 def invoice(request):
     return render(request,'invoice.html')
 
@@ -158,7 +152,6 @@ def register(request):
             messages.info(request,'Those passwords didn’t match. Try again.')
     return render(request,'register.html')
 
-#@unauthenticated_staff
 def register_staff(request):
     form = RegisterForm()
     if request.method == 'POST':
@@ -179,7 +172,6 @@ def register_staff(request):
     context = {"form": form}
     return render(request,'register_staff.html',context)
 
-#@unauthenticated_staff
 def loginstaffaccept(request):
     
     if request.method == 'POST':
@@ -421,9 +413,13 @@ def checkroom(request) :
     
 #     return render(request, 'book_hotel.html',context)
 
-def staff_home(request):
-    customer = Customer_booking.objects.all()
-    return render(request, 'staff_home.html',{'list' : customer})
+def editstaff_hotel(request):
+    Hotel = Customer_booking.objects.all()
+    return render(request, 'editstaff_hotel.html',{'list' : Hotel})
+
+def editstaff_res(request):
+    Res = Customer_booking.objects.all()
+    return render(request,'editstaff_res.html',{'list' : Res})
 
 
 

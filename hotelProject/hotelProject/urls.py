@@ -48,7 +48,7 @@ urlpatterns = [
     path('checkroom/',views.checkroom,name='checkroom'),
     path('invoice/',views.invoice,name='invoice'),
     path('resultinvoice/',views.resultinvoice,name='resultinvoice'),
-    path('staff_home/',views.staff_home,name='staff_home'),
-
+    path('editstaff_hotel/',views.editstaff_hotel,name='editstaff_hotel'),
+    path('editstaff_res/',views.editstaff_res,name='editstaff_res'),
 
 ]

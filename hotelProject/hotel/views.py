@@ -435,16 +435,6 @@ def logout(request):
 
 def checkroom(request) :
     return render(request,'book_hotel2.html')
-    
-# @customer_login_required
-# def Fform(request):
-#     print("555555")
-#     form= FirstForm(request.POST)
-#     if form.is_valid():
-#         form.save()
-#     context= {'form': form }
-    
-#     return render(request, 'book_hotel.html',context)
 
 def editstaff_hotel(request):
     Hotel = Customer_booking.objects.all()

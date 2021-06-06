@@ -17,7 +17,7 @@ def staff_login_required(job_titles=['S', 'M', 'R', 'HS', 'RS'], login_url='logi
 
 def customer_login_required(function):
     def wrapper(request, login_url='login', *args, **kwargs):
-        if not 'staff_id' in request.session:
+        if not 'customer_id' in request.session:
             return redirect(login_url)
         else:
             return function(request, *args, **kwargs)

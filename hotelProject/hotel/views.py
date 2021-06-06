@@ -292,7 +292,7 @@ def odersummaryhotel(request):
             messages.error(request,'No this code')
             return render(request,'book_hotel3.html')    
         
-    total_charge = type.price + price_service - discount
+    total_charge = int(type.price)*int(room_count) + price_service - discount
 
     context = {"customer_id":customer_id,"booking_no": booking_no,"booking_date":booking_date,"date_check_in": date_check_in, "date_check_out": date_check_out,
     "number_guest": number_guest,"roomtype":roomtype,"service_name":service_name ,"promotion_code": promotion_code,"room_count":room_count ,"discount" : discount,"total_charge":total_charge}
@@ -340,8 +340,7 @@ def paymenthotel(request) :
     # return redirect('้home')
     return render(request,'book_hotel4.html',context)
 
-# def payhotel(request) :
-#     return redirect('home')
+
 ################## restaurant ####################
 @customer_login_required
 def bookrest(request):
@@ -437,13 +436,10 @@ def checkroom(request) :
     return render(request,'book_hotel2.html')
 
 def editstaff_hotel(request):
-    Hotel = Customer_booking.objects.all()
-    return render(request, 'editstaff_hotel.html',{'list' : Hotel})
+    hotel = Room_booking.objects.all()
+    print(hotel)
+    return render(request, 'editstaff_hotel.html',{"hotel":hotel})
 
 def editstaff_res(request):
     Res = Customer_booking.objects.all()
     return render(request,'editstaff_res.html',{'list' : Res})
-
-
-
-

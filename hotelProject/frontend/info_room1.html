@@ -1,60 +1,214 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layout.html' %} 
+{% load static %}
 
-<head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Boiled-Youtioa Hotel & Restaurant</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link href='https://css.gg/chevron-double-left.css' rel='stylesheet'>
+{% block title %}Info Room1{% endblock title %}
+{% block style %}
+
+  <style>
+    body {
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777;
+      background-color: whitesmoke;
+    }
+
+    h3,
+    h4 {
+      margin: 10px 0 30px 0;
+      font-size: 20px;
+      color: #111;
+    }
+
+    .container {
+      padding: 80px 120px;
+    }
+
+    .bg-1 {
+      background: #2d2d30;
+      color: #bdbdbd;
+    }
+
+    .bg-1 h3 {
+      color: #fff;
+    }
+
+    .bg-1 p {
+      font-style: italic;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #f1f1f1;
+      border-radius: 0;
+      transition: .2s;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      border: 1px solid #333;
+      background-color: #fff;
+      color: #000;
+    }
+
+    .nav-tabs li a {
+      color: #777;
+    }
+
+    .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2d2d30;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+    }
+
+    .navbar li a,
+    .navbar .navbar-brand {
+      color: #d5d5d5 !important;
+    }
+
+    .navbar-nav li a:hover {
+      color: #fff !important;
+      background-color: #363636 !important;
+    }
+
+    .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292b !important;
+    }
+
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+    }
+
+    .dropdown-menu li a {
+      color: #000 !important;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: rgb(236, 119, 119) !important;
+    }
+
+    footer {
+      background-color: #2d2d30;
+      color: #f5f5f5;
+      padding: 20px;
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    footer a {
+      color: #f5f5f5;
+    }
+
+    footer a:hover {
+      color: #777;
+      text-decoration: none;
+    }
+
+    .form-control {
+      border-radius: 0;
+    }
+
+    .info_room .box {
+      width: 50%;
+      height: 1300px;
+      margin-left: 470px;
+      margin-top: 100px;
+      background-color: white;
+    }
+
+    .head_room {
+      padding-top: 20px;
+      padding-left: 45px;
+      float: left;
+      width: 900px;
+
+    }
 
 
-</head>
+    #tab {
+      width: 300px;
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    }
 
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">BY</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-left">
-          <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
-          <li class="nav-item"><a class="nav-link" href="/hotel_room">HOTEL ROOM</a></li>
-          <li class="nav-item"><a class="nav-link" href="/dinning_room">DINNING ROOM</a></li>
-          <li class="nav-item"><a class="nav-link" href="/promotions">PROMOTIONS</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
-          <!-- <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Merchandise</a></li>
-            <li><a href="#">Extras</a></li>
-            <li><a href="#">Media</a></li> 
-          </ul>
-        </li> -->
-          <!-- <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li> -->
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link" href="regis">SIGN UP</a></li>
-          <li><a href="login.html">LOG IN</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    .book a{
+      color: #fff;
+      text-decoration:none;
+    }
 
+    button  {
+      padding-top: 0px;
+      height: 55px;
+      width: 150px;
+      background: rgb(53, 52, 52);
+      color: white;
+      border: 2px solid transparent;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    #back {
+      width: 35px;
+      height: 35px;
+      color: black;
+      margin-right: 20px;
+    }
+
+    .head1 {
+
+      width: 400px;
+      float: left;
+    }
+
+    .book {
+      float: right;
+      padding-top: 40px;
+
+
+    }
+
+    .carousel-inner img {
+      filter: opacity(80%);
+      width: 100%;
+      margin: auto;
+    }
+
+    .carousel-caption h3 {
+      color: #fff !important;
+    }
+
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none;
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+      }
+    }
+
+
+    .detail .text {
+      margin-top: 50px;
+    }
+
+    .text li {
+      margin-left: 110px
+    }
+
+
+    .text h3 {
+      margin-top: 35px;
+      margin-left: 300px;
+      color: #777;
+
+    }
+  </style>
+{% endblock style %}
+{% block body %}{% endblock body %}
+{% block content %}
   <section class="info_room">
     <div class="box">
       <div class="head_room">
@@ -75,9 +229,6 @@
           </div>
         </table>
         <hr>
-
-
-
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
@@ -179,294 +330,4 @@
       </div>
     </div>
   </section>
-
-
-
-
-
-
-
-
-
-
-  <!-- Container (Contact Section) -->
-  <div id="contact" class="bg-1 text-center">
-    <div class="container">
-      <h3 class="text-center">CONTACT</h3>
-      <p class="text-center"><em>We love our customers!</em></p>
-      <div class="row">
-        <div class="col-md-4">
-          <p>Fan? Drop a note.</p>
-          <p><span class="glyphicon glyphicon-map-marker"></span>Chicago, US</p>
-          <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
-          <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
-        </div>
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-sm-6 form-group">
-              <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-            </div>
-            <div class="col-sm-6 form-group">
-              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-            </div>
-          </div>
-          <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-          <br>
-          <div class="row">
-            <div class="col-md-12 form-group">
-              <button class="btn pull-right" type="submit">Send</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Image of location/map -->
-  <!-- <img src="map.jpg" class="img-responsive" style="width:100%"> -->
-
-  <!-- Footer -->
-  <footer class="text-center">
-    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </a><br>
-    <p>Boiled-Youtioa Hotel & Restaurant</p>
-  </footer>
-
-  <script>
-    $(document).ready(function () {
-      // Initialize Tooltip
-      $('[data-toggle="tooltip"]').tooltip();
-
-      // Add smooth scrolling to all links in navbar + footer link
-      $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
-
-        // Make sure this.hash has a value before overriding default behavior
-        if (this.hash !== "") {
-
-          // Prevent default anchor click behavior
-          event.preventDefault();
-
-          // Store hash
-          var hash = this.hash;
-
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 900, function () {
-
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        } // End if
-      });
-    })
-  </script>
-
-</body>
-
-</html>
-
-<style>
-  body {
-    font: 400 15px/1.8 Lato, sans-serif;
-    color: #777;
-    background-color: whitesmoke;
-  }
-
-  h3,
-  h4 {
-    margin: 10px 0 30px 0;
-    font-size: 20px;
-    color: #111;
-  }
-
-  .container {
-    padding: 80px 120px;
-  }
-
-  .bg-1 {
-    background: #2d2d30;
-    color: #bdbdbd;
-  }
-
-  .bg-1 h3 {
-    color: #fff;
-  }
-
-  .bg-1 p {
-    font-style: italic;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #f1f1f1;
-    border-radius: 0;
-    transition: .2s;
-  }
-
-  .btn:hover,
-  .btn:focus {
-    border: 1px solid #333;
-    background-color: #fff;
-    color: #000;
-  }
-
-  .nav-tabs li a {
-    color: #777;
-  }
-
-  .navbar {
-    font-family: Montserrat, sans-serif;
-    margin-bottom: 0;
-    background-color: #2d2d30;
-    border: 0;
-    font-size: 11px !important;
-    letter-spacing: 4px;
-    opacity: 0.9;
-  }
-
-  .navbar li a,
-  .navbar .navbar-brand {
-    color: #d5d5d5 !important;
-  }
-
-  .navbar-nav li a:hover {
-    color: #fff !important;
-    background-color: #363636 !important;
-  }
-
-  .navbar-nav li.active a {
-    color: #fff !important;
-    background-color: #29292b !important;
-  }
-
-  .navbar-default .navbar-toggle {
-    border-color: transparent;
-  }
-
-  .dropdown-menu li a {
-    color: #000 !important;
-  }
-
-  .dropdown-menu li a:hover {
-    background-color: rgb(236, 119, 119) !important;
-  }
-
-  footer {
-    background-color: #2d2d30;
-    color: #f5f5f5;
-    padding: 20px;
-    font-size: 18px;
-    opacity: 0.9;
-  }
-
-  footer a {
-    color: #f5f5f5;
-  }
-
-  footer a:hover {
-    color: #777;
-    text-decoration: none;
-  }
-
-  .form-control {
-    border-radius: 0;
-  }
-
-  .info_room .box {
-    width: 50%;
-    height: 1300px;
-    margin-left: 470px;
-    margin-top: 100px;
-    background-color: white;
-  }
-
-  .head_room {
-    padding-top: 20px;
-    padding-left: 45px;
-    float: left;
-    width: 900px;
-
-  }
-
-
-  #tab {
-    width: 300px;
-
-  }
-
-  .book a{
-    color: #fff;
-    text-decoration:none;
-  }
-
-  button  {
-    padding-top: 0px;
-    height: 55px;
-    width: 150px;
-    background: rgb(53, 52, 52);
-    color: white;
-    border: 2px solid transparent;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-size: 17px;
-  }
-
-  #back {
-    width: 35px;
-    height: 35px;
-    color: black;
-    margin-right: 20px;
-  }
-
-  .head1 {
-
-    width: 400px;
-    float: left;
-  }
-
-  .book {
-    float: right;
-    padding-top: 40px;
-
-
-  }
-
-  .carousel-inner img {
-    filter: opacity(80%);
-    width: 100%;
-    margin: auto;
-  }
-
-  .carousel-caption h3 {
-    color: #fff !important;
-  }
-
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none;
-      /* Hide the carousel text when the screen is less than 600 pixels wide */
-    }
-  }
-
-
-  .detail .text {
-    margin-top: 50px;
-  }
-
-  .text li {
-    margin-left: 110px
-  }
-
-
-  .text h3 {
-    margin-top: 35px;
-    margin-left: 300px;
-    color: #777;
-
-  }
-</style>
+{% endblock %}

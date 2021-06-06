@@ -4,8 +4,21 @@
 {% block title %}Boiled-Youtioa Hotel{% endblock title %}
 {% block body %}id="home" style = "background-color: whitesmoke; "{% endblock body %}
 {% block content %}
-  <div id="our_room" class="hotel">
-    <div class="box">
+  <div class="contrainer hotel">
+    <div class="row">
+      <div class="col-md-3">
+        <img id="img1"
+          src="https://static.wixstatic.com/media/fde015_6c05c2f649564c37a7b5acfd3a848e5b.jpg/v1/fill/w_240,h_170,q_85,usm_0.66_1.00_0.01/fde015_6c05c2f649564c37a7b5acfd3a848e5b.jpg"
+          align="top">
+      </div>
+      <div class="col-md-6">
+        
+      </div>
+    </div>
+  </div>
+
+  <div id="our_room" class="contrainer hotel">
+    {% comment %} <div class="box"> {% endcomment %}
       <div class="head_room">
         <h1>Our rooms</h1>
         <hr>
@@ -103,6 +116,6 @@
           </table>
         </div>
       </div>
-    </div>
+    {% comment %} </div> {% endcomment %}
   </div>
 {% endblock %}

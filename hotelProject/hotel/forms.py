@@ -50,10 +50,10 @@ class CustomerHotelForm(forms.ModelForm):
         model = Customer_booking
         exclude = ['no','resb_no'] 
 
-class hotelbookingForm(forms.ModelForm) :
+class HotelbookingForm(forms.ModelForm) :
     class Meta :
         model = Room_booking
-        exclude = ['bhsurrogate','booking_no']
+        exclude = ['bhsurrogate','booking_no','detail_no']
         # fields = '__all__'
 
 class RoomdetailForm(forms.ModelForm) :

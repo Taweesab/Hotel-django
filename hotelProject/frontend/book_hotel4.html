@@ -7,7 +7,7 @@
 
       <div class="card" >
         <div class="card-header">
-          <h2><a href="{%url 'odersummaryhotel' %}"style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
+          <h2><a href="{% url 'odersummaryhotel' %}"style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -22,27 +22,14 @@
             </tr>
           </Table>
         </div>
-          <form action="{% url 'payhotel' %}" method="POST">
-            {%csrf_token%}
-            <!-- <h5>Booking no : {{bookinghotel}} </h5> -->
+          <form action="{% url 'payhotel' %}" >
+            {% csrf_token %} 
+            <h5>Booking no : {{booking_no}}</h5>
             <h5>Discount : {{discount}} </h5>
             <h5>Total : {{total_charge}} </h5>
             <hr>
             <h5>Credit Card</h5>
             <hr><h5>Payment method</h5>
-            <!-- <input type="text" name="resb_no" id="resb_no"  value="{{resb_no}}" hidden> -->
-            <input type="text" name="date_check_in" id="date" value="{{date_check_in}}" hidden>
-            <input type="text" name="date_check_out" id="date" value="{{date_check_out}}" hidden>
-            <input type="text" name="roomtype" value = "{{roomtype}}" hidden>
-            <input type="text" name="room_count" id="room_count"  value="{{room_count}}" hidden> 
-            <input type="number" name="number_guest" id="number_guest"  value="{{number_guest}}" hidden> 
-            <input type="text" name="service_name" value = "{{service_name}}" hidden>
-            <input type="text" name="total_charge" id="total_charge" value ="{{total_charge}}" hidden>
-            <select class="form-control" name="paymentmethod" >
-                <option value="Master Card">Master Card</option>
-                <option value="Visa">Visa</option>
-            </select>
-            {% comment %} <input type="text" name="paymentmethod" id="paymentmethod" value ="{{paymentmethod}}" hidden> {% endcomment %}
             <div class="form-wrapper">
                 <label for="cardno"><h5>Card Number</h5></label><br>
                 <input type="text" name="cardno" id="cardno" class="form-control">
@@ -310,7 +297,8 @@
             </select>
             <div class="form-wrapper" style="text-align: end;">
               <!-- <br><a class="btn" href="#">Reservation</a> -->
-              <button type="submit" value = "Login" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top: 5%;">Reservation</button>
+              <!-- <a class="btn" href="{% url 'home' %}" style="margin-top: 5%;">Reservation</a> -->
+              <button type="submit" value = "next" class="btn" style="margin-top: 5%;">Next</button>
             </div>
           </form>
         </div>

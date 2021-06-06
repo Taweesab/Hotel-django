@@ -633,7 +633,7 @@ textarea {
 .profile-tab p{
     font-weight: 600;
     color: #404041;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 /*------------------------------------------------------------------

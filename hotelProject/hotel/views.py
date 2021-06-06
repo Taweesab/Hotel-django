@@ -128,15 +128,15 @@ def loginstaffaccept(request):
 
 @customer_login_required
 def profile(request):
-
     customer = Customer.objects.get(customer_id = request.session['customer_id']) 
+    customer_booking = Customer_booking.objects.filter(customer_id = request.session['customer_id']).order_by('-booking_date')
     if request.method == "POST":
         edit_form = ProfileEditForm(request.POST, instance=customer)
         if edit_form.is_valid :
             edit_form.save()
         return redirect('profile')   
         
-    return render(request,'profile.html',{"customer":customer})
+    return render(request,'profile.html',{"customer":customer,"customer_booking":customer_booking})
 
 @customer_login_required
 def bookroom(request):

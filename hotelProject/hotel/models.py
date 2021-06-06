@@ -66,7 +66,11 @@ class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
     promotion_name = models.CharField(max_length=32, null=False)
     promotion_detail = models.CharField(max_length=500, null = False)
-    promotion_type = models.CharField(max_length=20, null=False,default="type")
+    type = (
+        ("Hotel", "Hotel"),
+        ("Restaurant", "Restaurant"),
+    )
+    promotion_type = models.CharField(max_length=15, choices=type, null=False, default="Hotel")
     start_date = models.DateField(null=False)
     expire_date = models.DateField(null= False)
     discount = models.FloatField(null=False)

@@ -9,7 +9,7 @@
       <div class="card" >
         <div class="card-header">
           {% comment %} <h2><a href="{% url 'room' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div> {% endcomment %}
-          <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
+          <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Room Booking</h2></div>
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -31,9 +31,9 @@
             <input type="date" name="booking_date" id="booking_date" class="form-control"  hidden>
           <div class="form-wrapper">    
             <label for="datebook"><h5>checkin</h5></label><br>
-            <input type="date" name="date_check_in" id="date" class="form-control">
+            <input type="date" name="date_check_in" id="date_check_in" class="form-control">
             <label for="datebook"><h5>checkout</h5></label><br>
-            <input type="date" name="date_check_out" id="date"  class="form-control">
+            <input type="date" name="date_check_out" id="date_check_out"  class="form-control">
           </div><br>
           <div class="form-wrapper">
             <h5>Type</h5>
@@ -64,7 +64,7 @@
           <label for="Services" style="margin-left: 0.5%;">
               <input type="checkbox"  class="checkvalue" value="S0003" >Break Fast(500 THB/PEOPLE)
           </label><br>
-          <input type="text" name="service_name" id="checkvalue">
+          <input type="text" name="service_name" id="checkvalue" hidden>
       </div><br> 
       <div class="form-wrapper">
           <label for="promotion_code"><h5>Promotion Code</h5></label><br>

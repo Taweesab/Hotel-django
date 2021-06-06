@@ -7,22 +7,27 @@
     <div class="container">
         
         <div class="row text-center ">
-            {%for pro in allpromotion %}
+            {% for pro in allpromotion %}
 
-            <div class="col-sm-4">
-                    <div class="promotion">
-                        <h5><strong>PROMOTIONS</strong></h5>
-                        <p>Name : {{pro.promotion_name}}<br>
-                           Detail : {{pro.promotion_detail}}<br>
-                           Type : {{pro.promotion_type}}<br>
-                           Start date: {{pro.start_date}}<br>
-                           Expire date : {{pro.expire_date}}<br>
-                           Discount : {{pro.discount}}</p>
-                        <h6>code : {{pro.promotion_code}}</h6>
-                        <a class="btn" href="#" style="margin-bottom:5%">Reservation</a>
-                    </div>
-            </div>
-            {%endfor%}
+                <div class="col-sm-4">
+                        <div class="promotion">
+                            <h5><strong>PROMOTIONS</strong></h5>
+                            <p>Name : {{pro.promotion_name}}<br>
+                            Detail : {{pro.promotion_detail}}<br>
+                            Type : {{pro.promotion_type}}<br>
+                            Start date: {{pro.start_date}}<br>
+                            Expire date : {{pro.expire_date}}<br>
+                            Discount : {{pro.discount}}</p>
+                            <h6>code : {{pro.promotion_code}}</h6>
+                            {% comment %} {% if {{pro.promotion_type}} == "Hotel" %}
+                                <a class="btn" href="{% url 'room' %}" style="margin-bottom:5%">Reservation</a>
+                            {% else  %}
+                                <a class="btn" href="{% url 'rest' %}" style="margin-bottom:5%">Reservation</a>
+                            {% endif %} {% endcomment %}
+                                <a class="btn" href="{% url 'rest' %}" style="margin-bottom:5%">Reservation</a>
+                        </div>
+                </div>
+            {% endfor %}
 
         </div>
     </div>

@@ -22,7 +22,8 @@
             </tr>
           </Table>
         </div>
-          <form action="" >
+          <form action="{% url 'payhotel' %}" >
+            {% csrf_token %} 
             <h5>Booking no : {{booking_no}}</h5>
             <h5>Discount : {{discount}} </h5>
             <h5>Total : {{total_charge}} </h5>
@@ -296,7 +297,8 @@
             </select>
             <div class="form-wrapper" style="text-align: end;">
               <!-- <br><a class="btn" href="#">Reservation</a> -->
-              <a class="btn" href="{% url 'home' %}" style="margin-top: 5%;">Reservation</a>
+              <!-- <a class="btn" href="{% url 'home' %}" style="margin-top: 5%;">Reservation</a> -->
+              <button type="submit" value = "next" class="btn" style="margin-top: 5%;">Next</button>
             </div>
           </form>
         </div>

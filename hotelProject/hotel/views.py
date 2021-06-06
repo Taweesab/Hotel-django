@@ -290,63 +290,39 @@ def paymenthotel(request) :
         room_count = request.POST["room_count"]
         discount = request.POST['discount']
         total_charge = request.POST['total_charge']
-        print("CHECK DATA", request.POST)
         context = {"date_check_in": date_check_in, "date_check_out": date_check_out,"number_guest": number_guest,
     "room_count" : room_count,"discount" : discount,"total_charge":total_charge,"service_name":service_name,"roomtype" : roomtype}
         context = request.POST
-        return render(request,'book_hotel4copy.html',context)
+        print("CHECK DATA", request.POST)
+        cus_form = CustomerHotelForm(request.POST)
+        detial_form = RoomdetailForm(request.POST)
+        hotel_form = HotelbookingForm(request.POST)
+        if hotel_form.is_valid() and cus_form.is_valid() and detial_form.is_valid():
+            cus = cus_form.save()
+            detial = detial_form.save()
+            print(detial.detail_no)
+            hotel_book = hotel_form.save(False)
 
-# def payhotel(request) :
-#     if request.method == "POST" :
-#         room_form = RoomdetailForm(request.POST)
-#         if room_form.is_valid() :
-#             room_form.save()
+            hotel_book.booking_no = cus
+            hotel_book.detail_no = detial
+            hotel_book.save()
 
-#         hotel_form =hotelbookingForm()
-#         if hotel_form.is_valid() :
-#             hotel_form.save()
-#         return render(request,'book_hotel4copy.html')
-#     else:
-#         messages.info(request,'Invalid Infomation')
-#         print("error")
-#         return render(request,'book_hotel4copy.html')
-#         print("test")
-#         cus_form = CustomerHotelForm(request.POST)
-#         detial_form = RoomdetailForm(request.POST)
-#         hotel_form = HotelbookingForm(request.POST)
-#         # print(request.POST["date_check_in"])
-#         # print(request.POST["date_check_out"])
-#         # print(request.POST["promotion_code"])
-#         # print(request.POST["number_guest"])
-#         # print(request.POST["total_charge"])
-#         # print(request.POST["payment_method"])
-#         # print(hotel_form.is_valid())
-#         # print(cus_form.is_valid())
-#         # print(detial_form.is_valid())
+            print("success")
+            booking_no = request.POST["booking_no"]
+            discount = request.POST["discount"]
+            total_charge = request.POST["total_charge"]
+            context = {"booking_no":booking_no,"discount":discount,"total_charge":total_charge}
+            return render(request,'book_hotel4.html',context)
 
-#         if hotel_form.is_valid() and cus_form.is_valid() and detial_form.is_valid():
-#             cus = cus_form.save()
-#             detial = detial_form.save()
-#             print(detial.detail_no)
-#             hotel_book = hotel_form.save(False)
+        else:
+            messages.info(request,'Invalid Infomation')
+            print("error")
+            return render(request,'book_hotel4.html')
+    return redirect('promotion')
+        # return render(request,'book_hotel4.html',context)
 
-#             hotel_book.booking_no = cus
-#             hotel_book.detail_no = detial
-#             hotel_book.save()
-
-#             print("success")
-#             booking_no = request.POST["booking_no"]
-#             discount = request.POST["discount"]
-#             total_charge = request.POST["total_charge"]
-#             context = {"booking_no":booking_no,"discount":discount,"total_charge":total_charge}
-#             return render(request,'book_hotel4.html',context)
-            
-#         else:
-#             messages.info(request,'Invalid Infomation')
-#             print("error")
-#             return render(request,'book_hotel4.html')
-#     return redirect('promotion')
-
+def payhotel(request) :
+    return redirect('home')
 ################## restaurant ####################
 @customer_login_required
 def bookrest(request):

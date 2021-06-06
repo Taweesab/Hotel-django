@@ -123,6 +123,12 @@ class Room_booking(models.Model):
     total_charge = models.FloatField(null = False)
     payment_method = models.CharField(max_length = 32, null = True)
 
+<<<<<<< HEAD
+=======
+    #try query data
+    # def __str__(self) :
+    #     return self.booking_no
+>>>>>>> 2e2341eb6218281170b095b8b1096d0c538dd399
 
 class Buffet_round(models.Model):
     # round = (('lunch',"LUNCH"),('dinner',"DINNER"))

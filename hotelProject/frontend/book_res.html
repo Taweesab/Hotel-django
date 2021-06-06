@@ -56,8 +56,13 @@
         </div>
       </div>
       <script>
-        var today = new Date().toISOString().split('T')[0];
+        {% comment %} var today = new Date().toISOString().split('T')[0];
         document.getElementsByName("eatdate")[0].setAttribute('min', today); 
-        document.getElementsByName("booking_date")[0].setAttribute('value', today); 
+        document.getElementsByName("booking_date")[0].setAttribute('value', today);  {% endcomment %}
+          var today = new Date().toISOString().split('T')[0];
+          var tomorrow = new Date();
+          var tomorrow_format = tomorrow.getFullYear() + '-' + ('0'+ (tomorrow.getMonth()+1)).slice(-2) + '-' +('0'+ (tomorrow.getDate()+1)).slice(-2);
+          document.getElementsByName("eatdate")[0].setAttribute('min', tomorrow_format); 
+          document.getElementsByName("booking_date")[0].setAttribute('value', today); 
       </script> 
 {% endblock %}

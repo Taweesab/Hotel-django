@@ -31,7 +31,7 @@
             <input type="date" name="booking_date" id="booking_date" class="form-control"  hidden>
           <div class="form-wrapper">    
             <label for="datebook"><h5>checkin</h5></label><br>
-            <input type="date" name="date_check_in" id="date_check_in" class="form-control">
+            <input type="date" name="date_check_in" id="date_check_in" class="form-control" onchange="setDate()">
             <label for="datebook"><h5>checkout</h5></label><br>
             <input type="date" name="date_check_out" id="date_check_out"  class="form-control">
           </div><br>
@@ -80,10 +80,18 @@
     </div>
     {% block script %}
         <script>
-          var today = new Date().toISOString().split('T')[0];
+           var today = new Date().toISOString().split('T')[0];
           document.getElementsByName("date_check_in")[0].setAttribute('min', today); 
-          document.getElementsByName("date_check_out")[0].setAttribute('min', today);
           document.getElementsByName("booking_date")[0].setAttribute('value', today); 
+
+          function setDate() {
+                var startString = document.getElementsByName("date_check_in")[0].value;
+                var startDate = new Date(startString);
+                console.log(startDate);
+                var startDateString = startDate.getFullYear() + '-' + ('0'+ (startDate.getMonth()+1)).slice(-2) + '-' +('0'+ (startDate.getDate()+1)).slice(-2);
+                console.log(startDateString);
+                document.getElementsByName("date_check_out")[0].setAttribute('min', startDateString);
+          }
         </script> 
         <script type = "text/javascript">
             $(document).ready(function(){

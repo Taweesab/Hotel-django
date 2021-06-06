@@ -27,20 +27,6 @@
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
   </div> {% endcomment %}
-   {% if messages.tags == 'error' %} 
-		{% for m in messages %}
-				<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-				
-				<script>
-				Swal.fire({
-					icon: 'error',
-					title: 'Something went wrong!',
-					text: 'Plese try again',
-					footer: '<a href="/signup">Pleses sign up, if you dont have an account</a>'
-				})
-				</script> 
-		{% endfor %}
-   {% endif %}
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -58,7 +44,7 @@
 									<h3 class="mb-4">Sign In</h3>
 								</div>
 							</div>
-							<form action="/loginaccept/" method="POST">
+							<form action="{% url 'loginaccept' %}" method="POST">
                 				{% csrf_token %}
 								<div class="form-group mb-3">
 									<label class="label" for="email">E-mail</label>
@@ -88,4 +74,20 @@
 			</div>
 		</div>
 	</section>
+   {% block script %}
+		{% if messages.tags == 'error' %} 
+				{% for m in messages %}
+						<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+						
+						<script>
+						Swal.fire({
+							icon: 'error',
+							title: 'Something went wrong!',
+							text: 'Plese try again',
+							footer: '<a href="/signup">Pleses sign up, if you dont have an account</a>'
+						})
+						</script> 
+				{% endfor %}
+		{% endif %}
+   {% endblock script %}
 {% endblock %}

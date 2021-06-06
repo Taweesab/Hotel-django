@@ -11,10 +11,11 @@ from .models import *
 from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
-from .decorators import staff_login_required,customer_login_required
+from .decorators import staff_login_required,customer_login_required,allowed_users
 from decimal import Decimal
 
 # Create your views here.
+@allowed_users(allowed_roles=["A","M","S"])
 def home(request):
     return render(request,'index.html')
 

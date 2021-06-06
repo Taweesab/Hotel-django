@@ -1,4 +1,5 @@
 from os import name
+from django.contrib.auth.models import User
 from django.db import models
 from datetime import datetime,date
 
@@ -11,6 +12,7 @@ class Staff(models.Model):
         else:
             return "STF" + str(n+1).zfill(6)
 
+    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)       
     staff_id = models.CharField(max_length=12, default=genID, primary_key=True)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
@@ -23,6 +25,7 @@ class Staff(models.Model):
         ("HS", "Hotel Staff"),
         ("RS", "Restaurant Staff"),
     )
+
     job_title = models.CharField(max_length=5, choices=Job_title, default="S")
     salary = models.FloatField(null=True)
     email = models.EmailField(null=False, unique=True)
@@ -35,7 +38,8 @@ class Customer(models.Model):
             return "CST00000001"
         else:
             return "CST" + str(n+1).zfill(8)
-    
+
+    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)   
     customer_id = models.CharField(max_length=11, default=genID, null=False, primary_key=True)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)

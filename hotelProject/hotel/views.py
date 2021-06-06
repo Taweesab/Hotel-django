@@ -225,7 +225,7 @@ def loginstaffaccept(request):
         messages.error(request,'Not found infomation')
         return redirect('loginstaff')
 
-@customer_login_required
+# @customer_login_required
 def profile(request):
     customer = Customer.objects.get(customer_id = request.session['customer_id']) 
     customer_booking = Customer_booking.objects.filter(customer_id = request.session['customer_id']).order_by('booking_date')
@@ -438,7 +438,7 @@ def checkroom(request) :
 
 def editstaff_hotel(request):
     Hotel = Customer_booking.objects.all()
-    return render(request, 'editstaff_hotel.html',{'list' : Hotel})
+    return render(request, 'editstaff_hotel.html',{'Hotel' : Hotel})
 
 def editstaff_res(request):
     Res = Customer_booking.objects.all()

@@ -23,7 +23,7 @@ def dinning(request):
 def room(request):
     return render(request,'room.html')
 
-# @staff_login_required
+@staff_login_required()
 def promotion(request):
     allpromotion = Promotion_type.objects.all()
     context = {'allpromotion' : allpromotion}

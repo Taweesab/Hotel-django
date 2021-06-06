@@ -20,6 +20,7 @@
   <link href='https://css.gg/thermostat.css' rel='stylesheet'>
   <link href='https://css.gg/data.css' rel='stylesheet'>
   <link href='https://css.gg/maze.css' rel='stylesheet'>
+  <link href='https://css.gg/push-chevron-left.css' rel='stylesheet'>
   {% comment %} <!-- ALL JS FILES -->
 	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'js/popper.min.js' %}"></script>
@@ -32,7 +33,7 @@
 	<script src="{% static 'js/form-validator.min.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script> {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/hotel_style.css' %}"> 
-
+  {% block style %}{% endblock style %}
 </head>
 
 <body {% block body %}{% endblock body %}>

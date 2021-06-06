@@ -1,11 +1,11 @@
 from django.shortcuts import redirect
 
-def staff_login_required(job_titles=['S', 'M', 'R', 'HS', 'RS']):
+def staff_login_required(job_titles=['S', 'M', 'R', 'HS', 'RS'], login_url='loginstaff'):
     def decorator(view_func):
-        def wrapper(request, login_url='loginstaff', *args, **kwargs):
+        def wrapper(request, *args, **kwargs):
             if (
-                    not 'staff_id' in request.session and
-                    not 'job_title' in request.session and
+                    not 'staff_id' in request.session or
+                    not 'job_title' in request.session or
                     request.session['job_title'] not in job_titles
                 ):
                 return redirect(login_url)
@@ -21,4 +21,3 @@ def customer_login_required(function):
         else:
             return function(request, *args, **kwargs)
     return wrapper
-

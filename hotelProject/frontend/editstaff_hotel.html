@@ -1,11 +1,11 @@
 {% extends 'layout.html' %} 
 {% load static %}
 
-{% block title %}Book Restaurant{% endblock title %}
+{% block title %}HotelBooking{% endblock title %}
 {% block body %}style="background-color: whitesmoke;"{% endblock body %}
 {% block content %}
-
-<table class="table">
+<div class="container">
+  <table class="table">
     <thead class="thead-dark">
     <br><br><br><br><br>
       <tr>
@@ -13,17 +13,21 @@
         <th scope="col">CustomerID</th>
         <th scope="col">Check In</th>
         <th scope="col">Check Out</th>
+        <th scope="col">Edit</th>
       </tr>
     </thead>
     <tbody>
         {% for i in Hotel %}
       <tr>
-        <th scope="row"></th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">{{i.booking_no}}</th>
+        <td>{{i.customer_id}}</td>
+        <td>{{i.booking_no.date_check_in}}</td>
+        <td>{{i.booking_no.date_check_out}}</td>
+        <td><button type="button" class="btn btn-dark btn-sm">Edit</button></td>
       </tr>
     </tbody>
   </table>
+
+</div>
 
 {% endblock content %}

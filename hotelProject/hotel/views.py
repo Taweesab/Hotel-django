@@ -129,7 +129,7 @@ def loginstaffaccept(request):
 @customer_login_required
 def profile(request):
     customer = Customer.objects.get(customer_id = request.session['customer_id']) 
-    customer_booking = Customer_booking.objects.filter(customer_id = request.session['customer_id']).order_by('-booking_date')
+    customer_booking = Customer_booking.objects.filter(customer_id = request.session['customer_id']).order_by('booking_date')
     if request.method == "POST":
         edit_form = ProfileEditForm(request.POST, instance=customer)
         if edit_form.is_valid :
@@ -144,7 +144,7 @@ def bookroom(request):
     def bhID():
         n = Room_booking.objects.count()
         if n == 0:
-            return "BH00000001"
+            return "BH000000001"
         else:
             return "BH" + str(n+1).zfill(9)
     
@@ -262,7 +262,7 @@ def bookrest(request):
     def brID():
         n = Resbooking.objects.count()
         if n == 0:
-            return "BR00000001"
+            return "BR000000001"
         else:
             return "BR" + str(n+1).zfill(9)
     

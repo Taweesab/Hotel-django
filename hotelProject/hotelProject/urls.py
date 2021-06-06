@@ -32,7 +32,7 @@ urlpatterns = [
     path('signup_staff/',views.register_staff,name='register_staff'),
     path('loginaccept/',views.loginaccept,name='loginaccept'),
     path('loginstaffaccept/',views.loginstaffaccept,name='loginstaffaccept'),
-    # path('book_room/',views.bookroom,name='bookroom'),
+    path('book_room/',views.bookroom,name='bookroom'),
     path('book_table/',views.bookrest,name='bookrest'),
     path('logout/', views.logout, name='logout'),
     path('moreinfo1/',views.moreinfo1, name='moreinfo1'),
@@ -43,11 +43,11 @@ urlpatterns = [
     path('profile/',views.profile,name='profile'),
     path('ordersummaryres/',views.ordersummaryres,name='ordersummaryres'),
     path('paymentres/',views.paymentres,name='paymentres'),
-    path('comfirm_rest/',views.ComfirmeResbooking,name='ComfirmeResbooking'),
     path('checkroom/',views.checkroom,name='checkroom'),
     path('payhotel/',views.payhotel,name='payhotel'),
-    path('checkroom/',views.checkroom,name='checkroom')
-
+    path('checkroom/',views.checkroom,name='checkroom'),
+    path('invoice/',views.invoice,name='invoice'),
+     path('resultinvoice/',views.resultinvoice,name='resultinvoice')
 
 
 ]

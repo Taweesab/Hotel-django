@@ -154,7 +154,7 @@ def loginaccept(request):
         user = Customer.objects.get(email=email)
         # print(user.password)
         # print(check_password(password, user.password))
-        if  user is not None :
+        if user is not None :
             if check_password(password, user.password):
                 print(user)
                 # return 
@@ -224,7 +224,7 @@ def loginstaffaccept(request):
         messages.error(request,'Not found infomation')
         return redirect('loginstaff')
 
-# @customer_login_required
+@customer_login_required
 def profile(request):
     customer = Customer.objects.get(customer_id = request.session['customer_id']) 
     customer_booking = Customer_booking.objects.filter(customer_id = request.session['customer_id']).order_by('booking_date')
@@ -283,14 +283,15 @@ def odersummaryhotel(request):
                 else:
                     price_service = price_service + ser.charge
     print(service_name)
-    if promotion_code is not None:
+    if promotion_code != "":
         if Promotion_type.objects.filter(promotion_code=promotion_code).exists() :
             code = Promotion_type.objects.get(promotion_code=promotion_code)
             discount = code.discount
         else :
             messages.error(request,'No this code')
             return render(request,'book_hotel3.html')    
-        
+    else:
+        promotion_code = "No"    
     total_charge = int(type.price)*int(room_count) + price_service - discount
 
     context = {"customer_id":customer_id,"booking_no": booking_no,"booking_date":booking_date,"date_check_in": date_check_in, "date_check_out": date_check_out,
@@ -357,6 +358,7 @@ def bookrest(request):
     return render(request,'book_res.html',context)
 
 def ordersummaryres(request):
+    print(request.POST["promotion_code"] is None)
     customer_id = request.POST["customer_id"]
     resb_no = request.POST["resb_no"]
     booking_date = request.POST["booking_date"]
@@ -367,14 +369,16 @@ def ordersummaryres(request):
     bf_round = Buffet_round.objects.get(buffet_round=buffet_round)
     discount = 0
 
-    if promotion_code is not None:
+    if promotion_code != "":
         if Promotion_type.objects.filter(promotion_code=promotion_code).exists() :
             code = Promotion_type.objects.get(promotion_code=promotion_code)
             discount = code.discount
         else :
             messages.error(request,'No this code')
-            return render(request,'book_res2.html')
-    
+            return render(request,'book_res.html')
+    else:
+        promotion_code = "No"
+    print(promotion_code)
     total_charge = (int(number_guest) * bf_round.charge) - discount
     context = {"customer_id":customer_id,"resb_no": resb_no,"booking_date":booking_date,"eatdate": eatdate, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"discount" : discount,"total_charge":total_charge}
     return render(request,'book_res2.html', context)
@@ -385,7 +389,9 @@ def paymentres(request):
         print("test")
         rest_form = RestBookingForm(request.POST)
         cus_form = CustomerBookingForm(request.POST)
-        if rest_form.is_valid() and cus_form.is_valid:
+        print(rest_form.is_valid())
+        print(cus_form.is_valid())
+        if rest_form.is_valid() and cus_form.is_valid():
             cus = cus_form.save()
             rest_book = rest_form.save(False)
 
@@ -435,14 +441,9 @@ def checkroom(request) :
     return render(request,'book_hotel2.html')
 
 def editstaff_hotel(request):
-<<<<<<< HEAD
     hotel = Room_booking.objects.all()
     print(hotel)
     return render(request, 'editstaff_hotel.html',{"hotel":hotel})
-=======
-    Hotel = Customer_booking.objects.all()
-    return render(request, 'editstaff_hotel.html',{'Hotel' : Hotel})
->>>>>>> bc36d5f2d31bb3db7e9dec8a0a22a22fdaf46f68
 
 def editstaff_res(request):
     Res = Customer_booking.objects.all()

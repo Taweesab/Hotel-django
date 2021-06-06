@@ -148,7 +148,6 @@ class Resbooking(models.Model):
     paymentmethod = models.CharField(max_length=32, null=False)
 
 
-
 class Invoice(models.Model):
     invoice_no = models.CharField(max_length=12, null=False, primary_key=True, unique=True)
     booking_no = models.ForeignKey(Room_booking, on_delete=models.RESTRICT, null=True)

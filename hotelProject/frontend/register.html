@@ -4,32 +4,6 @@
 {% block title %}Register{% endblock title %}
 {% block body %}class = "bg-1"{% endblock body %}
 {% block content %}
-    {% if messages.tags == 'success' %} 
-		{% for m in messages %}
-				<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-				
-				<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-				</script> 
-		{% endfor %}
-    {% else %}
-        {% for m in messages %}
-				<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-				
-				<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: '{{m}}',
-                    })
-				</script> 
-		{% endfor %}
-   {% endif %}
     <div class="wrapper">
         <div class="wrapper-inner">
             <div class="image-holder">
@@ -93,7 +67,35 @@
         </script>
     {% endblock script %}  {% endcomment %}
 
-
+    {% block script %}
+        {% if messages.tags == 'success' %} 
+            {% for m in messages %}
+                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    </script> 
+            {% endfor %}
+        {% elif messages.tags == 'info' %} 
+            {% for m in messages %}
+                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: '{{m}}',
+                        })
+                    </script> 
+            {% endfor %}
+        {% endif %}
+    {% endblock script %}
+    
 {% endblock %}
 
 

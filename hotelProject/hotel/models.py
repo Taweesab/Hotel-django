@@ -28,7 +28,7 @@ class Staff(models.Model):
 
     job_title = models.CharField(max_length=5, choices=Job_title, default="S")
     salary = models.FloatField(null=True)
-    email = models.EmailField(null=False, unique=True)
+    email = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     password = models.CharField(max_length=100, null=False)
 
 class Customer(models.Model):

@@ -10,11 +10,12 @@ from .models import *
 from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
-from .decorators import staff_login_required,customer_login_required,allowed_users
+from .decorators import customer_login_required,unauthenticated_staff,allowed_staff
 from decimal import Decimal
+from django.contrib.auth.models import Group
 
 # Create your views here.
-@allowed_users(allowed_roles=["A","M","S"])
+# @allowed_staff(allowed_roles=['A','M','HS','RS'])
 def home(request):
     return render(request,'index.html')
 
@@ -33,6 +34,7 @@ def promotion(request):
 def contact(request):
     return render(request,'contact.html')
 
+# @allowed_staff(allowed_roles=['A','M','HS','RS'])
 def moreinfo1(request):
     return render(request,'info_room1.html')
 
@@ -153,6 +155,7 @@ def register(request):
             messages.info(request,'Those passwords didn’t match. Try again.')
     return render(request,'register.html')
 
+@unauthenticated_staff
 def register_staff(request):
     form = RegisterForm()
     if request.method == 'POST':
@@ -164,13 +167,16 @@ def register_staff(request):
             new_user = form.save(commit=False)
             new_user.password = make_password(new_user.password)
             new_user.save()
+            group = Group.objects.get(name='staff')
+            user.groups.add(group)
+            
         else:
             messages.info(request, form.errors)
             render(request,'register_staff.html')
     context = {"form": form}
     return render(request,'register_staff.html',context)
 
-
+@unauthenticated_staff
 def loginstaffaccept(request):
     
     if request.method == 'POST':

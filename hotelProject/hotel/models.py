@@ -118,7 +118,7 @@ class Room_booking(models.Model):
     date_check_in = models.DateTimeField(null = False)
     date_check_out = models.DateTimeField(null = False)
     detail_no = models.ForeignKey(Room_detail, on_delete = models.CASCADE, null = False)
-    promotion_code = models.ForeignKey(Promotion_type, on_delete = models.SET_NULL, null = True)
+    promotion_code = models.CharField(max_length=7, null=True)
     number_guest = models.IntegerField(null = False)
     total_charge = models.FloatField(null = False)
     payment_method = models.CharField(max_length = 32, null = True)
@@ -140,7 +140,7 @@ class Buffet_round(models.Model):
 
 class Resbooking(models.Model):
     resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)
-    promotion_code = models.ForeignKey(Promotion_type, on_delete=models.SET_NULL, null=True)
+    promotion_code = models.CharField(max_length=7, null=True)
     number_guest = models.IntegerField(null=False)
     eatdate = models.DateTimeField(null=False)
     buffet_round = models.ForeignKey(Buffet_round, on_delete=models.SET_NULL, null=True)

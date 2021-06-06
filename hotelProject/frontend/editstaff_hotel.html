@@ -17,12 +17,12 @@
       </tr>
     </thead>
     <tbody>
-        {% for i in Hotel %}
       <tr>
-        <th scope="row">{{i.booking_no}}</th>
-        <td>{{i.customer_id}}</td>
-        <td>{{i.booking_no.date_check_in}}</td>
-        <td>{{i.booking_no.date_check_out}}</td>
+        <th scope="row"></th>
+        <td>{{hotel.customer_id}}</td>
+        <td>{{hotel.booking_no}}</td>
+        <td>{{hotel.date_check_in}}</td>
+        <td>{{hotel.date_check_out}}</td>
         <td><button type="button" class="btn btn-dark btn-sm">Edit</button></td>
       </tr>
     </tbody>

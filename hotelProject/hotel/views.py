@@ -264,35 +264,19 @@ def odersummaryhotel(request):
     return render(request,'book_hotel3.html', context)
 
 
-# def checkBookingdetail(request):
-#     if request.method == 'POST':
-#         date_check_in = request.POST["date_check_in"]
-#         date_check_out = request.POST["date_check_out"]
-#         number_guest = request.POST["number_guest"]
-#         roomtype = request.POST["roomtype"]
-#         service_name = request.POST["service_name"]
-#         room_count = request.POST["room_count"]
-#         discount = request.POST['discount']
-#         total_charge = request.POST['total_charge']
-#         print("CHECK DATA", request.POST)
-#         context = {"date_check_in": date_check_in, "date_check_out": date_check_out,"number_guest": number_guest,
-#     "room_count" : room_count,"discount" : discount,"total_charge":total_charge,"service_name":service_name,"roomtype" : roomtype}
-#         context = request.POST
-#         return render(request,'book_hotel4.html',context)
-
 def paymenthotel(request) :
     if request.method == 'POST':
-        date_check_in = request.POST["date_check_in"]
-        date_check_out = request.POST["date_check_out"]
-        number_guest = request.POST["number_guest"]
-        roomtype = request.POST["roomtype"]
-        service_name = request.POST["service_name"]
-        room_count = request.POST["room_count"]
-        discount = request.POST['discount']
-        total_charge = request.POST['total_charge']
-        context = {"date_check_in": date_check_in, "date_check_out": date_check_out,"number_guest": number_guest,
-    "room_count" : room_count,"discount" : discount,"total_charge":total_charge,"service_name":service_name,"roomtype" : roomtype}
-        context = request.POST
+    #     date_check_in = request.POST["date_check_in"]
+    #     date_check_out = request.POST["date_check_out"]
+    #     number_guest = request.POST["number_guest"]
+    #     roomtype = request.POST["roomtype"]
+    #     service_name = request.POST["service_name"]
+    #     room_count = request.POST["room_count"]
+    #     discount = request.POST['discount']
+    #     total_charge = request.POST['total_charge']
+    #     context = {"date_check_in": date_check_in, "date_check_out": date_check_out,"number_guest": number_guest,
+    # "room_count" : room_count,"discount" : discount,"total_charge":total_charge,"service_name":service_name,"roomtype" : roomtype}
+    #     context = request.POST
         print("CHECK DATA", request.POST)
         cus_form = CustomerHotelForm(request.POST)
         detial_form = RoomdetailForm(request.POST)
@@ -318,11 +302,11 @@ def paymenthotel(request) :
             messages.info(request,'Invalid Infomation')
             print("error")
             return render(request,'book_hotel4.html')
-    return redirect('promotion')
-        # return render(request,'book_hotel4.html',context)
+    # return redirect('้home')
+    return render(request,'book_hotel4.html',context)
 
-def payhotel(request) :
-    return redirect('home')
+# def payhotel(request) :
+#     return redirect('home')
 ################## restaurant ####################
 @customer_login_required
 def bookrest(request):

@@ -46,20 +46,16 @@ def login(request):
 def loginstaff(request):
     return render(request,'loginstaff.html')
 
-@staff_login_required()
-def invoice(request):
-    return render(request,'invoice.html')
+def invoice_hotel(request):
+    return render(request,'invoice_hotel.html')
 
-def resultinvoice(request):
+def resultinvoicehotel(request):
     booking_no = request.POST['booking_no']
-    resb_no = request.POST['resb_no']
     customer_id = request.POST['customer_id']
-    total_charge_hotel = 0 
-    total_charge_res = 0
-    print(request.POST)
+    print(booking_no)
     if customer_id is not None :
         print("restaurant")
-        if Customer.objects.get(customer_id = customer_id) :
+        if Customer.objects.filter(customer_id = customer_id).exists():
             customer = Customer.objects.get(customer_id = customer_id)
             fname  = customer.fname 
             lname = customer.lname
@@ -67,53 +63,90 @@ def resultinvoice(request):
         else :
             print("error")
             messages.error(request,'No this customerid')
-    #         return render(request,'resultinvoice.html')
-    # if booking_no is not None :
-    #     if Room_booking.objects.get(booking_no = booking_no) :
-    #         hotel = Room_booking.objects.get(booking_no = booking_no)
-    #         date_check_in = hotel.date_check_in
-    #         date_check_out = hotel.date_check_out
-    #         number_guest_hotel = hotel.number_guest
-    #         total_charge_hotel = hotel.total_charge
-    #         detailno = hotel.detail_no
-    #     if detailno is not None :
-    #         if Room_detail.objects.get(detailno=detailno) :
-    #             detail = Room_detail.objects.get(detailno=detailno)
-    #             roomtype = detail.roomtype
-    #             service_code = detail.service_code
-    #             numberofroom = detail.room_count
+            return render(request,'invoice_hotel.html')
+    if customer_id is not None and booking_no is not None:
+        if Customer_booking.objects.filter(customer_id= customer_id, booking_no=booking_no).exists():
+            customer_booking = Customer_booking.objects.get(customer_id= customer_id, booking_no=booking_no)
+            print("DATA PRINT", customer_booking.no)
+            no = customer_booking.no
+            print(no)
+        else :
+            print("error")
+            messages.error(request,'No this customerid')
+            return render(request,'invoice_hotel.html')
+    if no is not None :
+        if Room_booking.objects.get(booking_no = no) :
+            hotel = Room_booking.objects.get(booking_no = no)
+            date_check_in = hotel.date_check_in
+            date_check_out = hotel.date_check_out
+            number_guest_hotel = hotel.number_guest
+            total_charge_hotel = hotel.total_charge
+            total_charge =0
+            detailno = hotel.detail_no
+            roomtype = detailno.roomtype
+            numberofroom = detailno.room_count
+            service_name = detailno.service_name
+            print("roomtype:",roomtype)
+            print("date_check_in:",date_check_in)
+    total_charge = total_charge_hotel
+    context={"booking_no":booking_no,"customer_id":customer_id,"date_check_in":date_check_in,"date_check_out":date_check_out,
+    "number_guest_hotel":number_guest_hotel,"total_charge_hotel":total_charge_hotel,"fname":fname,"lname":lname,
+    "address":address,"total_charge":total_charge,"roomtype":roomtype,
+    "numberofroom":numberofroom,"service_name":service_name}
+    return render(request,'resultinvoicehotel.html',context)
 
-            
-    #     else :
-    #         messages.error(request,'No this hotel booking')
-    #         return render(request,'resultinvoice.html')
-    if resb_no is not None :
-        if Resbooking.objects.get(resb_no = resb_no) :
-            res =  Resbooking.objects.get(resb_no = resb_no)
+def finish(request):
+    if request.method == 'POST':
+        return redirect('home')
+
+def invoice_res(request):
+    return render(request,'invoice_res.html')
+
+def resultinvoiceres(request):
+    resb_no = request.POST['resb_no']
+    customer_id = request.POST['customer_id']
+    total_charge_res = 0
+    customer = Customer.objects.get()
+    if customer_id is not None :
+        print("restaurant")
+        if Customer.objects.filter(customer_id = customer_id).exists():
+            customer = Customer.objects.get(customer_id = customer_id)
+            fname  = customer.fname 
+            lname = customer.lname
+            address = customer.address
+        else :
+            print("error")
+            messages.error(request,'No this customerid')
+            return render(request,'invoice_res.html')
+    if customer_id is not None and resb_no is not None:
+        if Customer_booking.objects.filter(customer_id= customer_id, resb_no=resb_no).exists():
+            customer_booking = Customer_booking.objects.get(customer_id= customer_id, resb_no=resb_no)
+            print("DATA PRINT", customer_booking.no)
+            no = customer_booking.no
+        else :
+            print("error")
+            messages.error(request,'No this customerid')
+            return render(request,'invoice_res.html')
+    if no is not None :
+        if Resbooking.objects.get(resb_no = no) :
+            res =  Resbooking.objects.get(resb_no = no)
             eatdate = res.eatdate
             number_guest_res= res.number_guest
-            buffet_round = res.buffet_round
+            buffet_round1 = res.buffet_round
             total_charge_res = res.total_charge
+            buffet_round = buffet_round1.buffet_round
         else :
             messages.error(request,'No this hotel booking')
-            return render(request,'resultinvoice.html')
-    print(buffet_round)
+            return render(request,'resultinvoiceres.html')
 
-    total_charge = total_charge_hotel + total_charge_res
-    # context={"booking_no" :  booking_no , "resb_no" : resb_no ,"customer_id" : customer_id , 
-    # "fname" : fname , "lname" : lname , "address" : address , "date_check_in" : date_check_in ,
-    # "date_check_out" : date_check_out ,"number_guest_hotel" :  number_guest_hotel,"total_charge_hotel":total_charge_hotel,
-    # "eatdate":eatdate,"number_guest_res":number_guest_res,"buffet_round":buffet_round,"total_charge_res":total_charge_res,
-    # "total_charge" : total_charge }
-    context={ "booking_no" :booking_no, "resb_no" : resb_no ,"customer_id" : customer_id , 
-    "fname" : fname , "lname" : lname , "address" : address,"eatdate":eatdate,"buffet_round":buffet_round ,
-    "eatdate":eatdate,"number_guest_res":number_guest_res,"buffet_round":buffet_round,"total_charge_res":total_charge_res,
-    "total_charge" : total_charge}
-    return render(request,'resultinvoice.html',context)
-
+    total_charge = total_charge_res
+    context={ "resb_no" : resb_no ,"customer_id" : customer_id , 
+    "fname" : fname , "lname" : lname , "address" : address ,
+    "total_charge" : total_charge, "total_charge_res":total_charge_res,"eatdate":eatdate,
+    "number_guest_res":number_guest_res,"buffet_round":buffet_round}
+    return render(request,'resultinvoiceres.html',context)
 
 def loginaccept(request):
-    
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']

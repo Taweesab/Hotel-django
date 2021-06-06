@@ -1,0 +1,47 @@
+{% extends 'layout.html' %} 
+{% load static %}
+
+{% block title %}Register{% endblock title %}
+{% block body %}class = "bg-1"{% endblock body %}
+{% block content %}
+    <div class="wrapper" >
+        <div class="wrapper-inner" >
+            <div class="image-holder">
+                <img src="{% static 'images/invoice.jpeg' %}"  alt="">
+            </div>
+            <form method="POST" action="{% url 'finish' %}">
+                {% csrf_token %}
+                <br><br><br><br><h2>INVOICE BOILED-YOUTIOA HOTEL&RESTAURANT </h2>
+                <div class="form-wrapper">
+                    <h6> Booking Hotel No. :{{booking_no}}</h6>
+                </div>
+                <div class="form-wrapper">
+                    <h6>Customer ID :{{customer_id}}</h6>
+                </div>
+                <div class="form-wrapper">
+                    <h6>Name : {{fname}} {{lname}}</h6>
+                </div>
+                <div class="form-wrapper">
+                    <h6>Address : {{address}}</h6>
+                </div><hr>
+                <div class="form-wrapper">
+                    <h5>Detail </h5>
+                    <h6>Date checkin : {{date_check_in}}</h6>
+                    <h6>Date checkout : {{date_check_out}}</h6>
+                    <h6>Room type : {{roomtype }}</h6>
+                    <h6>Number of Room : {{numberofroom}}</h6>
+                    <h6>Number of Guests : {{number_guest_hotel}} </h6>
+                    <h6>Services : {{service_name}} </h6>
+                    <h6>Total : {{total_charge_hotel}}</h6><hr>
+                </div><br>
+                <div class="form-wrapper">
+                    <h6>Total Charge: {{total_charge}}</h6>
+                </div><hr>
+                <div class="form-wrapper">
+                    <button  type="submit" value = "sign up" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top:5%">PRINT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

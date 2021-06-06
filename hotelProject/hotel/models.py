@@ -31,6 +31,9 @@ class Staff(models.Model):
     email = models.EmailField(null=False, unique=True)
     password = models.CharField(max_length=100, null=False)
 
+    def __str__(self) :
+        return self.staff_id
+
 class Customer(models.Model):
     def genID():
         n = Customer.objects.count()
@@ -51,6 +54,9 @@ class Customer(models.Model):
     def fullname(self):
         return self.fname + " " + self.lname
 
+    def __str__(self):
+        return self.customer_id
+
 class Customer_booking(models.Model):  
     # def bhID():
     #     n = Room_booking.objects.count()
@@ -65,6 +71,9 @@ class Customer_booking(models.Model):
     booking_no = models.CharField(max_length = 11, null = True,unique = True)
     resb_no = models.CharField(max_length = 11,null = True,unique = True)
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
+
+    def __str__(self):
+        return self.booking_no
 
 class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
@@ -118,12 +127,16 @@ class Room_booking(models.Model):
     # def __str__(self) :
     #     return self.booking_no
 
+
 class Buffet_round(models.Model):
     # round = (('lunch',"LUNCH"),('dinner',"DINNER"))
     # buffet_round=models.CharField(max_length=64,choices=round,default=False ,null=False)
     buffet_round=models.CharField(max_length=64, primary_key = True ,null=False)
     charge=models.FloatField(null =True)
     amount = models.IntegerField(null=False)
+
+    def __str__(self):
+        return self.buffet_round
 
 class Resbooking(models.Model):
     resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)

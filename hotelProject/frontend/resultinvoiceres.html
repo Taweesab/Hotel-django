@@ -9,12 +9,9 @@
             <div class="image-holder">
                 <img src="{% static 'images/invoice.jpeg' %}"  alt="">
             </div>
-            <form action="" method = "POST">
+            <form method="POST" action="{% url 'finish' %}">
                 {% csrf_token %}
-                <h2>INVOICE BOILED-YOUTIOA HOTEL&RESTAURANT </h2>
-                <div class="form-wrapper">
-                    <h6> Booking Hotel No. :{{booking_no}}</h6>
-                </div>
+                <br><br><br><br><h2>INVOICE BOILED-YOUTIOA HOTEL&RESTAURANT </h2>
                 <div class="form-wrapper">
                     <h6>Booking Res No. :{{resb_no}} </h6>
                 </div>
@@ -22,21 +19,11 @@
                     <h6>Customer ID :{{customer_id}}</h6>
                 </div>
                 <div class="form-wrapper">
-                    <h6>Name : {{customer_id.fname}} {{lname}}</h6>
+                    <h6>Name : {{fname}} {{lname}}</h6>
                 </div>
                 <div class="form-wrapper">
                     <h6>Address : {{address}}</h6>
                 </div><hr>
-                <div class="form-wrapper">
-                    <h5>Detail </h5>
-                    <h6>Date checkin : {{date_check_in}}</h6>
-                    <h6>Date checkout : {{date_check_out}}</h6>
-                    <h6>Room type : {{roomtype }}</h6>
-                    <h6>Number of Room : {{room_count}}</h6>
-                    <h6>Number of Guests : {{number_guest_hotel}} </h6>
-                    <h6>Services : {{service_name}} </h6>
-                    <h6>Total : {{total_charge_hotel}}</h6><hr>
-                </div>
                 <div class="form-wrapper">
                     <h5>Detail </h5>
                     <h6>Date : {{eatdate}}</h6>

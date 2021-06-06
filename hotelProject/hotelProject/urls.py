@@ -39,11 +39,11 @@ urlpatterns = [
     path('moreinfo2/',views.moreinfo2, name='moreinfo2'),
     path('moreinfo3/',views.moreinfo3, name='moreinfo3'),
     path('odersummaryhotel/',views.odersummaryhotel, name='odersummaryhotel'),
-    path('paymenthotel/',views.checkBookingdetail, name='checkBookingdetail'),
+    path('paymenthotel/',views.paymenthotel, name='paymenthotel'),
     path('profile/',views.profile,name='profile'),
     path('ordersummaryres/',views.ordersummaryres,name='ordersummaryres'),
     path('paymentres/',views.paymentres,name='paymentres'),
     path('checkroom/',views.checkroom,name='checkroom'),
-    path('payhotel/',views.payhotel,name='payhotel')
+    # path('payhotel/',views.payhotel,name='payhotel')
 
 ]

@@ -7,7 +7,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.db import connection 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
-# from .forms import CreateUserForm
 from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm
 from django.contrib.auth.hashers import check_password, make_password
@@ -47,6 +46,71 @@ def login(request):
 
 def loginstaff(request):
     return render(request,'loginstaff.html')
+
+def invoice(request):
+    return render(request,'invoice.html')
+
+def resultinvoice(request):
+    booking_no = request.POST['booking_no']
+    resb_no = request.POST['resb_no']
+    customer_id = request.POST['customer_id']
+    total_charge_hotel = 0 
+    total_charge_res = 0
+    print(request.POST)
+    if customer_id is not None :
+        print("restaurant")
+        if Customer.objects.get(customer_id = customer_id) :
+            customer = Customer.objects.get(customer_id = customer_id)
+            fname  = customer.fname 
+            lname = customer.lname
+            address = customer.address
+        else :
+            print("error")
+            messages.error(request,'No this customerid')
+    #         return render(request,'resultinvoice.html')
+    # if booking_no is not None :
+    #     if Room_booking.objects.get(booking_no = booking_no) :
+    #         hotel = Room_booking.objects.get(booking_no = booking_no)
+    #         date_check_in = hotel.date_check_in
+    #         date_check_out = hotel.date_check_out
+    #         number_guest_hotel = hotel.number_guest
+    #         total_charge_hotel = hotel.total_charge
+    #         detailno = hotel.detail_no
+    #     if detailno is not None :
+    #         if Room_detail.objects.get(detailno=detailno) :
+    #             detail = Room_detail.objects.get(detailno=detailno)
+    #             roomtype = detail.roomtype
+    #             service_code = detail.service_code
+    #             numberofroom = detail.room_count
+
+            
+    #     else :
+    #         messages.error(request,'No this hotel booking')
+    #         return render(request,'resultinvoice.html')
+    if resb_no is not None :
+        if Resbooking.objects.get(resb_no = resb_no) :
+            res =  Resbooking.objects.get(resb_no = resb_no)
+            eatdate = res.eatdate
+            number_guest_res= res.number_guest
+            buffet_round = res.buffet_round
+            total_charge_res = res.total_charge
+        else :
+            messages.error(request,'No this hotel booking')
+            return render(request,'resultinvoice.html')
+    print(buffet_round)
+
+    total_charge = total_charge_hotel + total_charge_res
+    # context={"booking_no" :  booking_no , "resb_no" : resb_no ,"customer_id" : customer_id , 
+    # "fname" : fname , "lname" : lname , "address" : address , "date_check_in" : date_check_in ,
+    # "date_check_out" : date_check_out ,"number_guest_hotel" :  number_guest_hotel,"total_charge_hotel":total_charge_hotel,
+    # "eatdate":eatdate,"number_guest_res":number_guest_res,"buffet_round":buffet_round,"total_charge_res":total_charge_res,
+    # "total_charge" : total_charge }
+    context={ "booking_no" :booking_no, "resb_no" : resb_no ,"customer_id" : customer_id , 
+    "fname" : fname , "lname" : lname , "address" : address,"eatdate":eatdate,"buffet_round":buffet_round ,
+    "eatdate":eatdate,"number_guest_res":number_guest_res,"buffet_round":buffet_round,"total_charge_res":total_charge_res,
+    "total_charge" : total_charge}
+    return render(request,'resultinvoice.html',context)
+
 
 def loginaccept(request):
     
@@ -218,20 +282,21 @@ def odersummaryhotel(request):
 
 def paymenthotel(request) :
     if request.method == 'POST':
-        print("test")
+        date_check_in = request.POST["date_check_in"]
+        date_check_out = request.POST["date_check_out"]
+        number_guest = request.POST["number_guest"]
+        roomtype = request.POST["roomtype"]
+        service_name = request.POST["service_name"]
+        room_count = request.POST["room_count"]
+        discount = request.POST['discount']
+        total_charge = request.POST['total_charge']
+        context = {"date_check_in": date_check_in, "date_check_out": date_check_out,"number_guest": number_guest,
+    "room_count" : room_count,"discount" : discount,"total_charge":total_charge,"service_name":service_name,"roomtype" : roomtype}
+        context = request.POST
+        print("CHECK DATA", request.POST)
         cus_form = CustomerHotelForm(request.POST)
         detial_form = RoomdetailForm(request.POST)
         hotel_form = HotelbookingForm(request.POST)
-        # print(request.POST["date_check_in"])
-        # print(request.POST["date_check_out"])
-        # print(request.POST["promotion_code"])
-        # print(request.POST["number_guest"])
-        # print(request.POST["total_charge"])
-        # print(request.POST["payment_method"])
-        # print(hotel_form.is_valid())
-        # print(cus_form.is_valid())
-        # print(detial_form.is_valid())
-
         if hotel_form.is_valid() and cus_form.is_valid() and detial_form.is_valid():
             cus = cus_form.save()
             detial = detial_form.save()
@@ -248,13 +313,16 @@ def paymenthotel(request) :
             total_charge = request.POST["total_charge"]
             context = {"booking_no":booking_no,"discount":discount,"total_charge":total_charge}
             return render(request,'book_hotel4.html',context)
-            
+
         else:
             messages.info(request,'Invalid Infomation')
             print("error")
             return render(request,'book_hotel4.html')
     return redirect('promotion')
+        # return render(request,'book_hotel4.html',context)
 
+def payhotel(request) :
+    return redirect('home')
 ################## restaurant ####################
 @customer_login_required
 def bookrest(request):
@@ -349,15 +417,15 @@ def logout(request):
 def checkroom(request) :
     return render(request,'book_hotel2.html')
     
-@customer_login_required
-def Fform(request):
-    print("555555")
-    form= FirstForm(request.POST)
-    if form.is_valid():
-        form.save()
-    context= {'form': form }
+# @customer_login_required
+# def Fform(request):
+#     print("555555")
+#     form= FirstForm(request.POST)
+#     if form.is_valid():
+#         form.save()
+#     context= {'form': form }
     
-    return render(request, 'book_hotel.html',context)
+#     return render(request, 'book_hotel.html',context)
 
 
 

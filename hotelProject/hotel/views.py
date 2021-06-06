@@ -51,12 +51,16 @@ def invoice(request):
     return render(request,'invoice.html')
 
 def resultinvoice(request):
-    booking_no = request.POST['booking_no']
+    # booking_no = request.POST['booking_no']
     resb_no = request.POST['resb_no']
     customer_id = request.POST['customer_id']
     total_charge_hotel = 0 
     total_charge_res = 0
     print(request.POST)
+    customer_res = Customer_booking.objects.get(resb_no=resb_no)
+
+
+    print(customer_res)
     if customer_id is not None :
         print("restaurant")
         if Customer.objects.get(customer_id = customer_id) :
@@ -67,7 +71,7 @@ def resultinvoice(request):
         else :
             print("error")
             messages.error(request,'No this customerid')
-    #         return render(request,'resultinvoice.html')
+            return render(request,'resultinvoice.html')
     # if booking_no is not None :
     #     if Room_booking.objects.get(booking_no = booking_no) :
     #         hotel = Room_booking.objects.get(booking_no = booking_no)
@@ -76,39 +80,43 @@ def resultinvoice(request):
     #         number_guest_hotel = hotel.number_guest
     #         total_charge_hotel = hotel.total_charge
     #         detailno = hotel.detail_no
-    #     if detailno is not None :
-    #         if Room_detail.objects.get(detailno=detailno) :
-    #             detail = Room_detail.objects.get(detailno=detailno)
-    #             roomtype = detail.roomtype
-    #             service_code = detail.service_code
-    #             numberofroom = detail.room_count
-
+    #         print("detailno:",detailno)
+        # if detailno is not None :
+        #     if Room_detail.objects.get(detailno=detailno) :
+        #         detail = Room_detail.objects.get(detailno=detailno)
+        #         roomtype = detail.roomtype
+        #         service_name = detail.service_name
+        #         numberofroom = detail.room_count
             
+        # else :
+        #     messages.error(request,'No this hotel booking')
+        #     return render(request,'resultinvoice.html')
+    # if resb_no is not None :
+    #     if Resbooking.objects.get(resb_no = resb_no) :
+    #         res =  Resbooking.objects.get(resb_no = resb_no)
+    #         eatdate = res.eatdate
+    #         number_guest_res= res.number_guest
+    #         buffet_round = res.buffet_round
+    #         total_charge_res = res.total_charge
     #     else :
     #         messages.error(request,'No this hotel booking')
     #         return render(request,'resultinvoice.html')
-    if resb_no is not None :
-        if Resbooking.objects.get(resb_no = resb_no) :
-            res =  Resbooking.objects.get(resb_no = resb_no)
-            eatdate = res.eatdate
-            number_guest_res= res.number_guest
-            buffet_round = res.buffet_round
-            total_charge_res = res.total_charge
-        else :
-            messages.error(request,'No this hotel booking')
-            return render(request,'resultinvoice.html')
-    print(buffet_round)
+    # print(buffet_round)
 
     total_charge = total_charge_hotel + total_charge_res
     # context={"booking_no" :  booking_no , "resb_no" : resb_no ,"customer_id" : customer_id , 
     # "fname" : fname , "lname" : lname , "address" : address , "date_check_in" : date_check_in ,
     # "date_check_out" : date_check_out ,"number_guest_hotel" :  number_guest_hotel,"total_charge_hotel":total_charge_hotel,
     # "eatdate":eatdate,"number_guest_res":number_guest_res,"buffet_round":buffet_round,"total_charge_res":total_charge_res,
-    # "total_charge" : total_charge }
-    context={ "booking_no" :booking_no, "resb_no" : resb_no ,"customer_id" : customer_id , 
-    "fname" : fname , "lname" : lname , "address" : address,"eatdate":eatdate,"buffet_round":buffet_round ,
-    "eatdate":eatdate,"number_guest_res":number_guest_res,"buffet_round":buffet_round,"total_charge_res":total_charge_res,
-    "total_charge" : total_charge}
+    # "total_charge" : total_charge ,"detailno":detailno }
+    context={ "resb_no" : resb_no ,"customer_id" : customer_id , 
+    "fname" : fname , "lname" : lname , "address" : address ,
+    "total_charge_hotel":total_charge_hotel,
+    "total_charge" : total_charge }
+    # context={ "booking_no" :booking_no, "resb_no" : resb_no ,"customer_id" : customer_id , 
+    # "fname" : fname , "lname" : lname , "address" : address,"eatdate":eatdate,"buffet_round":buffet_round ,
+    # "eatdate":eatdate,"number_guest_res":number_guest_res,"buffet_round":buffet_round,"total_charge_res":total_charge_res,
+    # "total_charge" : total_charge}
     return render(request,'resultinvoice.html',context)
 
 
@@ -414,8 +422,8 @@ def logout(request):
         del request.session['customer_id'] # delete user session
     return redirect('home')
 
-def checkroom(request) :
-    return render(request,'book_hotel2.html')
+# def checkroom(request) :
+#     return render(request,'book_hotel2.html')
     
 # @customer_login_required
 # def Fform(request):

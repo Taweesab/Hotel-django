@@ -40,14 +40,12 @@ urlpatterns = [
     path('moreinfo3/',views.moreinfo3, name='moreinfo3'),
     path('odersummaryhotel/',views.odersummaryhotel, name='odersummaryhotel'),
     path('paymenthotel/',views.paymenthotel, name='paymenthotel'),
+    path('payhotel/',views.payhotel,name='payhotel'),
     path('profile/',views.profile,name='profile'),
     path('ordersummaryres/',views.ordersummaryres,name='ordersummaryres'),
     path('paymentres/',views.paymentres,name='paymentres'),
-    path('checkroom/',views.checkroom,name='checkroom'),
-    path('payhotel/',views.payhotel,name='payhotel'),
-    path('checkroom/',views.checkroom,name='checkroom'),
     path('invoice/',views.invoice,name='invoice'),
-     path('resultinvoice/',views.resultinvoice,name='resultinvoice')
+    path('resultinvoice/',views.resultinvoice,name='resultinvoice')
 
 
 ]

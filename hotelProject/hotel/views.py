@@ -440,11 +440,10 @@ def logout(request):
 def checkroom(request) :
     return render(request,'book_hotel2.html')
 
-def editstaff_hotel(request):
-    hotel = Room_booking.objects.all()
-    print(hotel)
-    return render(request, 'editstaff_hotel.html',{"hotel":hotel})
-
 def editstaff_res(request):
-    Res = Customer_booking.objects.all()
-    return render(request,'editstaff_res.html',{'list' : Res})
+    restaurants = Resbooking.objects.all()
+    return render(request,'editstaff_res.html',{'restaurants' : restaurants})
+
+def editstaff_hotel(request):
+    hotels = Room_booking.objects.all()
+    return render(request,'editstaff_hotel.html',{'hotels' : hotels})

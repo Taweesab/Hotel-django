@@ -24,7 +24,7 @@ class Admin_Service(admin.ModelAdmin):
     list_display=["service_code","service_name","charge"]
 
 class Admin_RoomDe(admin.ModelAdmin):
-    list_display=["detail_no","roomtype","service_code","room_count"]
+    list_display=["detail_no","roomtype","service_name","room_count"]
 
 class Admin_BH(admin.ModelAdmin):
     list_display=["booking_no","date_check_in","date_check_out","number_guest"]

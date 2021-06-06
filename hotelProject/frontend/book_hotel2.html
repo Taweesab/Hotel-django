@@ -1,522 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layout.html' %} 
+{% load static %}
 
-<head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Boiled-Youtioa Hotel & Restaurant</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% block title %}Book Hotel{% endblock title %}
+{% block body %}style="background-color: whitesmoke;"{% endblock body %}
+{% block content %}
 
-
-  >
-</head>
-
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">BY</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-left">
-          <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
-          <li class="nav-item"><a class="nav-link" href="/hotel_room">HOTEL ROOM</a></li>
-          <li class="nav-item"><a class="nav-link" href="/dinning_room">DINNING ROOM</a></li>
-          <li class="nav-item"><a class="nav-link" href="/promotions">PROMOTIONS</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
-          <!-- <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Merchandise</a></li>
-            <li><a href="#">Extras</a></li>
-            <li><a href="#">Media</a></li> 
-          </ul>
-        </li> -->
-          <!-- <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li> -->
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link" href="regis">SIGN UP</a></li>
-          <li><a href="login.html">LOG IN</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <section class="book">
-    <div class="box">
-      <div class="head_room">
-        <table id="tab" border="0">
-          <tr>
-            <td><a href="{%url 'bookroom' %}"><img id="back" src="https://img.icons8.com/ios/452/back--v1.png"></a></td>
-            <td>
-              <h1>| &nbsp;</h1>
-            </td>
-            <td>
-              <h1>Order summary </h1>
-            </td>
-          </tr>
-        </table>
-        <hr>
-        <div class="step">
-          <Table border="0">
+      <div class="card" >
+        <div class="card-header">
+          <h2><a href="{%url 'room' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div>
+        <div class="card-body ">
+          <!-- <h5 class="card-title">Light card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <div class="step">
+          <Table border="0" style=" justify-content:center;margin:auto;margin-bottom:10%;margin-top:7%;">
             <tr>
               <td><i id="check1" class="gg-check-o"></i></td>
               <td><i id="line" class="gg-border-style-solid"></i></td>
+              <td><i id="check" class="gg-check-o"></i></td>
+              <td><i id="line" class="gg-border-style-solid"></i></td>
               <td><i id="check" class="gg-check-o1"></i></td>
               <td><i id="line" class="gg-border-style-solid"></i></td>
-              <td><i id="check" class="gg-check-o2"></i></td>
+              <td><i id="check" class="gg-check-o1"></i></td>
             </tr>
           </Table>
         </div>
-        <div class="summary">
-          {% for book in result %}
-          <div class="boxsum">
-            <h1>Date Chech-in : {{book.date_check_in}} </h1>
-            <h1>Date Chech-out : {{book.date_check_out}} </h1>
-            <!-- <h1>Room type : {{book.roomtype}}</h1>
-            <h1>Guests : {{book.number_guest}} </h1>
-            <h1>Services : {{book1.service_name}} </h1> -->
-            <hr>
-            <h1>Discount :  </h1>
-            <h1>Total : </h1>
-            <hr>
-          </div>
-          {%endfor%}
-        </div>
-
-        <div class="add">
-          <button>
-            <a href="{%url 'bookroom' %}">Add Another</a>
-          </button>
-        </div>
-        <div class="next">
-          <button>
-            <a href="{%url 'payment' %}">Next</a>
-          </button>
-        </div>
-
-      </div>
-  </section>
-
-
-  <!-- Container (Contact Section) -->
-  <div id="contact" class="bg-1 text-center">
-    <div class="container">
-      <h3 class="text-center">CONTACT</h3>
-      <p class="text-center"><em>We love our customers!</em></p>
-      <div class="row">
-        <div class="col-md-4">
-          <p>Fan? Drop a note.</p>
-          <p><span class="glyphicon glyphicon-map-marker"></span>Chicago, US</p>
-          <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
-          <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
-        </div>
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-sm-6 form-group">
-              <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+          <form action="" method="POST">
+            <div class="form-wrapper">
+                <h5>Type</h5>
+                <label for="typeroom" style="margin-left: 5%;">
+                  <input type="radio" name="junior" id="junior" >Junior Suite
+                </label>
+                <label for="typeroom" style="margin-left: 5%;">
+                  <input type="radio" name="standard" id="standard" >Standard Room
+                <label for="typeroom" style="margin-left: 0.5%;">
+                    <input type="radio" name="superior" id="superior" >Superior Room
+                </label><br>
+            </div><br> 
+            <div class="form-wrapper">
+                <h5>Services</h5>
+                <label for="Services" style="margin-left: 5%;">
+                  <input type="checkbox" name="service_code" id="Cleaning" >Cleaning Room(500 THB)
+                </label>
+                <label for="Services" style="margin-left: 5%;">
+                  <input type="checkbox" name="service_code" id="ExtraBed" >Extra Bed(700 THB)
+                <label for="Services" style="margin-left: 0.5%;">
+                    <input type="checkbox" name="service_code" id="BreakFast" >Break Fast(500 THB/PEOPLE)
+                </label><br>
+            </div><br> 
+            <div class="form-wrapper">
+              <label for="promotion_code"><h5>Promotion Code</h5></label><br>
+              <input type="text" name="promotion_code" id="promotion_code" class="form-control">
             </div>
-            <div class="col-sm-6 form-group">
-              <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+            <div class="form-wrapper" style="text-align: end;">
+              <br><a class="btn" type="submit" href="{%url 'odersummaryhotel' %}">Next</a>
+              <button type="submit" value = "Login" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top: 5%;">Next</button>
             </div>
-          </div>
-          <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-          <br>
-          <div class="row">
-            <div class="col-md-12 form-group">
-              <button class="btn pull-right" type="submit">Send</button>
-            </div>
-          </div>
+          </form>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Image of location/map -->
-  <!-- <img src="map.jpg" class="img-responsive" style="width:100%"> -->
-
-  <!-- Footer -->
-  <footer class="text-center">
-    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </a><br>
-    <p>Boiled-Youtioa Hotel & Restaurant</p>
-  </footer>
-
-  <script>
-    $(document).ready(function () {
-      // Initialize Tooltip
-      $('[data-toggle="tooltip"]').tooltip();
-
-      // Add smooth scrolling to all links in navbar + footer link
-      $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
-
-        // Make sure this.hash has a value before overriding default behavior
-        if (this.hash !== "") {
-
-          // Prevent default anchor click behavior
-          event.preventDefault();
-
-          // Store hash
-          var hash = this.hash;
-
-          // Using jQuery's animate() method to add smooth page scroll
-          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 900, function () {
-
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        } // End if
-      });
-    })
-  </script>
-
-</body>
-
-</html>
-
-<style>
-  body {
-    font: 400 15px/1.8 Lato, sans-serif;
-    color: #777;
-    background-color: whitesmoke;
-  }
-
-  h3,
-  h4 {
-    margin: 10px 0 30px 0;
-    letter-spacing: 10px;
-    font-size: 20px;
-    color: #111;
-  }
-
-  .container {
-    padding: 80px 120px;
-  }
-
-  .bg-1 {
-    background: #2d2d30;
-    color: #bdbdbd;
-  }
-
-  .bg-1 h3 {
-    color: #fff;
-  }
-
-  .bg-1 p {
-    font-style: italic;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #f1f1f1;
-    border-radius: 0;
-    transition: .2s;
-  }
-
-  .btn:hover,
-  .btn:focus {
-    border: 1px solid #333;
-    background-color: #fff;
-    color: #000;
-  }
-
-  .nav-tabs li a {
-    color: #777;
-  }
-
-  .navbar {
-    font-family: Montserrat, sans-serif;
-    margin-bottom: 0;
-    background-color: #2d2d30;
-    border: 0;
-    font-size: 11px !important;
-    letter-spacing: 4px;
-    opacity: 0.9;
-  }
-
-  .navbar li a,
-  .navbar .navbar-brand {
-    color: #d5d5d5 !important;
-  }
-
-  .navbar-nav li a:hover {
-    color: #fff !important;
-    background-color: #363636 !important;
-  }
-
-  .navbar-nav li.active a {
-    color: #fff !important;
-    background-color: #29292b !important;
-  }
-
-  .navbar-default .navbar-toggle {
-    border-color: transparent;
-  }
-
-  .dropdown-menu li a {
-    color: #000 !important;
-  }
-
-  .dropdown-menu li a:hover {
-    background-color: rgb(236, 119, 119) !important;
-  }
-
-  footer {
-    background-color: #2d2d30;
-    color: #f5f5f5;
-    padding: 20px;
-    font-size: 18px;
-    opacity: 0.9;
-  }
-
-  footer a {
-    color: #f5f5f5;
-  }
-
-  footer a:hover {
-    color: #777;
-    text-decoration: none;
-  }
-
-  .form-control {
-    border-radius: 0;
-  }
-
-  /*bbok */
-  .book .box {
-    width: 50%;
-    height: 840px;
-    margin-left: 470px;
-    margin-top: 100px;
-    background-color: white;
-  }
-
-  .head_room {
-    padding-top: 20px;
-    padding-left: 45px;
-    float: left;
-    width: 900px;
-
-  }
-
-
-  #tab {
-    width: 350px;
-
-  }
-
-  #back {
-    width: 35px;
-    height: 35px;
-    color: black;
-    margin-right: 20px;
-  }
-
-  #date {
-    padding-top: 50px;
-    margin-left: 200px;
-  }
-
-  #date input {
-    width: 200px;
-    height: 50px;
-    background-color: whitesmoke;
-    border: none;
-    padding: 30px;
-    font-family: sans-serif;
-  }
-
-  .gg-check-o {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs, 1));
-    width: 40px;
-    height: 40px;
-    border: 2px solid;
-    border-radius: 100px;
-    color: rgb(29, 233, 90);
-
-  }
-
-  .gg-check-o::after {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    left: 8px;
-    top: 2px;
-    width: 10px;
-    height: 17px;
-    border-color: currentColor;
-    border-width: 0 2px 2px 0;
-    border-style: solid;
-    transform-origin: bottom left;
-    transform: rotate(45deg)
-  }
-
-  .gg-check-o1 {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs, 1));
-    width: 40px;
-    height: 40px;
-    border: 2px solid;
-    border-radius: 100px;
-    color: rgb(29, 233, 90);
-
-  }
-
-  .gg-check-o1::after {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    left: 8px;
-    top: 2px;
-    width: 10px;
-    height: 17px;
-    border-color: currentColor;
-    border-width: 0 2px 2px 0;
-    border-style: solid;
-    transform-origin: bottom left;
-    transform: rotate(45deg)
-  }
-
-
-  .gg-check-o2 {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs, 1));
-    width: 40px;
-    height: 40px;
-    border: 2px solid;
-    border-radius: 100px;
-
-  }
-
-  .gg-check-o2::after {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    left: 8px;
-    top: 2px;
-    width: 10px;
-    height: 17px;
-    border-color: currentColor;
-    border-width: 0 2px 2px 0;
-    border-style: solid;
-    transform-origin: bottom left;
-    transform: rotate(45deg)
-  }
-
-
-
-  .gg-border-style-solid {
-    transform: scale(var(--ggs, 1));
-  }
-
-  .gg-border-style-solid,
-  .gg-border-style-solid::before {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    width: 26px;
-    height: 17px
-  }
-
-  .gg-border-style-solid::before {
-    content: "";
-    position: absolute;
-    height: 2px;
-    top: 7px;
-    border-top: 2px solid
-  }
-
-
-  #check1 {
-    margin-top: 30px;
-    margin-left: 320px;
-
-
-  }
-
-  #check {
-    margin-top: 30px;
-  }
-
-  #line {
-    margin-top: 30px;
-  }
-
-  .summary {
-    margin-top: 40px;
-    margin-left: 200px;
-
-  }
-
-  .boxsum {
-
-    margin-right: 200px;
-    height: 300px;
-  }
-
-  .summary h1 {
-
-    font-size: 20px;
-  }
-
-  .add a{
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .add {
-    margin-top: 80px;
-    float: left;
-    margin-left: 200px;
-  }
-
-  .next a{
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .next {
-    margin-top: 80px;
-    float: right;
-    margin-right: 250px;
-  }
-
-  button {
-    padding-top: 0px;
-    height: 45px;
-    width: 120px;
-    background: rgb(53, 52, 52);
-    color: white;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    font-size: 17px;
-  }
-</style>
+      </div> 
+{% endblock %}

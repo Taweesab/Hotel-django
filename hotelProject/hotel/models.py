@@ -66,6 +66,11 @@ class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
     promotion_name = models.CharField(max_length=32, null=False)
     promotion_detail = models.CharField(max_length=500, null = False)
+    type = (
+        ("Hotel", "Hotel"),
+        ("Restaurant", "Restaurant"),
+    )
+    promotion_type = models.CharField(max_length=15, choices=type, null=False, default="Hotel")
     start_date = models.DateField(null=False)
     expire_date = models.DateField(null= False)
     discount = models.FloatField(null=False)
@@ -74,7 +79,7 @@ class Promotion_type(models.Model):
         return self.promotion_name
 
 class Room(models.Model):
-    roomtype = models.CharField(max_length=10, null=False, primary_key=True)
+    roomtype = models.CharField(max_length=20, null=False, primary_key=True)
     capacity = models.IntegerField(null = False)
     price = models.FloatField(null=False)
 
@@ -84,7 +89,7 @@ class Room(models.Model):
 
 class Service(models.Model):
     service_code = models.CharField(max_length=5, null=False, primary_key=True)
-    service_name = models.CharField(max_length=10, null = False,unique=True)
+    service_name = models.CharField(max_length=10, null = False)
     charge = models.FloatField(null = True)
 
     #try query data    
@@ -95,7 +100,7 @@ class Service(models.Model):
 class Room_detail(models.Model):
     detail_no = models.AutoField(primary_key=True)
     roomtype = models.ForeignKey(Room, on_delete=models.CASCADE, null=False)
-    service_code = models.ForeignKey(Service, on_delete = models.CASCADE, null=True)
+    service_name = models.CharField(max_length = 32, null=True)
     room_count = models.IntegerField(null=False)
     
 class Room_booking(models.Model):

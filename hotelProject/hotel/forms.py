@@ -45,15 +45,22 @@ class CustomerBookingForm(forms.ModelForm):
         model = Customer_booking
         exclude = ['no','booking_no'] 
 
-class hotelbookingForm(forms.ModelForm) :
+class CustomerHotelForm(forms.ModelForm):
+    class Meta:
+        model = Customer_booking
+        exclude = ['no','resb_no'] 
+
+class HotelbookingForm(forms.ModelForm) :
     class Meta :
         model = Room_booking
-        fields = '__all__'
+        exclude = ['bhsurrogate','booking_no','detail_no']
+        # fields = '__all__'
 
 class RoomdetailForm(forms.ModelForm) :
     class Meta :
         model = Room_detail
-        fields = '__all__'
+        exclude = ['detail_no']
+        # fields = '__all__'
 
 
 

@@ -5,8 +5,8 @@
 {% block body %}id="home" class="bg-1"{% endblock body %}
 {% block content %}
         <div class="container emp-profile ">
-                <div class="row justify-content-center" style="margin-top:3%">
-                    <div class="col-md-4">
+                <div class="row justify-content-center" style="margin-top:3%;margin-left:7%">
+                    <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
                                         {{customer.fullname}}
@@ -24,12 +24,12 @@
                             </ul> 
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <button class="profile-edit-btn" data-toggle="modal" data-target="#myProfile">Edit Profile</button>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
+                <div class="row justify-content-center" style="margin-left:7%">
+                    <div class="col-md-9">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
@@ -75,13 +75,38 @@
                             </div>
                             <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="profile-tab" style=" overflow-y: auto;overflow-x: hidden;max-height: 350px;">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Experience</label>
+                                        <div class="col-md-4">
+                                            <label>Booking No</label>
                                         </div>
-                                        <div class="col-md-6">
-                                            <p>Expert</p>
+                                        <div class="col-md-4">
+                                            <label>Type</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Date</label>
                                         </div>
                                     </div>
+                                    {% for book in customer_booking %}
+                                        <div class="row">
+                                            {% if book.booking_no == None %}
+                                                <div class="col-md-4">
+                                                    <p>{{book.resb_no}}</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p>Restaurant</p>
+                                                </div>
+                                            {% else %}
+                                                <div class="col-md-4">
+                                                    <p>{{book.booking_no}}</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p>Hotel Room</p>
+                                                </div>                                      
+                                            {% endif %}
+                                            <div class="col-md-4">
+                                                <p>{{book.booking_date}}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                             </div>
                         </div>
                     </div>

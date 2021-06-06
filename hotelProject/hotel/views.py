@@ -291,7 +291,7 @@ def odersummaryhotel(request):
             messages.error(request,'No this code')
             return render(request,'book_hotel3.html')    
     else:
-        promotion_code = "No"    
+        promotion_code = "-"    
     total_charge = int(type.price)*int(room_count) + price_service - discount
 
     context = {"customer_id":customer_id,"booking_no": booking_no,"booking_date":booking_date,"date_check_in": date_check_in, "date_check_out": date_check_out,
@@ -377,7 +377,7 @@ def ordersummaryres(request):
             messages.error(request,'No this code')
             return render(request,'book_res.html')
     else:
-        promotion_code = "No"
+        promotion_code = "-"
     print(promotion_code)
     total_charge = (int(number_guest) * bf_round.charge) - discount
     context = {"customer_id":customer_id,"resb_no": resb_no,"booking_date":booking_date,"eatdate": eatdate, "buffet_round": buffet_round,"number_guest": number_guest,"promotion_code": promotion_code,"discount" : discount,"total_charge":total_charge}

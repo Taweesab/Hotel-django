@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} 
 {% load static %}
 
-{% block title %}HotelBooking{% endblock title %}
+{% block title %}Booking Hotel{% endblock title %}
 {% block body %}style="background-color: whitesmoke;"{% endblock body %}
 {% block content %}
 <div class="container">
@@ -17,14 +17,16 @@
       </tr>
     </thead>
     <tbody>
+      
+      {% for hotel in hotels %}  
       <tr>
-        <th scope="row"></th>
-        <td>{{hotel.customer_id}}</td>
-        <td>{{hotel.booking_no}}</td>
+        <th scope="row">{{hotel.booking_no.booking_no}}</th>
+        <td>{{hotel.booking_no.customer_id}}</td>
         <td>{{hotel.date_check_in}}</td>
         <td>{{hotel.date_check_out}}</td>
         <td><button type="button" class="btn btn-dark btn-sm">Edit</button></td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 

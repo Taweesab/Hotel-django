@@ -435,16 +435,10 @@ def logout(request):
 def checkroom(request) :
     return render(request,'book_hotel2.html')
 
-def editstaff_hotel(request):
-<<<<<<< HEAD
-    hotel = Room_booking.objects.all()
-    print(hotel)
-    return render(request, 'editstaff_hotel.html',{"hotel":hotel})
-=======
-    Hotel = Customer_booking.objects.all()
-    return render(request, 'editstaff_hotel.html',{'Hotel' : Hotel})
->>>>>>> bc36d5f2d31bb3db7e9dec8a0a22a22fdaf46f68
-
 def editstaff_res(request):
-    Res = Customer_booking.objects.all()
-    return render(request,'editstaff_res.html',{'list' : Res})
+    restaurants = Resbooking.objects.all()
+    return render(request,'editstaff_res.html',{'restaurants' : restaurants})
+
+def editstaff_hotel(request):
+    hotels = Room_booking.objects.all()
+    return render(request,'editstaff_hotel.html',{'hotels' : hotels})

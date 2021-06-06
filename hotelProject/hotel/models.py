@@ -73,7 +73,7 @@ class Customer_booking(models.Model):
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
 
     def __str__(self):
-        return self.booking_no
+        return str(self.no)
 
 class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
@@ -98,7 +98,7 @@ class Room(models.Model):
 
 class Service(models.Model):
     service_code = models.CharField(max_length=5, null=False, primary_key=True)
-    service_name = models.CharField(max_length=10, null = False)
+    service_name = models.CharField(max_length=20, null = False)
     charge = models.FloatField(null = True)
 
     #try query data    
@@ -115,8 +115,8 @@ class Room_detail(models.Model):
 class Room_booking(models.Model):
     bhsurrogate = models.AutoField(primary_key = True)
     booking_no = models.ForeignKey(Customer_booking,on_delete=models.RESTRICT, null=True)
-    date_check_in = models.DateTimeField(null = False)
-    date_check_out = models.DateTimeField(null = False)
+    date_check_in = models.DateField(null = False)
+    date_check_out = models.DateField(null = False)
     detail_no = models.ForeignKey(Room_detail, on_delete = models.CASCADE, null = False)
     promotion_code = models.ForeignKey(Promotion_type, on_delete = models.SET_NULL, null = True)
     number_guest = models.IntegerField(null = False)
@@ -142,7 +142,7 @@ class Resbooking(models.Model):
     resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)
     promotion_code = models.ForeignKey(Promotion_type, on_delete=models.SET_NULL, null=True)
     number_guest = models.IntegerField(null=False)
-    eatdate = models.DateTimeField(null=False)
+    eatdate = models.DateField(null=False)
     buffet_round = models.ForeignKey(Buffet_round, on_delete=models.SET_NULL, null=True)
     total_charge = models.FloatField(null=False)
     paymentmethod = models.CharField(max_length=32, null=False)

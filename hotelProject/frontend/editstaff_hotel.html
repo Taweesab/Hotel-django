@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} 
+{% load static %}
+
+{% block title %}HotelBooking{% endblock title %}
+{% block body %}style="background-color: whitesmoke;"{% endblock body %}
+{% block content %}
+<div class="container">
+  <table class="table">
+    <thead class="thead-dark">
+    <br><br><br><br><br>
+      <tr>
+        <th scope="col">BookingNo</th>
+        <th scope="col">CustomerID</th>
+        <th scope="col">Check In</th>
+        <th scope="col">Check Out</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td>{{hotel.customer_id}}</td>
+        <td>{{hotel.booking_no}}</td>
+        <td>{{hotel.date_check_in}}</td>
+        <td>{{hotel.date_check_out}}</td>
+        <td><button type="button" class="btn btn-dark btn-sm">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock content %}

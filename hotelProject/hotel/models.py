@@ -1,4 +1,5 @@
 from os import name
+from django.contrib.auth.models import User
 from django.db import models
 from datetime import datetime,date
 
@@ -11,6 +12,7 @@ class Staff(models.Model):
         else:
             return "STF" + str(n+1).zfill(6)
 
+    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)       
     staff_id = models.CharField(max_length=12, default=genID, primary_key=True)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
@@ -23,10 +25,14 @@ class Staff(models.Model):
         ("HS", "Hotel Staff"),
         ("RS", "Restaurant Staff"),
     )
+
     job_title = models.CharField(max_length=5, choices=Job_title, default="S")
     salary = models.FloatField(null=True)
     email = models.EmailField(null=False, unique=True)
     password = models.CharField(max_length=100, null=False)
+
+    def __str__(self) :
+        return self.staff_id
 
 class Customer(models.Model):
     def genID():
@@ -35,7 +41,8 @@ class Customer(models.Model):
             return "CST00000001"
         else:
             return "CST" + str(n+1).zfill(8)
-    
+
+    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)   
     customer_id = models.CharField(max_length=11, default=genID, null=False, primary_key=True)
     fname = models.CharField(max_length=64, null=False)
     lname = models.CharField(max_length=64, null=False)
@@ -46,6 +53,9 @@ class Customer(models.Model):
 
     def fullname(self):
         return self.fname + " " + self.lname
+
+    def __str__(self):
+        return self.customer_id
 
 class Customer_booking(models.Model):  
     # def bhID():
@@ -62,15 +72,14 @@ class Customer_booking(models.Model):
     resb_no = models.CharField(max_length = 11,null = True,unique = True)
     booking_date = models.DateTimeField(auto_now_add=True, null=False)
 
+    def __str__(self):
+        return self.booking_no
+
 class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
     promotion_name = models.CharField(max_length=32, null=False)
     promotion_detail = models.CharField(max_length=500, null = False)
-    type = (
-        ("Hotel", "Hotel"),
-        ("Restaurant", "Restaurant"),
-    )
-    promotion_type = models.CharField(max_length=15, choices=type, null=False, default="Hotel")
+    promotion_type = models.CharField(max_length=20, null=False,default="type")
     start_date = models.DateField(null=False)
     expire_date = models.DateField(null= False)
     discount = models.FloatField(null=False)
@@ -118,12 +127,16 @@ class Room_booking(models.Model):
     # def __str__(self) :
     #     return self.booking_no
 
+
 class Buffet_round(models.Model):
     # round = (('lunch',"LUNCH"),('dinner',"DINNER"))
     # buffet_round=models.CharField(max_length=64,choices=round,default=False ,null=False)
     buffet_round=models.CharField(max_length=64, primary_key = True ,null=False)
     charge=models.FloatField(null =True)
     amount = models.IntegerField(null=False)
+
+    def __str__(self):
+        return self.buffet_round
 
 class Resbooking(models.Model):
     resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)
@@ -144,3 +157,7 @@ class Invoice(models.Model):
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE, null=False)
     tax = models.FloatField(null=False)
     date = models.DateField(null=False)
+
+
+
+

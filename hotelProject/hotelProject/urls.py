@@ -45,8 +45,11 @@ urlpatterns = [
     path('paymentres/',views.paymentres,name='paymentres'),
     path('checkroom/',views.checkroom,name='checkroom'),
     # path('payhotel/',views.payhotel,name='payhotel'),
-    path('invoice/',views.invoice,name='invoice'),
-    path('resultinvoice/',views.resultinvoice,name='resultinvoice')
+    path('invoice_res/',views.invoice_res,name='invoice_res'),
+    path('resultinvoiceres/',views.resultinvoiceres,name='resultinvoiceres'),
+    path('invoice_hotel/',views.invoice_hotel,name='invoice_hotel'),
+    path('resultinvoicehotel/',views.resultinvoicehotel,name='resultinvoicehotel'),
+    path('finish/',views.finish,name='finish')
 
 
 ]

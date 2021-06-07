@@ -15,7 +15,7 @@
                             <h1 class="m-b-20"><strong>Welcome To<br>Boiled-Youtiao Restaurant</strong></h1>
                             <p class="m-b-40">See how your users experience your website in realtime or view <br>
                                 trends to see any changes in performance over time.</p>
-                            <p><a class="btn btn-lg" href="/book_table">Reservation</a></p>
+                            <p><a class="btn btn-lg" href="{% url 'showresultres' %}">Reservation</a></p>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             <h1 class="m-b-20"><strong>Welcome To<br>Boiled-Youtiao Restaurant</strong></h1>
                             <p class="m-b-40">See how your users experience your website in realtime or view <br>
                                 trends to see any changes in performance over time.</p>
-                            <p><a class="btn btn-lg" method="get" href="/book_table">Reservation</a></p>
+                            <p><a class="btn btn-lg" method="get" href="{% url 'showresultres' %}">Reservation</a></p>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             <h1 class="m-b-20"><strong>Welcome To<br>Boiled-Youtiao Restaurant</strong></h1>
                             <p class="m-b-40">See how your users experience your website in realtime or view <br>
                                 trends to see any changes in performance over time.</p>
-                            <p><a class="btn btn-lg" href="/book_table">Reservation</a></p>
+                            <p><a class="btn btn-lg" href="{% url 'showresultres' %}">Reservation</a></p>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                         <p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a
                             pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem
                             pulvinar.</p>
-                        <a class="btn btn-lg" href="/book_table">Reservation</a>
+                        <a class="btn btn-lg" href="{% url 'showresultres' %}">Reservation</a>
                     </div>
                 </div>
             </div>
@@ -229,7 +229,7 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-lg justify-content-md-auto" href="/book_table">Reservation</a>
+            <a class="btn btn-lg justify-content-md-auto" href="{% url 'showresultres' %}">Reservation</a>
         </div>
     </div>
     {% block script %}

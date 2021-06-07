@@ -1,0 +1,67 @@
+{% extends 'layout.html' %} 
+{% load static %}
+
+{% block title %}Book Restaurant{% endblock title %}
+{% block body %}style="background-color: whitesmoke;"{% endblock body %}
+{% block content %}
+      <div class="card" >
+        <div class="card-header">
+          <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Search Available</h2></div>
+        <div class="card-body ">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-wrapper">    
+              <label for="datebook"><h5>checkin</h5></label><br>
+              <input type="date" name="check_in" id="check_in" class="form-control" onchange="setDate()" required>
+              <label for="datebook"><h5>checkout</h5></label><br>
+              <input type="date" name="check_out" id="check_out"  class="form-control" required>
+          </div>
+            <div class="form-wrapper" style="text-align: end;">
+              <button type="submit" value = "search" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top: 5%;margin-bottom: 5%">Search</button>
+              {% comment %} <a class="btn" href="{% url 'ordersummaryres' %}">Next</a> {% endcomment %}
+            </div>
+          </form>
+          <table class="table" style="text-align : center;">
+            <thead class="table-dark">
+              <tr>
+                  <td>Type</td>
+                  <td>Available</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in result %}
+                <tr>
+                    <td>{{r.booking_no}}</td>
+                    <td>{{r.date_check_in}}</td>
+                </tr>
+              {% endfor %}
+              {% comment %} <tr>
+                  <td>{{result.buffet_round}}</td>
+                  <td>{{n2}}</td>
+              </tr>
+              <tr>
+                  <td>{{type1.buffet_round}}</td>
+                  <td>{{n1}}</td>
+              </tr> {% endcomment %}
+            </tbody>
+          </table>
+          <div class="form-wrapper" style="text-align: end;">
+                <a href="{% url 'bookrest' %}" class="btn" style="margin-top: 5%;margin-bottom: 5%">Reservation</a>
+                {% comment %} <a class="btn" href="{% url 'ordersummaryres' %}">Next</a> {% endcomment %}
+          </div>
+        </div>
+      </div>
+      <script>
+        var today = new Date().toISOString().split('T')[0];
+          document.getElementsByName("check_in")[0].setAttribute('min', today); 
+
+          function setDate() {
+                var startString = document.getElementsByName("check_in")[0].value;
+                var startDate = new Date(startString);
+                console.log(startDate);
+                var startDateString = startDate.getFullYear() + '-' + ('0'+ (startDate.getMonth()+1)).slice(-2) + '-' +('0'+ (startDate.getDate()+1)).slice(-2);
+                console.log(startDateString);
+                document.getElementsByName("check_out")[0].setAttribute('min', startDateString);
+          }
+      </script> 
+{% endblock %}

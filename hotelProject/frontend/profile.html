@@ -89,14 +89,14 @@
                                         <div class="row">
                                             {% if book.booking_no == None %}
                                                 <div class="col-md-4">
-                                                    <p>{{book.resb_no}}</p>
+                                                    <a href="{% url 'look_restbook' book.resb_no %}" data-toggle="modal" data-target="#myBookingRes">{{book.resb_no}}</a>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <p>Restaurant</p>
                                                 </div>
                                             {% else %}
                                                 <div class="col-md-4">
-                                                    <p>{{book.booking_no}}</p>
+                                                    <a href="{% url 'look_roombook' book.booking_no %}" data-toggle="modal" data-target="#myBookingRoom">{{book.booking_no}}</a>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <p>Hotel Room</p>
@@ -110,7 +110,8 @@
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>         
+            </div>
                 <div class="modal fade" id="myProfile" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
@@ -147,6 +148,7 @@
                             </div>
                         </div>
                     </div>
-                </div>    
-        </div>
+                </div>
+        {% include 'Roombook_info.html' %}
+        {% include 'Restbook_info.html' %}
 {% endblock %}

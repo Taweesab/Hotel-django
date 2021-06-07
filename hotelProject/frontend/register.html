@@ -67,10 +67,10 @@
         </script>
     {% endblock script %}  {% endcomment %}
 
-    {% block script %}
+    {% comment %} {% block script %}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {% if messages.tags == 'success' %} 
             {% for m in messages %}
-                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                     
                     <script>
                         Swal.fire({
@@ -83,8 +83,6 @@
             {% endfor %}
         {% elif messages.tags == 'info' %} 
             {% for m in messages %}
-                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    
                     <script>
                         Swal.fire({
                             icon: 'error',
@@ -94,7 +92,7 @@
                     </script> 
             {% endfor %}
         {% endif %}
-    {% endblock script %}
+    {% endblock script %} {% endcomment %}
     
 {% endblock %}
 

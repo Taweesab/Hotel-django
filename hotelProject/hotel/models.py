@@ -91,6 +91,7 @@ class Room(models.Model):
     roomtype = models.CharField(max_length=20, null=False, primary_key=True)
     capacity = models.IntegerField(null = False)
     price = models.FloatField(null=False)
+    amount = models.IntegerField(null=False,default=100)
 
     #try query data   
     def __str__(self) :
@@ -111,6 +112,7 @@ class Room_detail(models.Model):
     roomtype = models.ForeignKey(Room, on_delete=models.CASCADE, null=False)
     service_name = models.CharField(max_length = 32, null=True)
     room_count = models.IntegerField(null=False)
+    
     
 class Room_booking(models.Model):
     bhsurrogate = models.AutoField(primary_key = True)

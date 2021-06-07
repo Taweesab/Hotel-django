@@ -1,9 +1,10 @@
-from django.http import request
+from django.http import request,JsonResponse
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.core import serializers
 from django.db import connection
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
@@ -12,6 +13,14 @@ from .forms import CustomerRegisterForm, RegisterForm,Editroombooking,Editresboo
 from django.contrib.auth.hashers import check_password, make_password
 from .decorators import customer_login_required,staff_login_required
 from decimal import Decimal
+
+def analytics(request):
+    return render(request,'analytics.html',{})
+
+def pivot_data(request):
+    dataset = Resbooking.objects.all()
+    data = serializers.serialize('json',dataset)
+    return JsonResponse(data, safe=False)
 
 def home(request):
     return render(request,'index.html')

@@ -8,8 +8,8 @@
         
       <div class="card" >
         <div class="card-header">
-          {% comment %} <h2><a href="{% url 'room' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div> {% endcomment %}
-          <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Room Booking</h2></div>
+          <h2><a href="{% url 'showresultroom' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Hotel Booking</h2></div>
+          {% comment %} <h2><a href="{% url '' %}" ><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Room Booking</h2></div> {% endcomment %}
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -31,14 +31,14 @@
             <input type="date" name="booking_date" id="booking_date" class="form-control"  hidden>
           <div class="form-wrapper">    
             <label for="datebook"><h5>checkin</h5></label><br>
-            <input type="date" name="date_check_in" id="date_check_in" class="form-control" onchange="setDate()">
+            <input type="date" name="date_check_in" id="date_check_in" class="form-control" onchange="setDate()" required>
             <label for="datebook"><h5>checkout</h5></label><br>
-            <input type="date" name="date_check_out" id="date_check_out"  class="form-control">
+            <input type="date" name="date_check_out" id="date_check_out"  class="form-control" required>
           </div><br>
           <div class="form-wrapper">
             <h5>Type</h5>
             <label for="typeroom" style="margin-left: 5%;">
-              <input type="radio" name="roomtype" id="junior" value="Junior Suite" >Junior Suite
+              <input type="radio" name="roomtype" id="junior" value="Junior Suite" checked>Junior Suite
             </label>
             <label for="typeroom" style="margin-left: 5%;">
               <input type="radio" name="roomtype" id="standard" value="Standard Room" >Standard Room
@@ -48,21 +48,21 @@
             </div><br>
             <div class="form-wrapper">
               <label for="room_count"><h5>Number Of Room</h5></label><br>
-              <input type="number" name="room_count" id="room_count" class="form-control" min="1" max="30"><br>
+              <input type="number" name="room_count" id="room_count" class="form-control" min="1" max="30" required><br>
             </div>
             <div class="form-wrapper">
               <label for="number_guest"><h5>Number Of Guest</h5></label><br>
-              <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="20"><br>
+              <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="20" required><br>
             </div>
             <div class="form-wrapper">
               <h5>Services</h5>
               <label for="Services" style="margin-left: 5%;">
-                <input type="checkbox" class="checkvalue" value="S0001" >Cleaning Room(500 THB)
+                <input type="checkbox" class="checkvalue" value="S0001">Cleaning Room(500 THB)
               </label>
               <label for="Services" style="margin-left: 5%;">
-                <input type="checkbox"  class="checkvalue" value="S0002" >Extra Bed(700 THB)
+                <input type="checkbox"  class="checkvalue" value="S0002">Extra Bed(700 THB)
               <label for="Services" style="margin-left: 0.5%;">
-                  <input type="checkbox"  class="checkvalue" value="S0003" >Break Fast(500 THB/PEOPLE)
+                  <input type="checkbox"  class="checkvalue" value="S0003">Break Fast(500 THB/PEOPLE)
               </label><br>
               <input type="text" name="service_name" id="checkvalue" hidden>
           </div><br> 

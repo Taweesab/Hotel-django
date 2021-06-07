@@ -74,10 +74,10 @@
 			</div>
 		</div>
 	</section>
-   {% block script %}
+   {% comment %} {% block script %}
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		{% if messages.tags == 'error' %} 
 				{% for m in messages %}
-						<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 						
 						<script>
 						Swal.fire({
@@ -89,5 +89,5 @@
 						</script> 
 				{% endfor %}
 		{% endif %}
-   {% endblock script %}
+   {% endblock script %} {% endcomment %}
 {% endblock %}

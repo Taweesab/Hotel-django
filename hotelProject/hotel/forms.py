@@ -24,10 +24,10 @@ class CustomerRegisterForm(forms.ModelForm):
         exclude = ['customer_id']
     def __init__(self,*args,**kwargs):
         super(CustomerRegisterForm, self).__init__(*args,**kwargs)
-        self.fields['fname'].error_messages = {'required': 'Please enter your first name',}
-        self.fields['lname'].error_messages = {'required': 'Please enter your last name',}
-        self.fields['email'].error_messages = {'required': 'Please enter your e-mail','invalid': 'This e-mail is used',}
-        self.fields['tel'].error_messages = {'required': 'Please enter your telphone','invalid': 'Please enter a valid telphone',}
+        self.fields['fname'].info_messages = {'required': 'Please enter your first name',}
+        self.fields['lname'].info_messages = {'required': 'Please enter your last name',}
+        self.fields['email'].info_messages = {'required': 'Please enter your e-mail','invalid': 'This e-mail is used',}
+        self.fields['tel'].info_messages = {'required': 'Please enter your telphone','invalid': 'Please enter a valid telphone',}
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:

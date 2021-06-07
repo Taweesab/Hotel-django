@@ -79,7 +79,11 @@ class Promotion_type(models.Model):
     promotion_code = models.CharField(max_length=7, null=False, primary_key=True)
     promotion_name = models.CharField(max_length=32, null=False)
     promotion_detail = models.CharField(max_length=500, null = False)
-    promotion_type = models.CharField(max_length=20, null=False,default="type")
+    ptype = (
+        ("Hotel", "Hotel"),
+        ("Restaurant", "Restaurant"),
+    )
+    promotion_type = models.CharField(max_length=20,choices=ptype ,null=False,default="Hotel")
     start_date = models.DateField(null=False)
     expire_date = models.DateField(null= False)
     discount = models.FloatField(null=False)
@@ -91,6 +95,7 @@ class Room(models.Model):
     roomtype = models.CharField(max_length=20, null=False, primary_key=True)
     capacity = models.IntegerField(null = False)
     price = models.FloatField(null=False)
+    amount = models.IntegerField(null=False,default=100)
 
     #try query data   
     def __str__(self) :
@@ -114,13 +119,14 @@ class Room_detail(models.Model):
     def __str__(self) :
         return self.service_name
     
+    
 class Room_booking(models.Model):
     bhsurrogate = models.AutoField(primary_key = True)
     booking_no = models.ForeignKey(Customer_booking,on_delete=models.RESTRICT, null=True)
     date_check_in = models.DateField(null = False)
     date_check_out = models.DateField(null = False)
     detail_no = models.ForeignKey(Room_detail, on_delete = models.CASCADE, null = False)
-    promotion_code = models.ForeignKey(Promotion_type, on_delete = models.SET_NULL, null = True)
+    promotion_code = models.CharField(max_length=7, null=True)
     number_guest = models.IntegerField(null = False)
     total_charge = models.FloatField(null = False)
     payment_method = models.CharField(max_length = 32, null = True)
@@ -142,7 +148,7 @@ class Buffet_round(models.Model):
 
 class Resbooking(models.Model):
     resb_no = models.ForeignKey(Customer_booking, on_delete=models.RESTRICT, null=True)
-    promotion_code = models.ForeignKey(Promotion_type, on_delete=models.SET_NULL, null=True)
+    promotion_code = models.CharField(max_length=7, null=True)
     number_guest = models.IntegerField(null=False)
     eatdate = models.DateField(null=False)
     buffet_round = models.ForeignKey(Buffet_round, on_delete=models.SET_NULL, null=True)

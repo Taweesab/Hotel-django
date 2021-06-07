@@ -72,6 +72,16 @@ class Editresbooking(forms.ModelForm):
         model = Resbooking
         exclude = ['resb_no', 'eatdate', 'paymentmethod' , 'promotion_code']
 
+class InvoiceHotelForm(forms.ModelForm) :
+    class Meta :
+        model = Invoice
+        exclude = ['resb_no']
+
+class InvoiceRestaurantForm(forms.ModelForm) :
+    class Meta :
+        model = Invoice
+        exclude = ['booking_no']
+
 
 
 

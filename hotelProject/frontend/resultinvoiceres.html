@@ -9,7 +9,7 @@
             <div class="image-holder">
                 <img src="{% static 'images/invoice.jpeg' %}"  alt="">
             </div>
-            <form method="POST" action="{% url 'finish' %}">
+            <form action="{% url 'finishres' %}" method="POST" >
                 {% csrf_token %}
                 <br><br><br><br><h2>INVOICE BOILED-YOUTIOA HOTEL&RESTAURANT </h2>
                 <div class="form-wrapper">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-wrapper">
                     <h6>Customer ID :{{customer_id}}</h6>
-                </div>
+                </div> 
                 <div class="form-wrapper">
                     <h6>Name : {{fname}} {{lname}}</h6>
                 </div>
@@ -34,6 +34,12 @@
                 <div class="form-wrapper">
                     <h6>Total Charge: {{total_charge}}</h6>
                 </div><hr>
+                <input type="text" name="invoice_no" id="invoice_no" class="form-control" value ="{{invoice_no}}" hidden>
+                <input type="text" name="staff_id" id="staff_id" class="form-control" value ="{{staff_id}}" hidden>
+                <input type="text" name="resb_no" id="resb_no_id" class="form-control" value ="{{resb_no_id}}" hidden>
+                <input type="text" name="customer_id" id="customer_id"  value="{{customer_id}}" hidden>
+                <input type="number" name="tax" id="total_charge" value ="{{total_charge}}" hidden>
+                <input type="date" name="date" id="date" value ="{{date}}" hidden>
                 <div class="form-wrapper">
                     <button type="submit" value = "sign up" class="form-control login-btn btn-primary rounded submit px-3" style="margin-top:5%">PRINT</button>
                 </div>

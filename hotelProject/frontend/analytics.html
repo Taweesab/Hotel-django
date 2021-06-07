@@ -50,7 +50,7 @@ $.ajax({
             container: "#pivot-table-container",
             componentFolder: "https://cdn.flexmonster.com/",
             width: "100%",
-            height: 430,
+            height: "100%",
             toolbar: true,
             report: {
                 dataSource: {
@@ -70,13 +70,43 @@ $.ajax({
                         "total_charge": {
                             "caption": "Total Charge",
                             "type": "number"
+                        },
+                        "job_title":{
+                            "caption":"Job Title"
+                        },
+                        "salary":{
+                            "caption":"Staff's Salary",
+                            "type":"number"
+                        },
+                        "roomtype":{
+                            "caption":"Room Type"
+                        },
+                        "service_name":{
+                            "caption":"Service"
+                        },
+                        "tax":{
+                            "caption":"Tax",
+                            "type":"number"
+                        },
+                        "room_count":{
+                            "caption":"Room Count",
+                            "type":"number"
+                        },
+                        "staff_id":{
+                            "caption":"Staff No."
                         }
                     }
                 },
                 "slice": {
                     "rows": [{
                         "uniqueName": "buffet_round"
-                    }],
+                        },
+                        {
+                            "uniqueName":"roomtype"
+                        },
+                        {
+                            "uniqueName":"job_title"
+                        }],
                     "columns": [{
                             "uniqueName": "payment_method"
                         },
@@ -91,59 +121,114 @@ $.ajax({
                         {
                             "uniqueName": "number_guest",
                             "aggregation": "sum"
-                        }
-                    ]
+                        },
+                        {
+                            "uniqueName":"room_count",
+                            "aggregation":"sum"
+                        },
+                        {
+                            "uniqueName":"salary",
+                            "caption":"Avarage Salary",
+                            "formula":"(sum(\"salary\"))/count(\"staff_id\")",
+                            "aggregation":"average"
+                        },
+                        {
+                            "uniqueName":"job_title",
+                            "caption":"Staff count by Job Title",
+                            "aggregation":"count"
+                        }]
                 }
             }
         });
-        new Flexmonster({
-            container: "#pivot-chart-container",
-            componentFolder: "https://cdn.flexmonster.com/",
-            width: "100%",
-            height: 430,
-            //toolbar: true,
-            report: {
-                dataSource: {
-                    type: "json",
-                    data: processData(data),
-                    mapping: {
-                        "buffet_round": {
-                            "caption": "Buffet Round"
-                        },
-                        "paymentmethod": {
-                            "caption": "Payment Method"
-                        },
-                        "number_guest": {
-                            "caption": "Number of Guest",
-                            "type": "number"
-                        },
-                        "total_charge": {
-                            "caption": "Total Charge",
-                            "type": "number"
-                        }
-                    }
-                },
-                "slice": {
-                    "rows": [{
-                        "uniqueName": "buffet_round"
-                    }],
-                    "columns": [{
-                        "uniqueName": "[Measures]"
-                    }],
-                    "measures": [{
-                        "uniqueName": "total_charge",
-                         "formula": "sum(\"total_charge\")",
-                        "caption": "Total Charge"
-                    }]
-                },
-                "options": {
-                    "viewType": "charts",
-                    "chart": {
-                        "type": "pie"
-                    }
-                }
-            }
-        });
+        // new Flexmonster({
+        //     container: "#pivot-chart-container",
+        //     componentFolder: "https://cdn.flexmonster.com/",
+        //     width: "100%",
+        //     height: 430,
+        //     //toolbar: true,
+        //     report: {
+        //         dataSource: {
+        //             type: "json",
+        //             data: processData(data),
+        //             mapping: {
+        //                 "buffet_round": {
+        //                     "caption": "Buffet Round"
+        //                 },
+        //                 "paymentmethod": {
+        //                     "caption": "Payment Method"
+        //                 },
+        //                 "number_guest": {
+        //                     "caption": "Number of Guest",
+        //                     "type": "number"
+        //                 },
+        //                 "total_charge": {
+        //                     "caption": "Total Charge",
+        //                     "type": "number"
+        //                 },
+        //                 "job_title":{
+        //                     "caption":"Job Title"
+        //                 },
+        //                 "salary":{
+        //                     "caption":"Staff's Salary",
+        //                     "type":"number"
+        //                 },
+        //                 "roomtype":{
+        //                     "caption":"Room Type"
+        //                 },
+        //                 "service_name":{
+        //                     "caption":"Service"
+        //                 },
+        //                 "tax":{
+        //                     "caption":"Tax",
+        //                     "type":"number"
+        //                 },
+        //                 "room_count":{
+        //                     "caption":"Room Count",
+        //                     "type":"number"
+        //                 },
+        //                 "staff_id":{
+        //                     "caption":"Staff No."
+        //                 }
+        //             }
+        //         },
+        //         "slice": {
+        //             "rows": [{
+        //                 "uniqueName": "buffet_round"
+        //                 },
+        //                 {
+        //                     "uniqueName":"roomtype"
+        //                 },
+        //                 {
+        //                     "uniqueName":"job_title"
+        //                 }],
+        //             "columns": [{
+        //                 "uniqueName": "[Measures]"
+        //             }],
+        //             "measures": [{
+        //                 "uniqueName": "total_charge",
+        //                  "formula": "sum(\"total_charge\")",
+        //                 "caption": "Total Charge"
+        //             },
+        //             {
+        //                     "uniqueName":"room_count",
+        //                     "formula":"sum(\"room_count\")",
+        //                     "aggregation":"sum"
+        //             },
+        //             {
+        //                     "uniqueName":"salary",
+        //                     "caption":"Avarage Salary",
+        //                     "formula":"(sum(\"salary\"))/count(\"staff_id\")",
+        //                     "aggregation":"average"
+        //             }]
+        //         },
+        //         "options": {
+        //             "viewType": "charts",
+        //             "chart": {
+        //                 "type": "pie"
+        //             }
+        //         }
+        //     }
+        // });
     }
 });
 

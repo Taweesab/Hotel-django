@@ -117,7 +117,7 @@ class Room_detail(models.Model):
     service_name = models.CharField(max_length = 32, null=True)
     room_count = models.IntegerField(null=False)
     def __str__(self) :
-        return self.service_name
+        return str(self.detail_no)
     
     
 class Room_booking(models.Model):

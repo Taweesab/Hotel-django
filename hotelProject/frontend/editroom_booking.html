@@ -24,31 +24,30 @@
             </tr>
           </Table>
         </div>
-        <form action="{% url 'editstaff_hotel' %}" method="POST">
+        <form action="" method="POST">
           {% csrf_token %}
           <input type="text" name="customer_id" id="customer_id" class="form-control" value="{{customer.customer_id}}" hidden>
             <input type="text" name="booking_no" id="booking_no" class="form-control" value="{{bookno}}" hidden>
             <input type="date" name="booking_date" id="booking_date" class="form-control"  hidden>
           <br>
           <div class="form-wrapper">
-            <label for = "typeroom" ></h5>Type Of Room</h5></label><br>
-            <input type="text" value="{{booking.roomtype}}" name="roomtype" id="roomtype" class="form-control"><br>
-            <!-- <label for="typeroom" style="margin-left: 5%;">
-              <input type="radio" name="roomtype" id="Junior" value="Junior Suite" >Junior Suite
+            <label</h5>Type Of Room</h5></label><br>
+            <label for="typeroom" style="margin-left: 5%;">
+              <input type="radio" name="roomtype" id="junior" value=" Junior Room" checked>Junior Suite 
             </label>
             <label for="typeroom" style="margin-left: 5%;">
               <input type="radio" name="roomtype" id="standard" value="Standard Room" >Standard Room
             <label for="typeroom" style="margin-left: 0.5%;">
                 <input type="radio" name="roomtype" id="superior" value="Superior Room" >Superior Room
-            </label><br> -->
+            </label><br>
             </div><br>
             <div class="form-wrapper">
               <label for="room_count"><h5>Number Of Room</h5></label><br>
-              <input type="number" value="{{booking.room_count}}" name="room_count" id="room_count" class="form-control" min="1" max="30"><br>
+              <input type="number" value="{{roombooking.room_count}}" name="room_count" id="room_count" class="form-control" min="1" max="30"><br>
             </div>
             <div class="form-wrapper">
               <label for="number_guest"><h5>Number Of Guest</h5></label><br>
-              <input type="number" value="{{booking.number_guest}}" name="number_guest" id="number_guest" class="form-control" min="1" max="20"><br>
+              <input type="number" value="{{roombooking.number_guest}}" name="number_guest" id="number_guest" class="form-control" min="1" max="20"><br>
             </div>
             <div class="form-wrapper">
               <h5>Services</h5>
@@ -60,10 +59,11 @@
               <label for="Services" style="margin-left: 0.5%;">
                   <input type="checkbox"  class="checkvalue" value="S0003" >Break Fast(500 THB/PEOPLE)
               </label><br>
-              <input type="text" name="service_name" id="service_name{{Service.service_code}}" {% if Service.service_name %}checked{% endif %}>
-              <!-- <label class="form-check-label" for="avaliable{{menu.menuID}}">
-                Avaliable
-            </label> -->
+              <input type="text" name="service_name" id="checkvalue" hidden>
+              <br>
+              <h5>Total</h5>
+            </div> <div class="form-wrapper">
+              <input type="number" name="total_charge" id="total_charge" value ="{{roombooking.total_charge}}" >
             </div><br> 
           <hr>
           <div class="form-wrapper" style="text-align: end;">

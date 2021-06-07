@@ -62,6 +62,18 @@ class RoomdetailForm(forms.ModelForm) :
         exclude = ['detail_no']
         # fields = '__all__'
 
+class Editroombooking(forms.ModelForm):
+    class Meta :
+        model = Room_booking
+        exclude = ['date_check_in', 'date_check_out', 'payment_method' , 'promotion_code','booking_no']
+
+class Editresbooking(forms.ModelForm):
+    class Meta :
+        model = Resbooking
+        exclude = ['resb_no', 'eatdate', 'payment_method' , 'promotion_code']
+
+
+
 
 
 

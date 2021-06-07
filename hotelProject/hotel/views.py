@@ -8,11 +8,10 @@ from django.db import connection
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
 from .forms import *
-from .forms import CustomerRegisterForm, RegisterForm
+from .forms import CustomerRegisterForm, RegisterForm,Editroombooking,Editresbooking
 from django.contrib.auth.hashers import check_password, make_password
 from .decorators import customer_login_required,staff_login_required
 from decimal import Decimal
-from django.contrib.auth.models import Group
 
 def home(request):
     return render(request,'index.html')
@@ -102,6 +101,7 @@ def finish(request):
 def invoice_res(request):
     return render(request,'invoice_res.html')
 
+@staff_login_required
 def resultinvoiceres(request):
     resb_no = request.POST['resb_no']
     customer_id = request.POST['customer_id']
@@ -446,4 +446,43 @@ def editstaff_res(request):
 
 def editstaff_hotel(request):
     hotels = Room_booking.objects.all()
-    return render(request,'editstaff_hotel.html',{'hotels' : hotels})
+    context = {'hotels' : hotels}
+    return render(request,'editstaff_hotel.html',context)
+
+def editroom_booking(request, pk):  
+    booking = Room_booking.objects.get(booking_no=pk)
+    form=Editroombooking()
+    if request.method == 'POST':
+        if form.is_valid(): 
+            form = Editroombooking(request.POST, instance = booking)   
+            form.save()
+            print("Success")  
+            return redirect("/show")  
+        else:
+            print("Error")
+            return redirect("/show")  
+    return render(request, 'editroom_booking.html', {'form': form,'booking':booking})
+
+def editres_booking(request,pk):
+    resbooking = Resbooking.objects.get(resb_no=pk)
+    form=Editresbooking()
+    if request.method == 'POST':
+        if form.is_valid(): 
+            form = Editresbooking(request.POST, instance = resbooking)   
+            form.save()
+            print("Success")  
+            return redirect("/show")  
+        else:
+            print("Error")
+            return redirect("/show")  
+    return render(request, 'editres_booking.html', {'form': form,'resbooking': resbooking})
+
+
+
+
+
+
+
+
+    
+    

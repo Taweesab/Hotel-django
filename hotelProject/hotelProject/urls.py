@@ -51,7 +51,9 @@ urlpatterns = [
     path('resultinvoiceres/',views.resultinvoiceres,name='resultinvoiceres'),
     path('invoice_hotel/',views.invoice_hotel,name='invoice_hotel'),
     path('resultinvoicehotel/',views.resultinvoicehotel,name='resultinvoicehotel'),
-    path('finish/',views.finish,name='finish')
+    path('finish/',views.finish,name='finish'),
+    path('editroom_booking/<str:pk>',views.editroom_booking, name='editroom_booking'),
+    path('editres_booking/<str:pk>',views.editres_booking, name='editres_booking'),
 
 
 ]

@@ -8,6 +8,7 @@ django = "*"
 python-decouple = "*"
 decouple = "*"
 mysqlclient = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
-def staff_login_required(job_titles=['S', 'M', 'R', 'HS', 'RS'], login_url='loginstaff'):
+def staff_login_required(job_titles=['M', 'R', 'HS', 'RS'], login_url='loginstaff'):
     def decorator(view_func):
         def wrapper(request, *args, **kwargs):
             if (

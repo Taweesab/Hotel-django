@@ -7,7 +7,16 @@
 <div class="container">
   <table class="table">
     <thead class="thead-dark">
-    <br><br><br><br><br>
+      <br>
+      <div class="input-group rounded">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" />
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+            <span class="material-icons" , style="font-size: 36px;">
+              search
+              </span>
+        </div><br><br>
       <tr>
         <th scope="col">ResBookingNo</th>
         <th scope="col">CustomerID</th>
@@ -20,11 +29,11 @@
       
       {% for restaurant in restaurants %}  
       <tr>
-        <th scope="row">{{restaurant.resb_no}}</th>
+        <th scope="row">{{restaurant.resb_no.resb_no}}</th>
         <td>{{restaurant.resb_no.customer_id}}</td>
         <td>{{restaurant.buffet_round}}</td>
         <td>{{restaurant.eatdate}}</td>
-        <td><button type="button" class="btn btn-dark btn-sm">Edit</button></td>
+        <td><a class="btn" href="{% url 'editres_booking' restaurant.resb_no  %}" style="margin-top: 0.5%;">Edit</a></td>
       </tr>
       {% endfor %}
     </tbody>

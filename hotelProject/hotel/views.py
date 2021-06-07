@@ -552,10 +552,10 @@ def editstaff_res(request):
 def editres_booking(request,pk):
     resbooking = Resbooking.objects.get(resb_no = pk) 
     if request.method == "POST":
-        num = int(request.POST['number_guest'])
-        buffet = request.POST['buffet_round']
-        round = Buffet_round.objects.get(buffet_round = buffet)
-        total_charge = num * round.charge
+        # num = int(request.POST['number_guest'])
+        # buffet = request.POST['buffet_round']
+        # round = Buffet_round.objects.get(buffet_round = buffet)
+        # total_charge = num * round.charge
         edit_form = Editresbooking(request.POST, instance = resbooking)
         if edit_form.is_valid() :
             edit_form.save()

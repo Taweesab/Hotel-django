@@ -525,9 +525,6 @@ def logout(request):
 def checkroom(request) :
     return render(request,'book_hotel2.html')
 
-def editstaff_res(request):
-    restaurants = Resbooking.objects.all()
-    return render(request,'editstaff_res.html',{'restaurants' : restaurants})
 
 def editstaff_hotel(request):
     hotels = Room_booking.objects.all()
@@ -548,20 +545,27 @@ def editroom_booking(request, pk):
             return redirect("/show")  
     return render(request, 'editroom_booking.html', {'form': form,'booking':booking})
 
+def editstaff_res(request):
+    restaurants = Resbooking.objects.all()
+    return render(request,'editstaff_res.html',{'restaurants' : restaurants})
+
 def editres_booking(request,pk):
-    resbooking = Resbooking.objects.get(resb_no=pk)
-    form=Editresbooking()
-    if request.method == 'POST':
-        if form.is_valid(): 
-            form = Editresbooking(request.POST, instance = resbooking)   
-            form.save()
-            print("Success")  
-            return redirect("/show")  
+    resbooking = Resbooking.objects.get(resb_no = pk) 
+    if request.method == "POST":
+        num = int(request.POST['number_guest'])
+        buffet = request.POST['buffet_round']
+        round = Buffet_round.objects.get(buffet_round = buffet)
+        total_charge = num * round.charge
+        edit_form = Editresbooking(request.POST, instance = resbooking)
+        if edit_form.is_valid() :
+            edit_form.save()
+            print("successs")
+            return redirect('editstaff_res')  
         else:
             print("Error")
-            return redirect("/show")  
-    return render(request, 'editres_booking.html', {'form': form,'resbooking': resbooking})
-
+            return redirect("editres_booking")  
+    return render(request, 'editres_booking.html',{'resbooking': resbooking})
+    # return render(request,'profile.html',{"customer":customer,"customer_booking":customer_booking})
 
 
 

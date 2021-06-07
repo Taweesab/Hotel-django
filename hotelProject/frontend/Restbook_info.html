@@ -4,22 +4,20 @@
 {% block title %}Booking Info{% endblock title %}
 {% block body %}class = "bg-1"{% endblock body %}
 {% block content %} 
-      <div class="card" >
+      <div class="card" style = "padding-left:5%;">
         <div class="card-header">
-          <h2><a href="{% url 'profile' %}"  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking Detial</h2></div>
-                <h4>Restaurant Booking</h4>
-                <hr>
+          <h2><a href="{% url 'profile' %}"  style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking Detial</h2></div>
                 <div class="form-wrapper">
-                    <h6>Booking Res No. :{{resb_no}} </h6>
+                    <h6>Booking Res No. :{{no}} </h6>
                 </div>
                 <div class="form-wrapper">
                     <h5>Detail </h5>
-                    <h6>Date : {{eatdate}}</h6>
-                    <h6>No. of people : {{ number_guest_res}}</h6>
-                    <h6>Buffet round : {{buffet_round}}</h6>
+                    <h6>Date : {{table.eatdate}}</h6>
+                    <h6>No. of people : {{table.number_guest}}</h6>
+                    <h6>Buffet round : {{table.buffet_round}}</h6>
                 </div><hr>
                 <div class="form-wrapper">
-                    <h6>Total Charge: {{total_charge}}</h6>
+                    <h6>Total Charge: {{table.total_charge}}</h6>
                 </div><hr>
         </div>
       </div>

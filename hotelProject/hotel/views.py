@@ -254,9 +254,9 @@ def profile(request):
  
 # @staff_login_required(job_titles=['M', 'R', 'HS'])
 def look_roombook(request, pk):
-    customer_booking = Customer_booking.objects.get(booking_no=pk).no
+    customer_booking = Customer_booking.objects.get(booking_no=pk)
     room =  Room_booking.objects.get(booking_no = customer_booking)
-    detail = Room_detail.objects.get(detail_no = room.detail_no)
+    detail = Room_detail.objects.get(detail_no = room.detail_no.detail_no)
     print("test")
     print(room)
     print(detail)
@@ -264,10 +264,12 @@ def look_roombook(request, pk):
 
 # @staff_login_required(job_titles=['M', 'R', 'RS'])
 def look_restbook(request, pk):
-    customer_booking = Customer_booking.objects.get(resb_no = pk).no
+    customer_booking = Customer_booking.objects.get(resb_no = pk)
+    print(customer_booking)
     table =  Resbooking.objects.get(resb_no = customer_booking)
-    print(table)
-    return render(request,'Roombook_info.html',{"table":table,"no":pk})
+    print(table.resb_no)
+    print(table.eatdate)
+    return render(request,'Restbook_info.html',{"table":table,"no":pk})
 
 
 def showresultroom(request):

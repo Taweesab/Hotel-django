@@ -48,6 +48,7 @@ def loginstaff(request):
 def invoice_hotel(request):
     return render(request,'invoice_hotel.html')
 
+# @staff_login_required(job_titles=['M', 'R', 'HS'])
 def resultinvoicehotel(request):
     booking_no = request.POST['booking_no']
     customer_id = request.POST['customer_id']
@@ -101,7 +102,7 @@ def finish(request):
 def invoice_res(request):
     return render(request,'invoice_res.html')
 
-@staff_login_required
+# @staff_login_required(job_titles=['M', 'R', 'RS'])
 def resultinvoiceres(request):
     resb_no = request.POST['resb_no']
     customer_id = request.POST['customer_id']
@@ -146,6 +147,7 @@ def resultinvoiceres(request):
     "number_guest_res":number_guest_res,"buffet_round":buffet_round}
     return render(request,'resultinvoiceres.html',context)
 
+
 def loginaccept(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -184,6 +186,7 @@ def register(request):
             messages.info(request,'Those passwords didn’t match. Try again.')
     return render(request,'register.html')
 
+
 def register_staff(request):
     form = RegisterForm()
     if request.method == 'POST':
@@ -203,6 +206,7 @@ def register_staff(request):
             render(request,'register_staff.html')
     context = {"form": form}
     return render(request,'register_staff.html',context)
+
 
 def loginstaffaccept(request):
     
@@ -236,6 +240,7 @@ def profile(request):
         
     return render(request,'profile.html',{"customer":customer,"customer_booking":customer_booking})
  
+# @staff_login_required(job_titles=['M', 'R', 'HS'])
 def look_roombook(request, pk):
     customer_booking = Customer_booking.objects.get(booking_no=pk).no
     room =  Room_booking.objects.get(booking_no = customer_booking)
@@ -245,11 +250,13 @@ def look_roombook(request, pk):
     print(detail)
     return render(request,'Roombook_info.html',{"room":room,"no":pk,"detail":detail})
 
+# @staff_login_required(job_titles=['M', 'R', 'RS'])
 def look_restbook(request, pk):
     customer_booking = Customer_booking.objects.get(resb_no = pk).no
     table =  Resbooking.objects.get(resb_no = customer_booking)
     print(table)
     return render(request,'Roombook_info.html',{"table":table,"no":pk})
+
 
 def showresultroom(request):
     n1 = n2 = n3 = 0
@@ -292,6 +299,7 @@ def showresultroom(request):
         n3 = 0
     
     return render(request,'search_hotel.html',{"room1":room1,"room2":room2,"room3":room3,"n1":n1,"n2":n2,"n3":n3})
+
 
 def showresultres(request):
     n1 = n2 = 0
@@ -510,6 +518,7 @@ def paymentres(request):
 #             print("error")
 #             render(request,'book_res3.html')
 
+# @staff_login_required(job_titles=['M', 'R', 'HS'])
 def logout_staff(request):
     if 'staff_id' in request.session:
         del request.session['staff_id']
@@ -517,55 +526,71 @@ def logout_staff(request):
         del request.session['job_title'] # delete user session
     return redirect('login')
 
+@customer_login_required
 def logout(request):
     if 'customer_id' in request.session:
         del request.session['customer_id'] # delete user session
     return redirect('home')
 
+# @staff_login_required(job_titles=['M', 'R', 'HS'])
 def checkroom(request) :
     return render(request,'book_hotel2.html')
 
-
+# @staff_login_required(job_titles=['M', 'R', 'HS'])
 def editstaff_hotel(request):
     hotels = Room_booking.objects.all()
     context = {'hotels' : hotels}
     return render(request,'editstaff_hotel.html',context)
 
-def editroom_booking(request, pk):  
-    booking = Room_booking.objects.get(booking_no=pk)
-    form=Editroombooking()
-    if request.method == 'POST':
-        if form.is_valid(): 
-            form = Editroombooking(request.POST, instance = booking)   
-            form.save()
-            print("Success")  
-            return redirect("/show")  
-        else:
-            print("Error")
-            return redirect("/show")  
-    return render(request, 'editroom_booking.html', {'form': form,'booking':booking})
-
+# @staff_login_required(job_titles=['M', 'R', 'RS'])
 def editstaff_res(request):
     restaurants = Resbooking.objects.all()
     return render(request,'editstaff_res.html',{'restaurants' : restaurants})
 
+# @staff_login_required(job_titles=['M', 'R', 'RS'])
 def editres_booking(request,pk):
     resbooking = Resbooking.objects.get(resb_no = pk) 
-    if request.method == "POST":
-        # num = int(request.POST['number_guest'])
-        # buffet = request.POST['buffet_round']
-        # round = Buffet_round.objects.get(buffet_round = buffet)
-        # total_charge = num * round.charge
+    if  request.method == "POST":
+        num = int(request.POST['number_guest'])
+        buffet = request.POST['buffet_round']
+        round = Buffet_round.objects.get(buffet_round = buffet)
+        total_charge = num * round.charge
         edit_form = Editresbooking(request.POST, instance = resbooking)
         if edit_form.is_valid() :
             edit_form.save()
             print("successs")
             return redirect('editstaff_res')  
         else:
-            print("Error")
-            return redirect("editres_booking")  
+            print(edit_form.errors)
+            return redirect("editstaff_res") 
+    else:
+        print("Error")
     return render(request, 'editres_booking.html',{'resbooking': resbooking})
     # return render(request,'profile.html',{"customer":customer,"customer_booking":customer_booking})
+
+
+def editroom_booking(request,pk):
+    roombooking = Room_booking.objects.get(booking_no = pk) 
+    if  request.method == "POST":
+        numR = int(request.POST['room_count'])
+        numG = int(request.POST['number_guest'])
+        room = request.POST['roomtype']
+
+        type = Room_booking.objects.get(roomtype = room)
+        roomservice = request.POST['service_name']
+        service = Room_booking.objects.get(service_name = roomservice)
+        total_charge = (numR * type.price )
+        editroom_form = Editroombooking(request.POST, instance = roombooking)
+        if editroom_form.is_valid():
+            editroom_form.save()
+            print("successs")
+            return redirect('editstaff_res')  
+        else:
+            print(editroom_form.errors)
+            return redirect("editstaff_res") 
+    else:
+        print("Error")
+    return render(request, 'editroom_booking.html',{'roombooking': roombooking})
 
 
 

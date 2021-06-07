@@ -12,7 +12,7 @@
             {% csrf_token %}
             <div class="form-wrapper">    
               <label for="datebook"><h5>checkin</h5></label><br>
-              <input type="date" name="check_in" id="check_in" class="form-control" onchange="setDate()" required>
+              <input type="date" name="check_in" id="check_in" class="form-control" onchange="setDate()" required><br>
               <label for="datebook"><h5>checkout</h5></label><br>
               <input type="date" name="check_out" id="check_out"  class="form-control" required>
           </div>
@@ -29,24 +29,22 @@
               </tr>
             </thead>
             <tbody>
-              {% for r in result %}
-                <tr>
-                    <td>{{r.booking_no}}</td>
-                    <td>{{r.date_check_in}}</td>
-                </tr>
-              {% endfor %}
-              {% comment %} <tr>
-                  <td>{{result.buffet_round}}</td>
+              <tr>
+                  <td>{{room1.roomtype}}</td>
+                  <td>{{n1}}</td>
+              </tr>
+              <tr>
+                  <td>{{room2.roomtype}}</td>
                   <td>{{n2}}</td>
               </tr>
               <tr>
-                  <td>{{type1.buffet_round}}</td>
-                  <td>{{n1}}</td>
-              </tr> {% endcomment %}
+                  <td>{{room3.roomtype}}</td>
+                  <td>{{n3}}</td>
+              </tr>
             </tbody>
           </table>
           <div class="form-wrapper" style="text-align: end;">
-                <a href="{% url 'bookrest' %}" class="btn" style="margin-top: 5%;margin-bottom: 5%">Reservation</a>
+                <a href="{% url 'bookroom' %}" class="btn" style="margin-top: 5%;margin-bottom: 5%">Reservation</a>
                 {% comment %} <a class="btn" href="{% url 'ordersummaryres' %}">Next</a> {% endcomment %}
           </div>
         </div>

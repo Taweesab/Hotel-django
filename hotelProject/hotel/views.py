@@ -253,35 +253,63 @@ def look_restbook(request, pk):
     return render(request,'Roombook_info.html',{"table":table,"no":pk})
 
 def showresultroom(request):
-    n1 = n2 = 0
+    n1 = n2 = n3 = 0
     if request.method == "POST":
         check_in = request.POST.get("check_in")
         check_out = request.POST.get("check_out")
-        print(type(check_in))
-        print(check_out)
-        result = Room_booking.objects.filter(date_check_in__lt = check_in,date_check_out__gt = check_out)
+        # print(type(check_in))
+        # print(check_out)
+        result = Room_booking.objects.filter(date_check_in__gte = check_in,date_check_out__lte = check_out)
+        # detail = Room_detail.objects.filter(roomtype = "Junior Suite")
+        # result = Room_booking.objects.filter(desc__contains=filter,room_booking__name__contains=detail,date_check_in__lt = check_in,date_check_out__gt = check_out).count()
         # people = Person.objects.raw('SELECT id, first_name, last_name, birth_date FROM myapp_person')
         # result = Room_booking.objects.raw('SELECT COUNT(booking_no_id) FROM hotel_room_booking JOIN hotel_room_detail ON hotel_room_booking.detail_no_id = hotel_room_detail.detail_no WHERE hotel_room_detail.roomtype_id = "Junior Suite" AND hotel_room_booking.date_check_in < "'+check_in+'" AND hotel_room_booking.date_check_out > "'+check_out+'" ')
         print(result)
     else:
         today = dt.date.today()
         tomorrow = today + dt.timedelta(days=1)
-        result = Room_booking.objects.filter(date_check_in__lt = today,date_check_in__gt = tomorrow)
+        result = Room_booking.objects.filter(date_check_in__gte = today,date_check_in__lte = tomorrow)
         print(result)   
+    for i in result:
+        print(i.detail_no_id)
+        detail = Room_detail.objects.get(detail_no=i.detail_no_id)
+        if(detail.roomtype == "Junior Suite"):
+            n1 = n1 + 1
+        elif(detail.roomtype == "Standard Room"):
+            n2 = n2 + 1
+        else:
+            n3 = n3 + 1
+    room1 = Room.objects.get(roomtype = "Junior Suite")
+    room2 = Room.objects.get(roomtype = "Standard Room")
+    room3 = Room.objects.get(roomtype = "Superior Room")
+    n1 = room1.amount - n1
+    n2 = room2.amount - n2
+    n3 = room3.amount - n3
+    if n1 < 0:
+        n1 = 0
+    if n2 < 0:
+        n2 = 0
+    if n3 < 0:
+        n3 = 0
     
-    return render(request,'search_hotel.html',{"result":result})
+    return render(request,'search_hotel.html',{"room1":room1,"room2":room2,"room3":room3,"n1":n1,"n2":n2,"n3":n3})
 
 def showresultres(request):
     n1 = n2 = 0
     if request.method == "POST":
         searchdate = request.POST.get("searchdate")
-        n1 = Resbooking.objects.filter(eatdate=searchdate,buffet_round="lunch").count()
-        n2 = Resbooking.objects.filter(eatdate=searchdate,buffet_round="dinner").count()
+        round1 = Resbooking.objects.filter(eatdate=searchdate,buffet_round="lunch")
+        round2 = Resbooking.objects.filter(eatdate=searchdate,buffet_round="dinner")
     else:
         today = dt.date.today()
         print(today)
-        n1 = Resbooking.objects.filter(eatdate=today,buffet_round="lunch").count()
-        n2 = Resbooking.objects.filter(eatdate=today,buffet_round="dinner").count()
+        round1 = Resbooking.objects.filter(eatdate=today,buffet_round="lunch")
+        round2 = Resbooking.objects.filter(eatdate=today,buffet_round="dinner")
+    
+    for i in round1:
+        n1 = n1 + i.number_guest
+    for j in round2:
+        n2 = n2 + j.number_guest
     type1 = Buffet_round.objects.get(buffet_round = "lunch")
     type2 = Buffet_round.objects.get(buffet_round = "dinner")
     n1 = type1.amount - n1

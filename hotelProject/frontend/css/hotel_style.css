@@ -379,7 +379,8 @@ textarea {
 .promotion {
     background: #ffffff;
     height: auto;
-    width: 350px;
+    max-width: 350px;
+    margin-top: 10%;
 }
 
 .promotion h5 {

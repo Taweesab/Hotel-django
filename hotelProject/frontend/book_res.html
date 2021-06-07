@@ -7,7 +7,9 @@
 
       <div class="card" >
         <div class="card-header">
-          <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Restaurant Booking</h2></div>
+          <h2><a href="{% url 'showresultres' %}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Restaurant Booking</h2>
+          {% comment %} <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Restaurant Booking</h2> {% endcomment %}
+        </div>
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -29,7 +31,7 @@
             <input type="date" name="booking_date" id="booking_date" class="form-control"  hidden>
             <div class="form-wrapper">
               <label for="eatdate"><h5>Date</h5></label><br>
-              <input type="date" name="eatdate" id="eatdate" class="form-control">
+              <input type="date" name="eatdate" id="eatdate" class="form-control" required>
             </div><br>
             <div class="form-wrapper">
                 <h5>Buffet Round</h5>
@@ -42,7 +44,7 @@
             </div><br>
             <div class="form-wrapper">
               <label for="number_guest"><h5>Number Of Guest</h5></label><br>
-              <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="800"><br>
+              <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="800" required><br>
             </div>
             <div class="form-wrapper">
               <label for="promotion_code"><h5>Promotion Code</h5></label><br>

@@ -30,10 +30,10 @@
       {% for restaurant in restaurants %}  
       <tr>
         <th scope="row">{{restaurant.resb_no.resb_no}}</th>
-        <td>{{restaurant.resb_no.customer_id}}</td>
-        <td>{{restaurant.buffet_round}}</td>
-        <td>{{restaurant.eatdate}}</td>
-        <td><a class="btn" href="{% url 'editres_booking' restaurant.resb_no  %}" style="margin-top: 0.5%;">Edit</a></td>
+          <td>{{restaurant.resb_no.customer_id}}</td>
+          <td>{{restaurant.buffet_round}}</td>
+          <td>{{restaurant.eatdate}}</td>
+          <td><a class="btn" href="{% url 'editres_booking' restaurant.resb_no  %}" style="margin-top: 0.5%;">Edit</a></td>
       </tr>
       {% endfor %}
     </tbody>

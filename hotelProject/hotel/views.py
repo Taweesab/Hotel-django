@@ -12,7 +12,8 @@ from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm,Editroombooking,Editresbooking
 from django.contrib.auth.hashers import check_password, make_password
 from .decorators import customer_login_required,staff_login_required
-from decimal import Context, Decimal
+from decimal import Context,Decimal
+import datetime as dt
 
 def analytics(request):
     return render(request,'analytics.html',{})
@@ -338,9 +339,9 @@ def profile(request):
  
 # @staff_login_required(job_titles=['M', 'R', 'HS'])
 def look_roombook(request, pk):
-    customer_booking = Customer_booking.objects.get(booking_no=pk).no
+    customer_booking = Customer_booking.objects.get(booking_no=pk)
     room =  Room_booking.objects.get(booking_no = customer_booking)
-    detail = Room_detail.objects.get(detail_no = room.detail_no)
+    detail = Room_detail.objects.get(detail_no = room.detail_no.detail_no)
     print("test")
     print(room)
     print(detail)
@@ -348,10 +349,12 @@ def look_roombook(request, pk):
 
 # @staff_login_required(job_titles=['M', 'R', 'RS'])
 def look_restbook(request, pk):
-    customer_booking = Customer_booking.objects.get(resb_no = pk).no
+    customer_booking = Customer_booking.objects.get(resb_no = pk)
+    print(customer_booking)
     table =  Resbooking.objects.get(resb_no = customer_booking)
-    print(table)
-    return render(request,'Roombook_info.html',{"table":table,"no":pk})
+    print(table.resb_no)
+    print(table.eatdate)
+    return render(request,'Restbook_info.html',{"table":table,"no":pk})
 
 
 def showresultroom(request):
@@ -513,7 +516,8 @@ def paymenthotel(request) :
             hotel_book.booking_no = cus
             hotel_book.detail_no = detial
             hotel_book.save()
-
+            print(hotel_book.detail_no)
+            print(hotel_book.booking_no)
             print("success")
             booking_no = request.POST["booking_no"]
             discount = request.POST["discount"]
@@ -632,16 +636,13 @@ def logout(request):
 def checkroom(request) :
     return render(request,'book_hotel2.html')
 
-# @staff_login_required(job_titles=['M', 'R', 'HS'])
-def editstaff_hotel(request):
-    hotels = Room_booking.objects.all()
-    context = {'hotels' : hotels}
-    return render(request,'editstaff_hotel.html',context)
 
 # @staff_login_required(job_titles=['M', 'R', 'RS'])
 def editstaff_res(request):
     restaurants = Resbooking.objects.all()
     return render(request,'editstaff_res.html',{'restaurants' : restaurants})
+
+
 
 # @staff_login_required(job_titles=['M', 'R', 'RS'])
 def editres_booking(request,pk):
@@ -665,29 +666,43 @@ def editres_booking(request,pk):
     # return render(request,'profile.html',{"customer":customer,"customer_booking":customer_booking})
 
 
-def editroom_booking(request,pk):
-    roombooking = Room_booking.objects.get(booking_no = pk) 
-    if  request.method == "POST":
-        numR = int(request.POST['room_count'])
-        numG = int(request.POST['number_guest'])
-        room = request.POST['roomtype']
 
-        type = Room_booking.objects.get(roomtype = room)
-        roomservice = request.POST['service_name']
-        service = Room_booking.objects.get(service_name = roomservice)
-        total_charge = (numR * type.price )
+def editroom_booking(request,pk):
+    roombooking = Room_booking.objects.get(booking_no = pk)
+    detail = Room_detail.objects.get(detail_no = roombooking.detail_no.detail_no) 
+    print(pk)
+    print("test")
+    print(roombooking.detail_no.detail_no)
+    if  request.method == "POST":
+        # numR = int(request.POST['room_count'])
+        # numG = int(request.POST['number_guest'])
+        # room = request.POST['roomtype']
+
+        # type = Room_booking.objects.get(roomtype = room)
+        # roomservice = request.POST['service_name']
+        # service = Room_booking.objects.get(service_name = roomservice)
+        # total_charge = (numR * type.price)
+        detail_form = RoomdetailForm(request.POST, instance = detail)
         editroom_form = Editroombooking(request.POST, instance = roombooking)
-        if editroom_form.is_valid():
-            editroom_form.save()
+        if editroom_form.is_valid() and detail_form.is_valid():
+            detail_room = detail_form.save()
+            editroom = editroom_form.save(False)
+            editroom.detail_no = detail_room
+            editroom.save()
             print("successs")
-            return redirect('editstaff_res')  
+            return redirect('editstaff_hotel')  
         else:
             print(editroom_form.errors)
-            return redirect("editstaff_res") 
+            return redirect("editstaff_hotel") 
     else:
         print("Error")
-    return render(request, 'editroom_booking.html',{'roombooking': roombooking})
+    return render(request, 'editroom_booking.html',{'roombooking': roombooking,'detail':detail})
 
+# @staff_login_required(job_titles=['M', 'R', 'HS'])
+def editstaff_hotel(request):
+    hotels = Room_booking.objects.all()
+    context = {'hotels' : hotels}
+    return render(request,'editstaff_hotel.html',context)
 
 
 

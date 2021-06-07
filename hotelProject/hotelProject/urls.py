@@ -59,6 +59,7 @@ urlpatterns = [
     path('finishres/',views.finishres,name='finishres'),
     path('editroom_booking/<str:pk>',views.editroom_booking, name='editroom_booking'),
     path('editres_booking/<str:pk>',views.editres_booking, name='editres_booking'),
+    # path('editres_comfirm/<str:pk>',views.editres_comfirm, name='editres_comfirm'),
     path('analytics/',views.analytics, name='analytics'),
     path('data', views.pivot_data,name ='pivot_data'),
 

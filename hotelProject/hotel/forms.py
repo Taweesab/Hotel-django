@@ -65,7 +65,7 @@ class RoomdetailForm(forms.ModelForm) :
 class Editroombooking(forms.ModelForm):
     class Meta :
         model = Room_booking
-        exclude = ['date_check_in', 'date_check_out', 'payment_method' , 'promotion_code','booking_no']
+        fields = ['number_guest','total_charge']
 
 class Editresbooking(forms.ModelForm):
     class Meta :

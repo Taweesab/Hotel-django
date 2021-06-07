@@ -33,18 +33,19 @@
                 <h5>Buffet Round</h5>
                 <label for="buffet_round" style="margin-left: 5%;">
                   {% comment %} <input type="radio" name="buffet_round" id="lunch" value = {% if resbooking.buffet_round == "lunch" %}"{{resbooking.buffet_round}}" checked{% endif %}>Lunch {% endcomment %}
-                  <input type="radio" name="buffet_round" id="lunch" value = "lunch" checked>Lunch
+                  <input type="radio" name="buffet_round" id="lunch" value = "lunch" checked onchange="calculateTotal()">Lunch
                 </label>
                 <label for="buffet_round" style="margin-left: 8%;">
-                  <input type="radio" name="buffet_round" id="dinner" value = "dinner">Dinner
+                  <input type="radio" name="buffet_round" id="dinner" value = "dinner" onchange="calculateTotal()">Dinner
                 </label><br>
             </div><br>
             <div class="form-wrapper">
               <label for="number_guest"><h5>Number Of Guest</h5></label><br>
-              <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="800" value = {{resbooking.number_guest}}><br>
+              <input type="number" name="number_guest" id="number_guest" class="form-control" min="1" max="800" value = {{resbooking.number_guest}} onchange="calculateTotal()"><br>
             </div>
             <div class="form-wrapper">
-              <input type="number" name="total_charge" id="total_charge" value ="{{resbooking.total_charge}}" >
+              <label for="total_charge"><h5>Total</h5></label><br>
+              <input type="number" name="total_charge" id="total_charge" class="form-control" value ="{{resbooking.total_charge}}" >
             </div>
             <div class="form-wrapper" style="text-align: end;">
               <button type="submit" value = "submit" class="btn" style="margin-top: 5%;">Comfirm</button>
@@ -52,4 +53,21 @@
           </form>
         </div>
       </div>
+      {% block script %}
+        <script>
+            var lunchType = document.getElementsByName("buffet_round");
+            function calculateTotal(){
+              var lunchValue;
+              for (var i=0; i<lunchType.length; i++) {
+                if(lunchType[i].checked && lunchType[i].value === "lunch") {
+                  lunchValue = 599;
+                } else if (lunchType[i].checked && lunchType[i].value === "dinner") {
+                  lunchValue = 799;
+                }
+              }
+              var guestNumber = document.getElementById("number_guest").value;
+              document.getElementById("total_charge").value = lunchValue * guestNumber;
+            }
+        </script>
+      {% endblock script %}
 {% endblock %}

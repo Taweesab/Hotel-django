@@ -15,8 +15,6 @@
           <i class="fas fa-search-"></i>
           <a class="btn btn-dark btn-sm" style="margin-top: 0.1%;" > Search</a>
       </div><br><br> -->
-      <form action="" method = "POST">
-        {% csrf_token %}
       <tr>
         <th scope="col">BookingNo</th>
         <th scope="col">CustomerID</th>
@@ -26,7 +24,6 @@
       </tr>
     </thead>
     <tbody>
-      
       {% for hotel in hotels %}  
       <tr>
         <th scope="row">{{hotel.booking_no.booking_no}}</th>

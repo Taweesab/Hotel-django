@@ -8,8 +8,8 @@
         
       <div class="card" >
         <div class="card-header">
-          {% comment %} <h2><a href="{% url 'bookroom' room.booking_no%}" style="color: rgb(88, 88, 88);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Booking</h2></div> {% endcomment %}
-          <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Room Booking</h2></div>
+          <h2><a  style="color: rgb(255, 255, 255);"><span class="material-icons" style="font-size:25px ;">arrow_back_ios</span></a>Room Booking</h2>
+        </div>
         <div class="card-body ">
           <!-- <h5 class="card-title">Light card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
@@ -23,27 +23,23 @@
               <td><i id="check" class="gg-check-o1"></i></td>
             </tr>
           </Table>
-        </div>
-        <form action="" method="POST">
-          {% csrf_token %}
-          <input type="text" name="customer_id" id="customer_id" class="form-control" value="{{customer.customer_id}}" hidden>
-            <input type="text" name="booking_no" id="booking_no" class="form-control" value="{{bookno}}" hidden>
-            <input type="date" name="booking_date" id="booking_date" class="form-control"  hidden>
-          <br>
-          <div class="form-wrapper">
-            <label</h5>Type Of Room</h5></label><br>
-            <label for="typeroom" style="margin-left: 5%;">
-              <input type="radio" name="roomtype" id="junior" value=" Junior Room" checked>Junior Suite 
-            </label>
-            <label for="typeroom" style="margin-left: 5%;">
-              <input type="radio" name="roomtype" id="standard" value="Standard Room" >Standard Room
-            <label for="typeroom" style="margin-left: 0.5%;">
-                <input type="radio" name="roomtype" id="superior" value="Superior Room" >Superior Room
-            </label><br>
+          </div>
+          <form action="" method = "POST">
+            {% csrf_token %}
+            <div class="form-wrapper">
+              <label<h5>Type Of Room</h5></label><br>
+              <label for="typeroom" style="margin-left: 5%;">
+                <input type="radio" name="roomtype" id="junior" value="Junior Room" checked>Junior Suite 
+              </label>
+              <label for="typeroom" style="margin-left: 5%;">
+                <input type="radio" name="roomtype" id="standard" value="Standard Room">Standard Room
+              <label for="typeroom" style="margin-left: 0.5%;">
+                  <input type="radio" name="roomtype" id="superior" value="Superior Room">Superior Room
+              </label><br>
             </div><br>
             <div class="form-wrapper">
               <label for="room_count"><h5>Number Of Room</h5></label><br>
-              <input type="number" value="{{roombooking.room_count}}" name="room_count" id="room_count" class="form-control" min="1" max="30"><br>
+              <input type="number" value="{{detail.room_count}}" name="room_count" id="room_count" class="form-control" min="1" max="30"><br>
             </div>
             <div class="form-wrapper">
               <label for="number_guest"><h5>Number Of Guest</h5></label><br>
@@ -52,29 +48,30 @@
             <div class="form-wrapper">
               <h5>Services</h5>
               <label for="Services" style="margin-left: 5%;">
-                <input type="checkbox" class="checkvalue" value="S0001" name="" >Cleaning Room(500 THB)
+                <input type="checkbox" class="checkvalue" value="Cleaning">Cleaning Room(500 THB)
               </label>
               <label for="Services" style="margin-left: 5%;">
-                <input type="checkbox"  class="checkvalue" value="S0002" >Extra Bed(700 THB)
+                <input type="checkbox"  class="checkvalue" value="ExtraBed" >Extra Bed(700 THB)
               <label for="Services" style="margin-left: 0.5%;">
-                  <input type="checkbox"  class="checkvalue" value="S0003" >Break Fast(500 THB/PEOPLE)
+                  <input type="checkbox"  class="checkvalue" value="Breakfast">Break Fast(500 THB/PEOPLE)
               </label><br>
               <input type="text" name="service_name" id="checkvalue" hidden>
               <br>
+            </div> 
+            <div class="form-wrapper">
               <h5>Total</h5>
-            </div> <div class="form-wrapper">
-              <input type="number" name="total_charge" id="total_charge" value ="{{roombooking.total_charge}}" >
-            </div><br> 
-          <hr>
-          <div class="form-wrapper" style="text-align: end;">
-            <!-- <br><a class="btn" href="{%url 'checkroom' %}">Reservation</a> -->
-            <button type="submit" value = "next" class="btn" style="margin-top: 5%;">Next</button>
-          </div>
+              <input type="number" name="total_charge" id="total_charge" class="form-control" value ="{{roombooking.total_charge}}">
+            </div>
+            <hr>
+              <div class="form-wrapper" style="text-align: end;">
+                <!-- <br><a class="btn" href="{%url 'checkroom' %}">Reservation</a> -->
+                <button type="submit" value = "next" class="btn" style="margin-top: 5%;">Comfirm</button>
+              </div>
         </form>
-      </div>
+        </div>
     </div>
     {% block script %}
-        <script type = "text/javascript">
+        <script>
             $(document).ready(function(){
               $('.checkvalue').click(function(){
                 var txt="";

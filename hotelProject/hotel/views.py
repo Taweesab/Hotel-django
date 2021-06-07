@@ -12,15 +12,17 @@ from .forms import *
 from .forms import CustomerRegisterForm, RegisterForm,Editroombooking,Editresbooking
 from django.contrib.auth.hashers import check_password, make_password
 from .decorators import customer_login_required,staff_login_required
-from decimal import Decimal
+from decimal import Context,Decimal
 import datetime as dt
 
 def analytics(request):
     return render(request,'analytics.html',{})
 
 def pivot_data(request):
-    dataset = Resbooking.objects.all()
-    data = serializers.serialize('json',dataset)
+    context=[*Staff.objects.all(),*Customer.objects.all(),*Customer_booking.objects.all(),
+            *Promotion_type.objects.all(),*Room.objects.all(),*Service.objects.all(),*Room_detail.objects.all(),
+            *Room_booking.objects.all(),*Buffet_round.objects.all(),*Invoice.objects.all(),*Resbooking.objects.all()]
+    data = serializers.serialize('json',context)
     return JsonResponse(data, safe=False)
 
 def home(request):

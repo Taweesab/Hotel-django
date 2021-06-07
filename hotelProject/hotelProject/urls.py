@@ -22,6 +22,7 @@ from django.contrib.auth import views as auth
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
+    # path('staff/',views.home_staff, name='staff'),
     path('hotel_room/',views.room, name='room'),
     path('dinning_room/',views.dinning, name='rest'),
     path('promotions/',views.promotion, name='promotion'),
@@ -38,6 +39,7 @@ urlpatterns = [
     path('showresult_room/',views.showresultroom,name='showresultroom'),
     # path('searchresult/',views.searchresult,name='searchresult'),
     path('logout/', views.logout, name='logout'),
+    path('logoutstaff/', views.logout_staff, name='logout_staff'),
     path('moreinfo1/',views.moreinfo1, name='moreinfo1'),
     path('moreinfo2/',views.moreinfo2, name='moreinfo2'),
     path('moreinfo3/',views.moreinfo3, name='moreinfo3'),

@@ -295,6 +295,8 @@ def register_staff(request):
             new_user = form.save(commit=False)
             new_user.password = make_password(new_user.password)
             new_user.save()
+            messages.success(request,'Success')
+            return redirect('loginstaff')
             # group = Group.objects.get(name='staff')
             # user.groups.add(group)
 
@@ -320,7 +322,7 @@ def loginstaffaccept(request):
                 # return 
                 request.session['staff_id'] = user.staff_id
                 request.session['job_title'] = user.job_title
-                return redirect('home')
+                return redirect('editstaff_hotel')
 
         messages.error(request,'Not found infomation')
         return redirect('loginstaff')
@@ -624,7 +626,7 @@ def logout_staff(request):
         del request.session['staff_id']
     if 'job_title' in request.session:
         del request.session['job_title'] # delete user session
-    return redirect('login')
+    return redirect('loginstaff')
 
 @customer_login_required
 def logout(request):

@@ -1,4 +1,4 @@
-{% extends 'layout.html' %} 
+{% extends 'layout_staff.html' %} 
 {% load static %}
 
 {% block title %}Register{% endblock title %}
@@ -46,13 +46,3 @@
     </div>
 
 {% endblock %}
-
-
-{% comment %} 
-    <form action="" method = "POST">
-        {% csrf_token %}
-        {{form.username.label}}
-        {{form.username}}
-        {{form.errors}}
-    </form> 
-{% endcomment %}

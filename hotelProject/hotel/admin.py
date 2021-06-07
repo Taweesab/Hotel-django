@@ -34,7 +34,7 @@ class Admin_RoomDe(admin.ModelAdmin):
 
 
 class Admin_BH(admin.ModelAdmin):
-    list_display=["bhsurrogate","booking_no","date_check_in","date_check_out","number_guest"]
+    list_display=["bhsurrogate","booking_no","detail_no","date_check_in","date_check_out","number_guest"]
     search_fields=["booking_no"]
 
 
